@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SWApuestaCliente.master.cs" Inherits="WebApuestasCliente.SWApuestaCliente" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>ApuestaGol</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="frmMAG" runat="server">
+        <div class="ContenidoMAG">
+            <div id="bodyMAG">
+                <asp:ContentPlaceHolder ID="ContenidoAG" runat="server">
+                    <%-- Inicio .- cuerpo del sistema --%>
+                    <%-- Fin .- cuerpo del sistema --%>
+                </asp:ContentPlaceHolder>
+            </div>
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - ApuestaGOL</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
