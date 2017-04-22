@@ -169,6 +169,128 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="recursos\css\bootstrap-select.css" />
+    <Content Include="recursos\css\bootstrap-select.min.css" />
+    <Content Include="recursos\css\bootstrap-theme.css" />
+    <Content Include="recursos\css\bootstrap-theme.css.map" />
+    <Content Include="recursos\css\bootstrap-theme.min.css" />
+    <Content Include="recursos\css\bootstrap-theme.min.css.map" />
+    <Content Include="recursos\css\bootstrap.css" />
+    <Content Include="recursos\css\bootstrap.css.map" />
+    <Content Include="recursos\css\bootstrap.min.css" />
+    <Content Include="recursos\css\bootstrap.min.css.map" />
+    <Content Include="recursos\css\font-awesome.css" />
+    <Content Include="recursos\css\font-awesome.min.css" />
+    <Content Include="recursos\fonts\fontawesome-webfont.eot" />
+    <Content Include="recursos\fonts\fontawesome-webfont.svg" />
+    <Content Include="recursos\fonts\fontawesome-webfont.ttf" />
+    <Content Include="recursos\fonts\fontawesome-webfont.woff" />
+    <Content Include="recursos\fonts\fontawesome-webfont.woff2" />
+    <Content Include="recursos\fonts\FontAwesome.otf" />
+    <Content Include="recursos\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="recursos\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="recursos\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="recursos\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="recursos\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="recursos\fonts\OpenSans-Bold.woff" />
+    <Content Include="recursos\fonts\OpenSans-Bold.woff2" />
+    <Content Include="recursos\fonts\OpenSans-Light.woff" />
+    <Content Include="recursos\fonts\OpenSans-Light.woff2" />
+    <Content Include="recursos\fonts\OpenSans-Semibold.woff" />
+    <Content Include="recursos\fonts\OpenSans-Semibold.woff2" />
+    <Content Include="recursos\fonts\OpenSans.woff" />
+    <Content Include="recursos\fonts\OpenSans.woff2" />
+    <Content Include="recursos\images\balon.png" />
+    <Content Include="recursos\images\banner300.png" />
+    <Content Include="recursos\images\bg-fondo.jpg" />
+    <Content Include="recursos\images\bg-fondo.png" />
+    <Content Include="recursos\images\equipos\alianza.png" />
+    <Content Include="recursos\images\equipos\aurich.png" />
+    <Content Include="recursos\images\equipos\cesar-vallejo.png" />
+    <Content Include="recursos\images\equipos\cienciano.png" />
+    <Content Include="recursos\images\equipos\leon.png" />
+    <Content Include="recursos\images\equipos\pacifico.png" />
+    <Content Include="recursos\images\equipos\sporting.png" />
+    <Content Include="recursos\images\equipos\universitario.png" />
+    <Content Include="recursos\images\juego01.png" />
+    <Content Include="recursos\images\juego02.png" />
+    <Content Include="recursos\images\juego03.png" />
+    <Content Include="recursos\images\logo-apuestagol.png" />
+    <Content Include="recursos\images\vineta.png" />
+    <Content Include="recursos\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="recursos\js\bootstrap-select.js" />
+    <Content Include="recursos\js\bootstrap-select.min.js" />
+    <Content Include="recursos\js\bootstrap.js" />
+    <Content Include="recursos\js\bootstrap.min.js" />
+    <Content Include="recursos\js\i18n\defaults-ar_AR.js" />
+    <Content Include="recursos\js\i18n\defaults-ar_AR.min.js" />
+    <Content Include="recursos\js\i18n\defaults-bg_BG.js" />
+    <Content Include="recursos\js\i18n\defaults-bg_BG.min.js" />
+    <Content Include="recursos\js\i18n\defaults-cro_CRO.js" />
+    <Content Include="recursos\js\i18n\defaults-cro_CRO.min.js" />
+    <Content Include="recursos\js\i18n\defaults-cs_CZ.js" />
+    <Content Include="recursos\js\i18n\defaults-cs_CZ.min.js" />
+    <Content Include="recursos\js\i18n\defaults-da_DK.js" />
+    <Content Include="recursos\js\i18n\defaults-da_DK.min.js" />
+    <Content Include="recursos\js\i18n\defaults-de_DE.js" />
+    <Content Include="recursos\js\i18n\defaults-de_DE.min.js" />
+    <Content Include="recursos\js\i18n\defaults-en_US.js" />
+    <Content Include="recursos\js\i18n\defaults-en_US.min.js" />
+    <Content Include="recursos\js\i18n\defaults-es_CL.js" />
+    <Content Include="recursos\js\i18n\defaults-es_CL.min.js" />
+    <Content Include="recursos\js\i18n\defaults-es_ES.js" />
+    <Content Include="recursos\js\i18n\defaults-es_ES.min.js" />
+    <Content Include="recursos\js\i18n\defaults-eu.js" />
+    <Content Include="recursos\js\i18n\defaults-eu.min.js" />
+    <Content Include="recursos\js\i18n\defaults-fa_IR.js" />
+    <Content Include="recursos\js\i18n\defaults-fa_IR.min.js" />
+    <Content Include="recursos\js\i18n\defaults-fi_FI.js" />
+    <Content Include="recursos\js\i18n\defaults-fi_FI.min.js" />
+    <Content Include="recursos\js\i18n\defaults-fr_FR.js" />
+    <Content Include="recursos\js\i18n\defaults-fr_FR.min.js" />
+    <Content Include="recursos\js\i18n\defaults-hu_HU.js" />
+    <Content Include="recursos\js\i18n\defaults-hu_HU.min.js" />
+    <Content Include="recursos\js\i18n\defaults-id_ID.js" />
+    <Content Include="recursos\js\i18n\defaults-id_ID.min.js" />
+    <Content Include="recursos\js\i18n\defaults-it_IT.js" />
+    <Content Include="recursos\js\i18n\defaults-it_IT.min.js" />
+    <Content Include="recursos\js\i18n\defaults-ko_KR.js" />
+    <Content Include="recursos\js\i18n\defaults-ko_KR.min.js" />
+    <Content Include="recursos\js\i18n\defaults-lt_LT.js" />
+    <Content Include="recursos\js\i18n\defaults-lt_LT.min.js" />
+    <Content Include="recursos\js\i18n\defaults-nb_NO.js" />
+    <Content Include="recursos\js\i18n\defaults-nb_NO.min.js" />
+    <Content Include="recursos\js\i18n\defaults-nl_NL.js" />
+    <Content Include="recursos\js\i18n\defaults-nl_NL.min.js" />
+    <Content Include="recursos\js\i18n\defaults-pl_PL.js" />
+    <Content Include="recursos\js\i18n\defaults-pl_PL.min.js" />
+    <Content Include="recursos\js\i18n\defaults-pt_BR.js" />
+    <Content Include="recursos\js\i18n\defaults-pt_BR.min.js" />
+    <Content Include="recursos\js\i18n\defaults-pt_PT.js" />
+    <Content Include="recursos\js\i18n\defaults-pt_PT.min.js" />
+    <Content Include="recursos\js\i18n\defaults-ro_RO.js" />
+    <Content Include="recursos\js\i18n\defaults-ro_RO.min.js" />
+    <Content Include="recursos\js\i18n\defaults-ru_RU.js" />
+    <Content Include="recursos\js\i18n\defaults-ru_RU.min.js" />
+    <Content Include="recursos\js\i18n\defaults-sk_SK.js" />
+    <Content Include="recursos\js\i18n\defaults-sk_SK.min.js" />
+    <Content Include="recursos\js\i18n\defaults-sl_SI.js" />
+    <Content Include="recursos\js\i18n\defaults-sl_SI.min.js" />
+    <Content Include="recursos\js\i18n\defaults-sv_SE.js" />
+    <Content Include="recursos\js\i18n\defaults-sv_SE.min.js" />
+    <Content Include="recursos\js\i18n\defaults-tr_TR.js" />
+    <Content Include="recursos\js\i18n\defaults-tr_TR.min.js" />
+    <Content Include="recursos\js\i18n\defaults-ua_UA.js" />
+    <Content Include="recursos\js\i18n\defaults-ua_UA.min.js" />
+    <Content Include="recursos\js\i18n\defaults-zh_CN.js" />
+    <Content Include="recursos\js\i18n\defaults-zh_CN.min.js" />
+    <Content Include="recursos\js\i18n\defaults-zh_TW.js" />
+    <Content Include="recursos\js\i18n\defaults-zh_TW.min.js" />
+    <Content Include="recursos\js\jquery.min.js" />
+    <Content Include="recursos\js\moment.js" />
+    <Content Include="recursos\js\npm.js" />
+    <Content Include="recursos\js\sidebar.js" />
+    <Content Include="recursos\style.css" />
     <Content Include="ResultadoGanadores\ApuestaGolesRG.aspx" />
     <Content Include="ResultadoGanadores\CartillaSuerteRG.aspx" />
     <Content Include="ResultadoGanadores\PollaSemanalRG.aspx" />
@@ -219,30 +341,35 @@
   <ItemGroup>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\OpenAuthProviders.ascx.cs">
       <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
       <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
     </Compile>
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\RegisterExternalLogin.aspx.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
@@ -339,6 +466,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="SWApuestaCliente.Master.cs">
       <DependentUpon>SWApuestaCliente.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SWApuestaCliente.Master.designer.cs">
       <DependentUpon>SWApuestaCliente.Master</DependentUpon>
@@ -352,6 +480,7 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

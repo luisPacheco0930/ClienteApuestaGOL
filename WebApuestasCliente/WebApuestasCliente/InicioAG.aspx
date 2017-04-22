@@ -1,6 +1,43 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SWApuestaCliente.Master" AutoEventWireup="true" CodeBehind="InicioAG.aspx.cs" Inherits="WebApuestasCliente.InicioAG" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="contentHeadInicio" ContentPlaceHolderID="head" runat="server">
+    
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContenidoAG" runat="server">
-    <asp:Label ID="Label1" runat="server" Text="Ejemplo"></asp:Label>
+<asp:Content ID="cabeceraInicio" ContentPlaceHolderID="masterHeader" runat="server">
+    <header id="header-top" class="inside">			
+	    <div class="row">
+		    <div class="col-md-3">
+			    <div class="logo-inside">
+				    <img class="img-responsive" src="recursos/images/logo-apuestagol.png">
+			    </div>
+		    </div>
+		    <div class="col-md-9">
+			    <div class="banner-top">Banner superior</div>
+		    </div>
+	    </div>			
+    </header>
+</asp:Content>
+<asp:Content ID="contentPageInicio" ContentPlaceHolderID="masterPage" runat="server">
+    <div class="page-content">
+	    <h1 class="page-header">Selección de Juegos</h1>
+	    <p>Bienvenido a apuestagol, a continuación selecciona uno de los juegos con el cual puedes usar tu código promocional, recuerda que puedes usar un único código por cada jugada</p>
+	    <div id="games-selection">
+		    <div class="row">
+			    <div class="col-md-4">
+				    <div class="item-game">
+					    <a href="#"><img class="img-thumbnail" src="recursos/images/juego01.png"/></a>
+				    </div>
+			    </div>
+			    <div class="col-md-4">
+				    <div class="item-game">
+					    <a href="#"><img class="img-thumbnail" src="recursos/images/juego02.png"/></a>
+				    </div>
+			    </div>
+			    <div class="col-md-4">
+				    <div class="item-game">
+					    <a href="#"><img class="img-thumbnail" src="recursos/images/juego03.png"/></a>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+    </div>
 </asp:Content>

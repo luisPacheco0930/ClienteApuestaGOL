@@ -1,17 +1,133 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginAG.aspx.cs" Inherits="WebApuestasCliente.LoginAG" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SWApuestaCliente.Master" CodeBehind="LoginAG.aspx.cs" Inherits="WebApuestasCliente.LoginAG" %>
 
-<!DOCTYPE html>
+<asp:Content ID="contentHeadLogin" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var loginCheck = jQuery('#login-more');
+            if (loginCheck.is(':checked')) {
+                $(".login-advanced").show();
+            } else {
+                $(".login-advanced").hide();
+            }
+            $(loginCheck).click(function () {
+                if (loginCheck.is(':checked')) {
+                    $(".login-advanced").show();
+                } else {
+                    $(".login-advanced").hide();
+                }
+            });
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Acceso ApuestaGOL</title>
-</head>
-<body>
-    <form id="frmLoginAG" runat="server">
-    <div>
-    
+        });
+    </script>
+</asp:Content>
+<asp:Content ID="cabeceraLogin" ContentPlaceHolderID="masterHeader" runat="server">
+    <header id="header-top">
+        <div class="logo">
+			<img class="img-responsive" src="recursos/images/logo-apuestagol.png" />
+		</div>
+	</header>
+    <div class="register">
+		¿Ingresas por primera vez?
+		<a href="#" data-toggle="modal" data-target="#myModal">
+			<i class="fa fa-sign-in" aria-hidden="true"></i> Registrate aquí
+		</a>
+	</div>
+</asp:Content>
+<asp:Content ID="menu" ContentPlaceHolderID="masterMenu" runat="server">
+    <!-- contenido vacio -->
+</asp:Content>
+<asp:Content ID="contentPageInicio" ContentPlaceHolderID="masterPage" runat="server">
+    <div class="row">
+        <div class="col-md-3">
+			Anuncio lateral
+		</div>
+		<div class="col-md-6">
+			<div id="login-user">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4>Ingresar</h4>
+					</div>
+					<div class="panel-body">
+						<form id="login" class="form-horizontal">
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-addon">
+									<i class="fa fa-tag fa-lg" aria-hidden="true"></i>
+									</div>
+									<input type="text" class="form-control" id="exampleInputAmount1" placeholder="Escribe tu codigo promocional" />
+								</div>
+							</div>
+							<div class="checkbox">
+								<label>
+								<input type="checkbox" id="login-more" value="" />
+								Si es usted cliente marque la siguiente opción
+								</label>
+							</div>
+							<div class="login-advanced" >
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-addon">
+										<i class="fa fa-user fa-lg" aria-hidden="true"></i>
+										</div>
+										<input type="text" class="form-control" id="exampleInputAmount2" placeholder="N° de documento de identidad" />
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<div class="input-group-addon">
+										<i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+										</div>
+										<input type="password" class="form-control" id="exampleInputAmount3" placeholder="Contraseña"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-success btn-lg btn-block">Iniciar sesión</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			Anuncio Lateral
+		</div>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
+<asp:Content ID="ModalRegister" ContentPlaceHolderID="contentModal" runat="server">
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Registro de usuario</h4>
+      </div>
+      <div class="modal-body">
+      	<div class="form-body">
+      		<form id="register" class="form-horizontal" runat="server">
+        	<div class="form-group">
+				<input type="text" class="form-control" id="txtdni" placeholder="N° de documento de identidad"/>
+			</div>
+			<div class="form-group">
+			    <input type="text" class="form-control" id="txtNombres" placeholder="Ingresar Nombres"/>
+			</div>
+			<div class="form-group">
+			    <input type="text" class="form-control" id="txtApellidos" placeholder="Ingresar Apellidos"/>
+			</div>
+			<div class="form-group">
+			    <input type="email" class="form-control" id="txtEmail" placeholder="Correo Electronico"/>
+			</div>
+			<div class="form-group">
+			    <input type="password" class="form-control" id="txtPassword" placeholder="Contraseña"/>
+			</div>
+			<div class="form-group btn-register">
+				<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>
+			</div>
+            </form>
+      	</div>
+      </div>
+    </div>
+  </div>
+</div>
+</asp:Content>
