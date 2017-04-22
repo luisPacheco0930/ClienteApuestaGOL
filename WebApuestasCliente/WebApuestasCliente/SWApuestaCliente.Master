@@ -7,10 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>ApuestaGol</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link href="recursos/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="recursos/css/font-awesome.css" />
-    <link rel="stylesheet" href="recursos/css/bootstrap-select.min.css" />
-    <link href="recursos/style.css" rel="stylesheet"/>
+    <link href="<%= ResolveClientUrl("~/recursos/css/bootstrap.min.css") %>" rel="stylesheet"/>
+    <link rel="stylesheet" href="<%= ResolveClientUrl("~/recursos/css/font-awesome.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveClientUrl("~/recursos/css/bootstrap-select.min.css") %>" />
+    <link href="<%= ResolveClientUrl("~/recursos/style.css") %>" rel="stylesheet"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,9 +18,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="recursos/js/jquery.min.js"></script>
-    <script src="recursos/js/bootstrap.min.js"></script>
-    <script src="recursos/js/bootstrap-select.min.js"></script>
+    <script src="<%= ResolveClientUrl("~/recursos/js/jquery.min.js") %>"></script>
+    <script src="<%= ResolveClientUrl("~/recursos/js/bootstrap.min.js") %>"></script>
+    <script src="<%= ResolveClientUrl("~/recursos/js/bootstrap-select.min.js") %>"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -35,7 +35,7 @@
 						        <div class="row">
 							        <div class="col-md-3">
 								        <div class="logo-inside">
-									        <img class="img-responsive" src="images/logo-apuestagol.png" />
+									        <img class="img-responsive" src="<%= ResolveClientUrl("~/recursos/images/logo-apuestagol.png")%>" />
 								        </div>
 							        </div>
 							        <div class="col-md-9">
