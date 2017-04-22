@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SWApuestaCliente.Master" AutoEventWireup="true" CodeBehind="ApuestaGoles.aspx.cs" Inherits="WebApuestasCliente.Juego.ApuestaGoles" %>
-<asp:Content ID="contenidoCabecera" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="contenidoHead" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="contenidoPagina" ContentPlaceHolderID="masterPage" runat="server">
     <div class="page-content">
@@ -53,10 +53,10 @@
                                                 	</div>
                                                 	<div class="col-sm-5">
                                                 		<div class="option-games">
-                                        	        		<img src="images/equipos/universitario.png">
-                                        	        		<input type="text" class="form-option">
-                                        	        		<input type="text" class="form-option">
-                                        	        		<img src="images/equipos/sporting.png">
+                                                            <asp:image runat="server" id="Image1" ImageUrl="~/recursos/images/equipos/universitario.png" />
+                                        	        		<input type="text" class="form-option" />
+                                        	        		<input type="text" class="form-option" />
+                                        	        		<asp:image runat="server" id="Image2" ImageUrl="~/recursos/images/equipos/sporting.png" />
                                                 		</div>
                                                 	</div>
                                                 </div>
@@ -68,10 +68,10 @@
                                                 	</div>
                                                 	<div class="col-sm-5">
                                                 		<div class="option-games">
-                                        	        		<img src="images/equipos/cienciano.png">
-                                        	        		<input type="text" class="form-option">
-                                        	        		<input type="text" class="form-option">
-                                        	        		<img src="images/equipos/alianza.png">
+                                                            <asp:image runat="server" id="Image3" ImageUrl="~/recursos/images/equipos/cienciano.png" />
+                                        	        		<input type="text" class="form-option" />
+                                        	        		<input type="text" class="form-option" />
+                                                            <asp:image runat="server" id="Image4" ImageUrl="~/recursos/images/equipos/alianza.png" />
                                                 		</div>
                                                 	</div>
                                                 </div>
@@ -83,10 +83,10 @@
                                                 	</div>
                                                 	<div class="col-sm-5">
                                                 		<div class="option-games">
-                                        	        		<img src="images/equipos/cesar-vallejo.png">
-                                        	        		<input type="text" class="form-option">
-                                        	        		<input type="text" class="form-option">
-                                        	        		<img src="images/equipos/pacifico.png">
+                                                            <asp:image runat="server" id="Image5" ImageUrl="~/recursos/images/equipos/cesar-vallejo.png" />
+                                        	        		<input type="text" class="form-option"/>
+                                        	        		<input type="text" class="form-option"/>
+                                                            <asp:image runat="server" id="Image6" ImageUrl="~/recursos/images/equipos/pacifico.png" />
                                                 		</div>
                                                 	</div>
                                                 </div>
@@ -98,10 +98,10 @@
                                                 	</div>
                                                 	<div class="col-sm-5">
                                                 		<div class="option-games">
-                                        	        		<img src="images/equipos/aurich.png">
-                                        	        		<input type="text" class="form-option">
-                                        	        		<input type="text" class="form-option">
-                                        	        		<img src="images/equipos/leon.png">
+                                                            <asp:image runat="server" id="Image7" ImageUrl="~/recursos/images/equipos/aurich.png" />
+                                        	        		<input type="text" class="form-option" />
+                                        	        		<input type="text" class="form-option" />
+                                                            <asp:image runat="server" id="Image8" ImageUrl="~/recursos/images/equipos/leon.png" />
                                                 		</div>
                                                 	</div>
                                                 </div>
