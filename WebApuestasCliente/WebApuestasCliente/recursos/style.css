@@ -150,9 +150,80 @@ body{
 	background: #FFA40C;
 	color: #FFF;
 }
+.result-goal{
+    margin-top:25px;
+    padding-top:25px;
+}
+.result-goal thead tr th{
+    background: #0A64bA;
+    color:#fff;
+    text-align:center;
+    font-size: 16px;
+}
+.result-goal tbody tr td{
+    vertical-align:middle;
+    text-align:center;
+}
+.panel.winners{
+    background-color: #aad400;
+    padding: 20px 30px;
+    border-radius: 10px;
+}
+.panel.winners h3{
+    color: #FFF;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+    padding:0;
+    margin:0 0 15px 0;
+}
+.panel.winners .table thead tr th{
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #fff6d5;
+}
+.panel.winners .table tbody tr td{
+    font-size:15px;
+    color: #000;
+    padding: 15px 10px;
+    font-weight:bold;
+}
+.source{
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+.source p{
+    font-size: 16px !important;
+}
+.equipment{
+    padding: 5px 10px;
+    text-align:center;
+}
+.equipment img{
+    display:inline-block;
+    padding-left:10px;
+    padding-right:10px;
+}
+.result-v{
+    background-color: #aad400;
+    padding: 5px;
+    font-weight:bold;
+    color:#000;
+    text-align:center;
+    font-size:20px;
+}
+.result-l{
+    background-color: #9d93ac;
+    padding:5px;
+    font-weight:bold;
+    color:#000;
+    text-align:center;
+    font-size:20px;
+}
 .page-content{
 	background:#FFF;
 	padding: 30px;
+    
 }
 .page-header{
 	text-transform: uppercase;
