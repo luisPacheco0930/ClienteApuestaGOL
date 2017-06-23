@@ -13,5 +13,10 @@ namespace WebApuestasCliente
         {
 
         }
+
+        protected void ImgCartillaSuerte_Click(object sender, ImageClickEventArgs e)
+        {
+            HttpContext.Current.Response.Redirect("~/Juego/CartillaSuerte.aspx");
+        }
     }
 }

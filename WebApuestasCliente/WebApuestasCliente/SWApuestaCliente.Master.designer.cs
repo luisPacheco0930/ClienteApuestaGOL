@@ -22,6 +22,15 @@ namespace WebApuestasCliente {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// Control MasterPageControl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm MasterPageControl;
+        
+        /// <summary>
         /// Control masterHeader.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace WebApuestasCliente {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder masterMenu;
+        
+        /// <summary>
+        /// Control CerrarSession.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CerrarSession;
         
         /// <summary>
         /// Control masterPage.

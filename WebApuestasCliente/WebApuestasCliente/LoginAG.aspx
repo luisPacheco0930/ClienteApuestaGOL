@@ -48,13 +48,14 @@
 						<h4>Ingresar</h4>
 					</div>
 					<div class="panel-body">
-						<form id="login" class="form-horizontal">
+						<%--<form id="login" runat="server" class="form-horizontal">--%>
 							<div class="form-group">
 								<div class="input-group">
 									<div class="input-group-addon">
 									<i class="fa fa-tag fa-lg" aria-hidden="true"></i>
 									</div>
-									<input type="text" class="form-control" id="exampleInputAmount1" placeholder="Escribe tu codigo promocional" />
+									<input type="text" class="form-control" id="txtNroPromocional" name="txtNroPromocional" placeholder="Escribe tu codigo promocional" />
+                                    <%--<asp:TextBox ID="txtNroPromocional" CssClass="form-control" runat="server"></asp:TextBox>--%>
 								</div>
 							</div>
 							<div class="checkbox">
@@ -81,10 +82,10 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<button type="button" class="btn btn-success btn-lg btn-block">Iniciar sesión</button>
-							</div>
-						</form>
+							    <div class="form-group">
+                                    <asp:Button ID="btnLoguear" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
+                                </div>
+						<%--</form>--%>
 					</div>
 				</div>
 			</div>
@@ -93,6 +94,7 @@
 			Anuncio Lateral
 		</div>
     </div>
+
 </asp:Content>
 <asp:Content ID="ModalRegister" ContentPlaceHolderID="contentModal" runat="server">
     <!-- Modal -->
@@ -105,7 +107,7 @@
       </div>
       <div class="modal-body">
       	<div class="form-body">
-      		<form id="register" class="form-horizontal" runat="server">
+      		<%--<form id="register" class="form-horizontal">--%>
         	<div class="form-group">
 				<input type="text" class="form-control" id="txtdni" placeholder="N° de documento de identidad"/>
 			</div>
@@ -122,12 +124,14 @@
 			    <input type="password" class="form-control" id="txtPassword" placeholder="Contraseña"/>
 			</div>
 			<div class="form-group btn-register">
-				<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>
+				<%--<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>--%>
+                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrarse" />
 			</div>
-            </form>
+            <%--</form>--%>
       	</div>
       </div>
     </div>
   </div>
 </div>
+    
 </asp:Content>
