@@ -54,8 +54,8 @@
 									<div class="input-group-addon">
 									<i class="fa fa-tag fa-lg" aria-hidden="true"></i>
 									</div>
-									<input type="text" class="form-control" id="txtNroPromocional" name="txtNroPromocional" placeholder="Escribe tu codigo promocional" />
-                                    <%--<asp:TextBox ID="txtNroPromocional" CssClass="form-control" runat="server"></asp:TextBox>--%>
+									<%--<input type="text" class="form-control" id="txtNroPromocional" name="txtNroPromocional" placeholder="Escribe tu codigo promocional" />--%>
+                                    <asp:TextBox ID="txtNroPromocional" CssClass="form-control" runat="server"></asp:TextBox>
 								</div>
 							</div>
 							<div class="checkbox">

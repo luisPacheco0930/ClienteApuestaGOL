@@ -5,15 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using ApuestaCliente.Entity;
 
 namespace ApuestaCliente.Data
 {
     public class ContextoDB:IDisposable
     {
-        public static ContextoDB InicializarContexto(string CadenaDeConexion)
+        //public static ContextoDB InicializarContexto(string CadenaDeConexion)
+        //{
+        //    ContextoDB contexto = new ContextoDB();
+        //    contexto.Abrir(CadenaDeConexion);
+        //    return contexto;
+        //}
+        private static ContextoDB contexto = null;
+        private ContextoDB() { }
+
+        public static ContextoDB InicializarContexto()
         {
-            ContextoDB contexto = new ContextoDB();
-            contexto.Abrir(CadenaDeConexion);
+            if (contexto == null)
+            {
+                //ContextoDB contexto = new ContextoDB();
+                contexto = new ContextoDB();
+            }
+            contexto.Abrir(EN_Constante.conexion);
             return contexto;
         }
 

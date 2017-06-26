@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="EN_CodigoAleatorio.cs" />
     <Compile Include="EN_Constante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
