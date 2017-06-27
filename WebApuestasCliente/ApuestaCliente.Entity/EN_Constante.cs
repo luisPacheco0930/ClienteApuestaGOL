@@ -9,5 +9,7 @@ namespace ApuestaCliente.Entity
     public class EN_Constante
     {
         public const string conexion = "cnxSiApuesta";
+
+        public const String nombreCookieCodAleatorio = "cookieCodAlea";
     }
 }

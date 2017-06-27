@@ -3,20 +3,12 @@
 <asp:Content ID="contentHeadLogin" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
-            var loginCheck = jQuery('#login-more');
+            var loginCheck = jQuery('#masterPage_checkBoxLogin');
             if (loginCheck.is(':checked')) {
                 $(".login-advanced").show();
             } else {
                 $(".login-advanced").hide();
             }
-            $(loginCheck).click(function () {
-                if (loginCheck.is(':checked')) {
-                    $(".login-advanced").show();
-                } else {
-                    $(".login-advanced").hide();
-                }
-            });
-
         });
     </script>
 </asp:Content>
@@ -39,7 +31,7 @@
 <asp:Content ID="contentPageInicio" ContentPlaceHolderID="masterPage" runat="server">
     <div class="row">
         <div class="col-md-3">
-			Anuncio lateral
+			
 		</div>
 		<div class="col-md-6">
 			<div id="login-user">
@@ -60,8 +52,13 @@
 							</div>
 							<div class="checkbox">
 								<label>
-								<input type="checkbox" id="login-more" value="" />
-								Si es usted cliente marque la siguiente opción
+                                <asp:CheckBox id="checkBoxLogin" 
+                                     AutoPostBack="True"
+                                     Text="Si es usted cliente marque la siguiente opción"
+                                     TextAlign="Right"
+                                     Checked="False"
+                                     runat="server"/>
+								<%--<input type="checkbox" id="login-more" value="" />--%>
 								</label>
 							</div>
 							<div class="login-advanced" >

@@ -12,13 +12,24 @@ namespace ApuestaCliente.BussinesLogic
 {
     public class BL_CodigoAleatorio
     {
-        public DataTable BL_ValidarCodigoAlearorio(EN_CodigoAleatorio enCodAleatorio)
+        public DataTable BL_ValidarCodigoAlearorio_EstaVigente(EN_CodigoAleatorio enCodAleatorio)
         {
             DataTable dtLista = new DataTable();
             DA_CodigoAleatorio daCodAleatorio = new DA_CodigoAleatorio();
             using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
             {
-                dtLista = daCodAleatorio.DA_ValidarCodigoAleatorio(dbContexto, enCodAleatorio);
+                dtLista = daCodAleatorio.DA_ValidarCodigoAleatorio_EstaVigente(dbContexto, enCodAleatorio);
+            }
+            return dtLista;
+        }
+
+        public DataTable BL_ValidarCodigoAlearorio_YaJugado(EN_CodigoAleatorio enCodAleatorio)
+        {
+            DataTable dtLista = new DataTable();
+            DA_CodigoAleatorio daCodAleatorio = new DA_CodigoAleatorio();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                dtLista = daCodAleatorio.DA_ValidarCodigoAleatorio_YaJugado(dbContexto, enCodAleatorio);
             }
             return dtLista;
         }

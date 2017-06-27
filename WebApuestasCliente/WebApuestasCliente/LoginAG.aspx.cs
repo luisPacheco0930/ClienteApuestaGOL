@@ -21,29 +21,41 @@ namespace WebApuestasCliente
 
         protected void btnLoguear_Click(object sender, EventArgs e)
         {
-            DataTable dtListaCodAleatorio = new DataTable();
+            DataTable dtGeneraCodigo = new DataTable();
+            DataTable dtApuestaCodigoAleatorio = new DataTable();
             BL_CodigoAleatorio blCodAleatorio = new BL_CodigoAleatorio();
             EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
 
             try
             {
-                enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text.ToString();
-                dtListaCodAleatorio = blCodAleatorio.BL_ValidarCodigoAlearorio(enCodAleatorio);
+                if (!this.checkBoxLogin.Checked)
+                {
+                    enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text.ToString();
+                    dtGeneraCodigo = blCodAleatorio.BL_ValidarCodigoAlearorio_EstaVigente(enCodAleatorio);
 
-                if (dtListaCodAleatorio.Rows.Count > 0) 
-                { 
-                    if (this.txtNroPromocional.Text.ToString().Equals(dtListaCodAleatorio.Rows[0][0].ToString()))
+                    if (dtGeneraCodigo!=null && dtGeneraCodigo.Rows.Count > 0)
                     {
-                        Response.Redirect("InicioAG.aspx");
+                        dtApuestaCodigoAleatorio = blCodAleatorio.BL_ValidarCodigoAlearorio_YaJugado(enCodAleatorio);
+                        if (dtApuestaCodigoAleatorio == null || dtApuestaCodigoAleatorio.Rows.Count == 0)
+                        {
+                            BL_Util.guardarCookie(Response,EN_Constante.nombreCookieCodAleatorio,enCodAleatorio.NroCodigoAleatorio);
+                            String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
+                            Response.Redirect("InicioAG.aspx");
+                        }
+                        else
+                        {
+                            Response.Write("<script> alert('El código ya ha sido usado') </script>");
+                        }
+
                     }
                     else
                     {
-                        Response.Write("<script> alert('Codigo NO VALIDO, para el juego.') </script>");
+                        Response.Write("<script> alert('El código no está vigente') </script>");
                     }
                 }
                 else
                 {
-                    Response.Write("<script> alert('Codigo NO VALIDO, para el juego.') </script>");
+                    
                 }
             }
             catch (Exception ex)
