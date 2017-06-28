@@ -49,6 +49,16 @@ namespace ApuestaCliente.Data
             dtLista = contexto.RetornarDataTable("SP_ValidarAcceso_CodAleatorio_UsadoxUsuario", dicParametros);
             return dtLista;
         }
-        
+
+        public DataTable DA_CodAleatorio_FechaTope(ContextoDB contexto, EN_CodigoAleatorio enCodigo)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@NroCodAleatorio", Convert.ToString(enCodigo.NroCodigoAleatorio));
+            dtLista = contexto.RetornarDataTable("SP_CodAleatorio_FechaTope", dicParametros);
+            return dtLista;
+        }
+
+
     }
 }
