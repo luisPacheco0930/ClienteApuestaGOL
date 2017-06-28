@@ -26,5 +26,17 @@ namespace ApuestaCliente.BussinesLogic
 
             HttpContext.Current.Session[nombreCookie] = valorCookie;
         }
+
+        public static String obtenerCookie(HttpContext Context, String nombreCookie)
+        {
+           String valorCookie;
+            
+            // Get the cookie.
+            valorCookie = Context.Session[nombreCookie].ToString();
+            // Response.Cookies.Add(myCookie);
+            return valorCookie;
+
+            //HttpContext.Current.Session[nombreCookie] = valorCookie;
+        }
     }
 }
