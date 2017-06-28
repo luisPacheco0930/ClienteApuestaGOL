@@ -34,12 +34,17 @@
                             >
                             <img  src="recursos/images/juego01.png"  class="img-thumbnail"/>
                         </asp:HyperLink>
-                          runat="server"/> 
 				    </div>
 			    </div>
 			    <div class="col-md-4">
 				    <div class="item-game">
-					    <a href="#"><img class="img-thumbnail" src="recursos/images/juego02.png"/></a>
+                        <asp:HyperLink id="HyperLink1" 
+                            NavigateUrl="~/Juego/PollaSemanal.aspx"
+                            Text=""
+                            runat="server" 
+                            >
+                            <img  src="recursos/images/juego02.png"  class="img-thumbnail"/>
+                        </asp:HyperLink>
 				    </div>
 			    </div>
 			    <div class="col-md-4">
