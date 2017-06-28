@@ -79,6 +79,21 @@ namespace ApuestaCliente.BussinesLogic
 
             return textError;
         }
+
+        public DateTime BL_codAleatorio_fechaTope(EN_CodigoAleatorio enCodAleatorio)
+        {
+            DataTable dtLista = new DataTable();
+            DA_CodigoAleatorio daCodAleatorio = new DA_CodigoAleatorio();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                dtLista = daCodAleatorio.DA_CodAleatorio_FechaTope(dbContexto, enCodAleatorio);
+            }
+
+            DateTime field = dtLista.Rows[0].Field<DateTime>(0);
+
+            return field;
+        }
+
         //Registrar o Actualizar
         //public void BL_Registrar(EN_Deporte enDeporte)
         //{
@@ -90,5 +105,5 @@ namespace ApuestaCliente.BussinesLogic
         //        contexto.ConfirmarTransaccion();
         //    }
         //}
-    }
+        }
 }
