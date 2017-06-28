@@ -40,5 +40,15 @@ namespace ApuestaCliente.Data
             dtLista = contexto.RetornarDataTable("SP_ValidarAcceso_CodAleatorio_YaJugado", dicParametros);
             return dtLista;
         }
+
+        public DataTable DA_ValidarCodigoAleatorio_UsadoxUsuario(ContextoDB contexto, EN_CodigoAleatorio enCodigo)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@NroCodAleatorio", Convert.ToString(enCodigo.NroCodigoAleatorio));
+            dtLista = contexto.RetornarDataTable("SP_ValidarAcceso_CodAleatorio_UsadoxUsuario", dicParametros);
+            return dtLista;
+        }
+        
     }
 }

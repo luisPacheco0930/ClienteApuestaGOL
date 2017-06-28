@@ -47,7 +47,7 @@
 									<i class="fa fa-tag fa-lg" aria-hidden="true"></i>
 									</div>
 									<%--<input type="text" class="form-control" id="txtNroPromocional" name="txtNroPromocional" placeholder="Escribe tu codigo promocional" />--%>
-                                    <asp:TextBox ID="txtNroPromocional" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtNroPromocional" CssClass="form-control" placeholder="Ingrese código promocional" runat="server"></asp:TextBox>
 								</div>
 							</div>
 							<div class="checkbox">
@@ -67,16 +67,26 @@
 										<div class="input-group-addon">
 										<i class="fa fa-user fa-lg" aria-hidden="true"></i>
 										</div>
-										<input type="text" class="form-control" id="exampleInputAmount2" placeholder="N° de documento de identidad" />
+                                        <asp:TextBox ID="textNroDocumento" CssClass="form-control" placeholder="N° de documento de identidad" runat="server"></asp:TextBox>
 									</div>
+                                    <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTextNroDocumento" runat="server"
+                                        ControlToValidate="textNroDocumento"
+                                        ErrorMessage="Ingrese este campo."
+                                        ForeColor="Red" >
+                                    </asp:RequiredFieldValidator>--%>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
 										<div class="input-group-addon">
 										<i class="fa fa-lock fa-lg" aria-hidden="true"></i>
 										</div>
-										<input type="password" class="form-control" id="exampleInputAmount3" placeholder="Contraseña"/>
+                                        <asp:TextBox ID="textContrasenha" TextMode="Password" CssClass="form-control" placeholder="Contraseña" runat="server"></asp:TextBox>
 									</div>
+                                    <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTextContrasenha" runat="server"
+                                        ControlToValidate="textContrasenha"
+                                        ErrorMessage="Ingrese este campo."
+                                        ForeColor="Red">
+                                    </asp:RequiredFieldValidator>--%>
 								</div>
 							</div>
 							    <div class="form-group">
@@ -106,23 +116,49 @@
       	<div class="form-body">
       		<%--<form id="register" class="form-horizontal">--%>
         	<div class="form-group">
-				<input type="text" class="form-control" id="txtdni" placeholder="N° de documento de identidad"/>
+                <asp:TextBox ID="txtdni" CssClass="form-control" placeholder="N° de documento de identidad" runat="server"></asp:TextBox>
 			</div>
+                                    <asp:RequiredFieldValidator id="requiredFieldValidatorTxtdni" runat="server"
+                                        ControlToValidate="txtdni"
+                                        ErrorMessage="Ingrese este campo."
+                                        ForeColor="Red" >
+                                    </asp:RequiredFieldValidator>
 			<div class="form-group">
-			    <input type="text" class="form-control" id="txtNombres" placeholder="Ingresar Nombres"/>
+                <asp:TextBox ID="txtNombres" CssClass="form-control" placeholder="Ingrese Nombres" runat="server"></asp:TextBox>
 			</div>
+                                    <asp:RequiredFieldValidator id="requiredFieldValidatorTxtNombres" runat="server"
+                                        ControlToValidate="txtNombres"
+                                        ErrorMessage="Ingrese este campo."
+                                        ForeColor="Red" >
+                                    </asp:RequiredFieldValidator>
 			<div class="form-group">
-			    <input type="text" class="form-control" id="txtApellidos" placeholder="Ingresar Apellidos"/>
+			    <asp:TextBox ID="txtApellidos" CssClass="form-control" placeholder="Ingrese Apellidos" runat="server"></asp:TextBox>
 			</div>
+                                    <asp:RequiredFieldValidator id="requiredFieldValidatorTxtApellidos" runat="server"
+                                        ControlToValidate="txtApellidos"
+                                        ErrorMessage="Ingrese este campo."
+                                        ForeColor="Red" >
+                                    </asp:RequiredFieldValidator>
 			<div class="form-group">
-			    <input type="email" class="form-control" id="txtEmail" placeholder="Correo Electronico"/>
+			    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Ingrese Correo Electrónico" runat="server"></asp:TextBox>
 			</div>
+                                    <asp:RequiredFieldValidator id="requiredFieldValidatorTxtEmail" runat="server"
+                                        ControlToValidate="txtEmail"
+                                        ErrorMessage="Ingrese este campo."
+                                        ForeColor="Red" >
+                                    </asp:RequiredFieldValidator>
 			<div class="form-group">
-			    <input type="password" class="form-control" id="txtPassword" placeholder="Contraseña"/>
+
+                <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Contraseña" runat="server"></asp:TextBox>
 			</div>
+                                    <asp:RequiredFieldValidator id="requiredFieldValidatorTxtPassword" runat="server"
+                                        ControlToValidate="txtPassword"
+                                        ErrorMessage="Ingrese este campo."
+                                        ForeColor="Red" >
+                                    </asp:RequiredFieldValidator>
 			<div class="form-group btn-register">
 				<%--<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>--%>
-                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrarse" />
+                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario" OnClick="btnRegistrar_Click"/>
 			</div>
             <%--</form>--%>
       	</div>
