@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ApuestaCliente.BussinesLogic;
 using ApuestaCliente.Entity;
+using System.Data;
 
 namespace WebApuestasCliente.Juego
 {
@@ -30,9 +31,13 @@ namespace WebApuestasCliente.Juego
                 }
                 else
                     this.codeStatus.Text = EN_Constante.textCodigoValido;
+
+                DateTime d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio);
+                this.codFecTope.Text = d.ToShortTimeString() + " del " + d.ToShortDateString(); // d.ToLongDateString();
+
             }
 
-            
+
         }
     }
 }

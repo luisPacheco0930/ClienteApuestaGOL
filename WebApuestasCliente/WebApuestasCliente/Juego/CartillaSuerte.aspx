@@ -30,7 +30,7 @@
 													<div class="programation">N° de programación: 5545</div>
 												</div>
 												<div class="col-md-6">
-													<div class="date">Juegalo hasta: 01:00pm del SAB 10 ABR</div>
+													<div class="date">Juegalo hasta: <asp:Label ID="codFecTope" Text="....." runat="server"></asp:Label></div>
 												</div>
 											</div>
 										</div>
