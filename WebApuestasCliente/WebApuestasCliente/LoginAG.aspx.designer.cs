@@ -67,15 +67,6 @@ namespace WebApuestasCliente {
         protected global::System.Web.UI.WebControls.TextBox txtdni;
         
         /// <summary>
-        /// Control requiredFieldValidatorTxtdni.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidatorTxtdni;
-        
-        /// <summary>
         /// Control txtNombres.
         /// </summary>
         /// <remarks>
@@ -83,15 +74,6 @@ namespace WebApuestasCliente {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombres;
-        
-        /// <summary>
-        /// Control requiredFieldValidatorTxtNombres.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidatorTxtNombres;
         
         /// <summary>
         /// Control txtApellidos.
@@ -103,15 +85,6 @@ namespace WebApuestasCliente {
         protected global::System.Web.UI.WebControls.TextBox txtApellidos;
         
         /// <summary>
-        /// Control requiredFieldValidatorTxtApellidos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidatorTxtApellidos;
-        
-        /// <summary>
         /// Control txtEmail.
         /// </summary>
         /// <remarks>
@@ -121,15 +94,6 @@ namespace WebApuestasCliente {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// Control requiredFieldValidatorTxtEmail.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidatorTxtEmail;
-        
-        /// <summary>
         /// Control txtPassword.
         /// </summary>
         /// <remarks>
@@ -137,15 +101,6 @@ namespace WebApuestasCliente {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
-        
-        /// <summary>
-        /// Control requiredFieldValidatorTxtPassword.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidatorTxtPassword;
         
         /// <summary>
         /// Control btnRegistrarse.

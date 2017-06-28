@@ -118,44 +118,44 @@
         	<div class="form-group">
                 <asp:TextBox ID="txtdni" CssClass="form-control" placeholder="N° de documento de identidad" runat="server"></asp:TextBox>
 			</div>
-                                    <asp:RequiredFieldValidator id="requiredFieldValidatorTxtdni" runat="server"
+                                    <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtdni" runat="server"
                                         ControlToValidate="txtdni"
                                         ErrorMessage="Ingrese este campo."
                                         ForeColor="Red" >
-                                    </asp:RequiredFieldValidator>
+                                    </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
                 <asp:TextBox ID="txtNombres" CssClass="form-control" placeholder="Ingrese Nombres" runat="server"></asp:TextBox>
 			</div>
-                                    <asp:RequiredFieldValidator id="requiredFieldValidatorTxtNombres" runat="server"
+                                    <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtNombres" runat="server"
                                         ControlToValidate="txtNombres"
                                         ErrorMessage="Ingrese este campo."
                                         ForeColor="Red" >
-                                    </asp:RequiredFieldValidator>
+                                    </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
 			    <asp:TextBox ID="txtApellidos" CssClass="form-control" placeholder="Ingrese Apellidos" runat="server"></asp:TextBox>
 			</div>
-                                    <asp:RequiredFieldValidator id="requiredFieldValidatorTxtApellidos" runat="server"
+                                    <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtApellidos" runat="server"
                                         ControlToValidate="txtApellidos"
                                         ErrorMessage="Ingrese este campo."
                                         ForeColor="Red" >
-                                    </asp:RequiredFieldValidator>
+                                    </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
 			    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Ingrese Correo Electrónico" runat="server"></asp:TextBox>
 			</div>
-                                    <asp:RequiredFieldValidator id="requiredFieldValidatorTxtEmail" runat="server"
+                                    <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtEmail" runat="server"
                                         ControlToValidate="txtEmail"
                                         ErrorMessage="Ingrese este campo."
                                         ForeColor="Red" >
-                                    </asp:RequiredFieldValidator>
+                                    </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
 
                 <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Contraseña" runat="server"></asp:TextBox>
 			</div>
-                                    <asp:RequiredFieldValidator id="requiredFieldValidatorTxtPassword" runat="server"
+                                    <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtPassword" runat="server"
                                         ControlToValidate="txtPassword"
                                         ErrorMessage="Ingrese este campo."
                                         ForeColor="Red" >
-                                    </asp:RequiredFieldValidator>
+                                    </asp:RequiredFieldValidator>--%>
 			<div class="form-group btn-register">
 				<%--<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>--%>
                 <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario" OnClick="btnRegistrar_Click"/>
