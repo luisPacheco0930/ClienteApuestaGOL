@@ -8,17 +8,18 @@
 									<h1 class="page-header">Cartilla de la Suerte</h1>
 									<p><strong>Ingrese su código promocional antes de empezar a jugar, recuede que es un único código por juego.</strong></p>
 									<p>Ingrese su pronostico de marcado para los siguientes partidos, recuerde que solo puede ingresar una sola vez el resultado</p>
-									<form id="juego01" class="form-horizontal">
+									<div class="panel-body">
+                                    <%-- %><form id="juego01" class="form-horizontal">---%>
 										<div class="validation-code">
 											<div class="form-group">
 											    <div class="col-sm-6">
 											    	<label>Ingrese su código</label>
-											   	   <input type="text" class="form-control" id="code" placeholder="Ejemplo : DC0003532-552332">
+											   	   <asp:TextBox type="text" CssClass="form-control" id="code" placeholder="Ejemplo : DC0003532-552332" runat="server"></asp:TextBox>
 											    </div>
 											    <div class="col-sm-6">
 											    	<div class="alert alert-success" role="alert">
 											    		<i class="fa fa-check" aria-hidden="true"></i>
-											    		Su código es valido
+											    		<asp:Label ID="codeStatus" Text="....." runat="server"></asp:Label>
 											    	</div>
 											    </div>
 											</div>
