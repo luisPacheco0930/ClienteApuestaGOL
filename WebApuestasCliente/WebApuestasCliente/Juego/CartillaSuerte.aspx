@@ -14,7 +14,7 @@
 											<div class="form-group">
 											    <div class="col-sm-6">
 											    	<label>Ingrese su código</label>
-											   	   <asp:TextBox type="text" CssClass="form-control" id="code" placeholder="Ejemplo : DC0003532-552332" runat="server"></asp:TextBox>
+											   	    <asp:TextBox type="text" CssClass="form-control" id="code" placeholder="Ejemplo : DC0003532-552332" runat="server"></asp:TextBox>
 											    </div>
 											    <div class="col-sm-6">
 											    	<div class="alert alert-success" role="alert">

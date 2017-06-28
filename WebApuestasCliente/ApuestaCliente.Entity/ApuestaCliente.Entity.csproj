@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="EN_ProgramacionApuesta.cs" />
     <Compile Include="EN_Cliente.cs" />
     <Compile Include="EN_CodigoAleatorio.cs" />
     <Compile Include="EN_Constante.cs" />

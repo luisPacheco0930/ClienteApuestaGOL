@@ -10,29 +10,18 @@ namespace ApuestaCliente.BussinesLogic
 {
     public static class BL_Util
     {
-        public static void guardarCookie(HttpResponse Response, String nombreCookie, String valorCookie)
+        public static void guardarCookie(HttpContext Context, String nombreCookie, String valorCookie)
         {
-            HttpCookie myCookie = new HttpCookie(nombreCookie);
-            DateTime now = DateTime.Now;
-
-            // Set the cookie value.
-            myCookie.Value = valorCookie;
-            // Set the cookie expiration date.
-            //myCookie.Expires = now.AddMinutes(1);
-
-            // Add the cookie.
-            Response.Cookies.Add(myCookie);
-
-
-            HttpContext.Current.Session[nombreCookie] = valorCookie;
+            Context.Session[nombreCookie] = valorCookie;
         }
 
         public static String obtenerCookie(HttpContext Context, String nombreCookie)
         {
-           String valorCookie;
+           String valorCookie="";
             
             // Get the cookie.
-            valorCookie = Context.Session[nombreCookie].ToString();
+            if(Context.Session[nombreCookie]!=null)
+                valorCookie = Context.Session[nombreCookie].ToString();
             // Response.Cookies.Add(myCookie);
             return valorCookie;
 

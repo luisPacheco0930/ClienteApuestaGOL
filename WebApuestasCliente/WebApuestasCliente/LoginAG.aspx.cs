@@ -67,7 +67,7 @@ namespace WebApuestasCliente
                             }
                             else
                             {
-                                BL_Util.guardarCookie(Response, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
+                                BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
                                 //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
                                 Response.Redirect("InicioAG.aspx");
                             }
@@ -97,15 +97,15 @@ namespace WebApuestasCliente
                                 }
                                 else
                                 {
-                                    BL_Util.guardarCookie(Response, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
-                                    BL_Util.guardarCookie(Response, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
+                                    BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
+                                    BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
                                     //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
                                     Response.Redirect("InicioAG.aspx");
                                 }
                             }
                             else
                             {
-                                BL_Util.guardarCookie(Response, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
+                                BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
                                 //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
                                 Response.Redirect("InicioAG.aspx");
                             }

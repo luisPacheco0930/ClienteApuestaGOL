@@ -55,7 +55,7 @@ namespace ApuestaCliente.Data
             DataTable dtLista = new DataTable();
             Dictionary<string, object> dicParametros = new Dictionary<string, object>();
             dicParametros.Add("@NroCodAleatorio", Convert.ToString(enCodigo.NroCodigoAleatorio));
-            dtLista = contexto.RetornarDataTable("SP_CodAleatorio_FechaTope", dicParametros);
+            dtLista = contexto.RetornarDataTable("SP_ObtenerPrograma", dicParametros);
             return dtLista;
         }
 

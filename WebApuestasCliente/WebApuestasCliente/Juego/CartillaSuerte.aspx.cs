@@ -32,8 +32,8 @@ namespace WebApuestasCliente.Juego
                 else
                     this.codeStatus.Text = EN_Constante.textCodigoValido;
 
-                DateTime d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio);
-                this.codFecTope.Text = d.ToShortTimeString() + " del " + d.ToShortDateString(); // d.ToLongDateString();
+                //DateTime d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio);
+                //this.codFecTope.Text = d.ToShortTimeString() + " del " + d.ToShortDateString(); // d.ToLongDateString();
 
             }
 

@@ -80,8 +80,10 @@ namespace ApuestaCliente.BussinesLogic
             return textError;
         }
 
-        public DateTime BL_codAleatorio_fechaTope(EN_CodigoAleatorio enCodAleatorio)
+        public EN_ProgramacionApuesta BL_codAleatorio_fechaTope(EN_CodigoAleatorio enCodAleatorio)
         {
+            EN_ProgramacionApuesta apuesta=null;
+
             DataTable dtLista = new DataTable();
             DA_CodigoAleatorio daCodAleatorio = new DA_CodigoAleatorio();
             using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
@@ -89,9 +91,16 @@ namespace ApuestaCliente.BussinesLogic
                 dtLista = daCodAleatorio.DA_CodAleatorio_FechaTope(dbContexto, enCodAleatorio);
             }
 
-            DateTime field = dtLista.Rows[0].Field<DateTime>(0);
-
-            return field;
+            if(dtLista != null && dtLista.Rows.Count > 0)
+            {
+                apuesta = new EN_ProgramacionApuesta();
+                apuesta.IdProgramaApuesta= dtLista.Rows[0].Field<int>(0);
+                apuesta.FechaInicial = dtLista.Rows[0].Field<DateTime>(1);
+                apuesta.FechaFinal = dtLista.Rows[0].Field<DateTime>(2);
+                apuesta.Vigencia = dtLista.Rows[0].Field<String>(3);
+                apuesta.CodigoTipoApuesta = dtLista.Rows[0].Field<String>(4);
+            }
+            return apuesta;
         }
 
         //Registrar o Actualizar
