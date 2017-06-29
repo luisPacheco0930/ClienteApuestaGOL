@@ -97,8 +97,8 @@ namespace ApuestaCliente.BussinesLogic
                 apuesta.IdProgramaApuesta= dtLista.Rows[0].Field<int>(0);
                 apuesta.FechaInicial = dtLista.Rows[0].Field<DateTime>(1);
                 apuesta.FechaFinal = dtLista.Rows[0].Field<DateTime>(2);
-                apuesta.Vigencia = dtLista.Rows[0].Field<String>(3);
-                apuesta.CodigoTipoApuesta = dtLista.Rows[0].Field<String>(4);
+                //apuesta.Vigencia = dtLista.Rows[0].Field<Char>(3);
+                //apuesta.CodigoTipoApuesta = dtLista.Rows[0].Field<Char>(4);
             }
             return apuesta;
         }

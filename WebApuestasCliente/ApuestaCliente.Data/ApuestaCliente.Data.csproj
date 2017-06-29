@@ -43,6 +43,7 @@
     <Compile Include="DA_Cliente.cs" />
     <Compile Include="DA_CodigoAleatorio.cs" />
     <Compile Include="ContextoDB.cs" />
+    <Compile Include="DA_PartidosProgramados.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,9 +14,9 @@ namespace ApuestaCliente.Entity
 
         public DateTime FechaFinal { get; set; }
 
-        public String Vigencia { get; set; }
+        public Char Vigencia { get; set; }
 
-        public String CodigoTipoApuesta { get; set; }
+        public Char CodigoTipoApuesta { get; set; }
         
     }
 }

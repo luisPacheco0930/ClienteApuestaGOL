@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SWApuestaCliente.Master" AutoEventWireup="true" CodeBehind="CartillaSuerte.aspx.cs" Inherits="WebApuestasCliente.Juego.CartillaSuerte" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit"   TagPrefix="asp" %>  
 <asp:Content ID="contenidoHead" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="contenidPagina" ContentPlaceHolderID="masterPage" runat="server">
@@ -14,13 +15,13 @@
 											<div class="form-group">
 											    <div class="col-sm-6">
 											    	<label>Ingrese su código</label>
-											   	    <asp:TextBox type="text" CssClass="form-control" id="code" placeholder="Ejemplo : DC0003532-552332" runat="server"></asp:TextBox>
+											   	    <asp:TextBox type="text" CssClass="form-control" id="txtCode" placeholder="Ejemplo : DC0003532-552332" runat="server"></asp:TextBox>
 											    </div>
 											    <div class="col-sm-6">
-											    	<div class="alert alert-success" role="alert">
+											    	<asp:Panel ID="pnlValidator" runat="server" rol="alert">
 											    		<i class="fa fa-check" aria-hidden="true"></i>
-											    		<asp:Label ID="codeStatus" Text="....." runat="server"></asp:Label>
-											    	</div>
+											    		<asp:Label ID="lblStatusCode" runat="server"></asp:Label>
+											    	</asp:Panel>
 											    </div>
 											</div>
 										</div>
@@ -30,11 +31,15 @@
 													<div class="programation">N° de programación: 5545</div>
 												</div>
 												<div class="col-md-6">
-													<div class="date">Juegalo hasta: <asp:Label ID="codFecTope" Text="....." runat="server"></asp:Label></div>
+													<div class="date">Juegalo hasta: <asp:Label ID="lblCodFecTope" Text="....." runat="server"></asp:Label></div>s
 												</div>
 											</div>
 										</div>
-							<div class="table-game cartilla">
+                            <div class="table-game cartilla">							
+                                <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">  </asp:ToolkitScriptManager>  
+                                <asp:Panel ID="MyContent" runat="server">  </asp:Panel> 
+                            </div>
+                                <div class="table-game cartilla">
 							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 							  <div class="panel panel-default">
 							    <div class="panel-heading" role="tab" id="headingOne">
@@ -352,4 +357,5 @@
 								</div>
 							</div>
 						</div>
+        </div>
 </asp:Content>
