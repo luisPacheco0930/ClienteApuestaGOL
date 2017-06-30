@@ -242,7 +242,7 @@ namespace WebApuestasCliente.Juego
 
             String textError = "";
             Boolean valido = true;
-            Control c = this.MyContent.FindControl("rbl_2_1");
+            //Control c = this.MyContent.FindControl("rbl_2_1");
             //textError = c.Controls("masterPage_rbl_2_1_0");
             if ( this.acrDynamic != null ) {
               //  textError = "entroo accordion";
@@ -266,6 +266,8 @@ namespace WebApuestasCliente.Juego
                     {
                         accPaneidx++;
                     }
+
+                    bk_id_prog = id_Prog;
 
                     textError = textError + "-"+ accPaneidx;
                     AccordionPane p1 = this.acrDynamic.Panes.ElementAt(accPaneidx);
