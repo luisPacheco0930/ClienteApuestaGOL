@@ -44,6 +44,7 @@
     <Compile Include="DA_CodigoAleatorio.cs" />
     <Compile Include="ContextoDB.cs" />
     <Compile Include="DA_PartidosProgramados.cs" />
+    <Compile Include="DA_ApuestaUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
