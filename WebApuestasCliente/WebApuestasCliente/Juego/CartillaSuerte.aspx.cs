@@ -48,7 +48,7 @@ namespace WebApuestasCliente.Juego
 
                     EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio);
                     this.lblCodFecTope.Text = d.FechaFinal.ToShortTimeString() + " del " + d.FechaFinal.ToShortDateString(); // d.ToLongDateString();
-
+                    this.txtNroProgramacion.Text = d.IdProgramaApuesta.ToString();
                     pintarPartidos(enCodAleatorio);
                 }
             }

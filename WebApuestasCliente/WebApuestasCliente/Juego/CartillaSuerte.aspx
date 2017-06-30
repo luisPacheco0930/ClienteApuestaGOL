@@ -28,7 +28,7 @@
 					<div class="description">
 						<div class="row">
 							<div class="col-md-6">
-								<div class="programation">N° de programación: 5545</div>
+						    <div class="programation">N° de programación: <asp:Label ID="txtNroProgramacion" Text="....." runat="server"></asp:Label></div>
 							</div>
 							<div class="col-md-6">
 								<div class="date">Juegalo hasta: <asp:Label ID="lblCodFecTope" Text="....." runat="server"></asp:Label></div>
@@ -44,6 +44,7 @@
 						</div>
 					</div>
 <%-- usar de plantilla --%>
+<%--
 						<div class="table-game cartilla">
 							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 							  <div class="panel panel-default">
@@ -351,6 +352,7 @@
 							  </div>
 							</div>
 						</div>
+--%>
 <%-- usar de plantilla --%>
 					<div class="form-group">
 						<input class="btn btn-default btn-primary btn-lg btn-block" type="submit" value="Guardar partida">

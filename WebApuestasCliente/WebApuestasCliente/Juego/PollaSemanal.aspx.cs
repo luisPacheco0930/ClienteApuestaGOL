@@ -42,7 +42,7 @@ namespace WebApuestasCliente.Juego
 
                     EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio);
                     this.lblCodFecTope.Text = d.FechaFinal.ToShortTimeString() + " del " + d.FechaFinal.ToShortDateString(); // d.ToLongDateString();
-
+                    this.txtNroProgramacion.Text = d.IdProgramaApuesta.ToString();
                     pintarPartidos(enCodAleatorio);
                 }
             }
@@ -80,6 +80,8 @@ namespace WebApuestasCliente.Juego
 
                     EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio);
                     this.lblCodFecTope.Text = d.FechaFinal.ToShortTimeString() + " del " + d.FechaFinal.ToShortDateString(); // d.ToLongDateString();
+                    this.txtNroProgramacion.Text = d.IdProgramaApuesta.ToString();
+                    pintarPartidos(enCodAleatorio);
                 }
             }
             else
@@ -194,43 +196,19 @@ namespace WebApuestasCliente.Juego
                         imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoLoc;
                         panO.Controls.Add(imagLV);
 
-                        RadioButtonList rbl = new RadioButtonList();
-                        rbl.RepeatDirection = System.Web.UI.WebControls.RepeatDirection.Horizontal;
-                        rbl.CssClass = "radio-inline";
-
-                        ListItem li = new ListItem();
-                        li.Text = "L";
-                        li.Attributes.Add("style", "margin: 0px 15px 0px 15px");
-                        rbl.Items.Add(li);
-
-                        li = new ListItem();
-                        li.Text = "E";
-                        li.Attributes.Add("style", "margin: 0px 15px 0px 15px");
-                        rbl.Items.Add(li);
-
-                        li = new ListItem();
-                        li.Text = "V";
-                        li.Attributes.Add("style", "margin: 0px 15px 0px 15px");
-                        rbl.Items.Add(li);
-
-                        panO.Controls.Add(rbl);
-                        /*
-                        RadioButton cbx;
-                        cbx = new RadioButton();
-                        cbx.Text = "L";
-                        cbx.CssClass = "radio-inline";
+                        TextBox cbx;
+                        cbx = new TextBox();
+                        //cbx.Text = "L";
+                        cbx.CssClass = "form-option";
+                        cbx.Attributes.Add("style", "margin: 0px 5px 0px 5px");
                         panO.Controls.Add(cbx);
 
-                        cbx = new RadioButton();
-                        cbx.Text = "E";
-                        cbx.CssClass = "radio-inline";
+                        cbx = new TextBox();
+                        //cbx.Text = "E";
+                        cbx.CssClass = "form-option";
+                        cbx.Attributes.Add("style", "margin: 0px 5px 0px 5px");
                         panO.Controls.Add(cbx);
 
-                        cbx = new RadioButton();
-                        cbx.Text = "V";
-                        cbx.CssClass = "radio-inline";
-                        panO.Controls.Add(cbx);
-                        */
                         imagLV = new Image();
                         imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoVis;
                         panO.Controls.Add(imagLV);

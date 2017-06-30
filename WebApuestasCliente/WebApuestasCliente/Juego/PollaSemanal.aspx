@@ -45,7 +45,7 @@
                     </div>
 				</div>
 <%-- usar de plantilla --%>
-
+<%--
                                         <div class="table-game apuesta">
                                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                           <div class="panel panel-default">
@@ -269,8 +269,7 @@
                                           </div>
                                         </div>
                                         </div>
-
-
+--%>
 <%-- usar de plantilla --%>
 
 
