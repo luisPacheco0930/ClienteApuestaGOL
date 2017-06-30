@@ -233,11 +233,7 @@ namespace WebApuestasCliente.Juego
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            String s1 = Request.Form.Get("masterPage_rbl_2_1_0");
-            String textError = "Holi " + s1;
-
-            Control c = this.MyContent.FindControl("rbl_2_1");
-            //textError = c.Controls("masterPage_rbl_2_1_0");
+            String textError = "";
             if ( this.acrDynamic != null ) {
                 textError = "entroo accordion";
 

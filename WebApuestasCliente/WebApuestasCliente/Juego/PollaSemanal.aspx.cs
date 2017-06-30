@@ -15,6 +15,7 @@ namespace WebApuestasCliente.Juego
 {
     public partial class PollaSemanal : System.Web.UI.Page
     {
+        Accordion acrDynamic;
         protected void Page_Load(object sender, EventArgs e)
         {
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
@@ -96,7 +97,7 @@ namespace WebApuestasCliente.Juego
         {
 
             // pintando partidos
-            Accordion acrDynamic = new Accordion();
+            acrDynamic = new Accordion();
             acrDynamic.ID = "MyAccordion";
             acrDynamic.SelectedIndex = -1;//No default selection  
             acrDynamic.RequireOpenedPane = false;//no open pane  
@@ -127,7 +128,7 @@ namespace WebApuestasCliente.Juego
                 //if (i != dt.Rows.Count - 1)
                 //    Next_Branch = dt.Rows[i + 1]["descTorneo"].ToString();
 
-                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString()+"/"+ dt.Rows[i]["IdDetallePrograma"].ToString());
+                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString()+"/"+ dt.Rows[i]["IdDetallePrograma"].ToString() + "/" + dt.Rows[i]["IdProgramaApuesta"].ToString());
 
                 Content += dt.Rows[i]["equiDescLoc"].ToString() + "<br/>";
 
@@ -136,7 +137,7 @@ namespace WebApuestasCliente.Juego
                     pane = new AccordionPane();
                     lbTitle = new Label();
                     lbContent = new Label();
-                    pane.ID = "Pane_" + BranchName.ToString();
+                    pane.ID = "Pane_" + dt.Rows[i]["IdProgramaApuesta"].ToString()+"_"+BranchName.ToString();
                     pane.CssClass = "panel-title";
                     pane.HeaderCssClass = "panel-heading";
 
@@ -165,6 +166,7 @@ namespace WebApuestasCliente.Juego
                         String iconoLoc = datos[1];
                         String iconoVis = datos[2];
                         String idDetallePrograma = datos[3];
+                        String idPrograma = datos[4];
 
                         panPartido = new Panel();
                         panPartido.CssClass = "col-sm-7";
@@ -200,16 +202,20 @@ namespace WebApuestasCliente.Juego
                         TextBox cbx;
                         cbx = new TextBox();
                         //cbx.Text = "L";
-                        cbx.ID = idDetallePrograma + "L";
+                        cbx.ID = idPrograma+"_"+idDetallePrograma + "_L";
                         cbx.CssClass = "form-option";
                         cbx.Attributes.Add("style", "margin: 0px 5px 0px 5px");
+                        //cbx.AutoPostBack = true;
+                        //cbx.TextChanged += new EventHandler(this.txtResultado_TextChanged);
                         panO.Controls.Add(cbx);
 
                         cbx = new TextBox();
                         //cbx.Text = "E";
-                        cbx.ID = idDetallePrograma + "V";
+                        cbx.ID = idPrograma + "_" + idDetallePrograma + "_V";
                         cbx.CssClass = "form-option";
                         cbx.Attributes.Add("style", "margin: 0px 5px 0px 5px");
+                        //cbx.AutoPostBack = true;
+                        //cbx.TextChanged+= new EventHandler(this.txtResultado_TextChanged);
                         panO.Controls.Add(cbx);
 
                         imagLV = new Image();
@@ -236,26 +242,37 @@ namespace WebApuestasCliente.Juego
         }
 
         protected void btnGuardarPollaSemanal_Click(object sender, EventArgs e)
-        {/*
+        {
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
             if (!String.IsNullOrEmpty(codeFrom) && !codeFrom.Equals(""))
             {
                 this.txtCode.Text = codeFrom;
 
-                BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
-                EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
-                enCodAleatorio.NroCodigoAleatorio = codeFrom;
-                DataTable dt = blpartidosProgramados.BL_ListarPartidos(enCodAleatorio, EN_Constante.laPollaSemanal);
-
-                for (int i = 0; i < dt.Rows.Count; i++)
+                if (this.acrDynamic != null)
                 {
-                    String IdDetallePrograma = dt.Rows[i]["IdDetallePrograma"].ToString()+"L";
-                    String mpid = "masterPage_" + dt.Rows[i]["IdDetallePrograma"].ToString() + "L";
-                    Control tb1 = this.MyContent.FindControl(IdDetallePrograma);
-                    Control tb2 = this.MyContent.FindControl(mpid);
-                    
+                    for(int i=0; i< this.acrDynamic.Panes.Count; i++)
+                    {
+                        AccordionPane pane = this.acrDynamic.Panes.ElementAt(i);
+                        String idPanel = pane.ID;
+                        String idPrograma = idPanel.Split('_')[1];
+
+                        BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
+                        EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
+                        enCodAleatorio.NroCodigoAleatorio = codeFrom;
+                        //DataTable dt = blpartidosProgramados.BL_ListarPartidos(enCodAleatorio, EN_Constante.laPollaSemanal,idPrograma);
+
+
+                    }
                 }
             }
-        */}
+        }
+
+        /*
+        protected void txtResultado_TextChanged(object sender, System.EventArgs e)
+        {
+            String ID = ((TextBox)sender).ID;
+            String Valor = ((TextBox)sender).Text;
+        }
+        */
     }
 }
