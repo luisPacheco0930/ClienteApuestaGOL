@@ -16,11 +16,13 @@ namespace WebApuestasCliente.Juego
     {
         Accordion acrDynamic;
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
             //codeFrom = "5SWH2A9R";
-            if (!String.IsNullOrEmpty(codeFrom) && !codeFrom.Equals("")) {
+            if (!String.IsNullOrEmpty(codeFrom) && !codeFrom.Equals(""))
+            {
                 this.txtCode.Text = codeFrom;
 
                 //En caso si se ingrese a esta sección con un código promocional
@@ -30,7 +32,7 @@ namespace WebApuestasCliente.Juego
                 EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
                 enCodAleatorio.NroCodigoAleatorio = codeFrom;
                 String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
-              
+
 
                 //DateTime d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio);
                 //this.codFecTope.Text = d.ToShortTimeString() + " del " + d.ToShortDateString(); // d.ToLongDateString();
@@ -68,7 +70,7 @@ namespace WebApuestasCliente.Juego
 
             // pintando partidos
             //Accordion
-                acrDynamic = new Accordion();
+            acrDynamic = new Accordion();
             acrDynamic.ID = "MyAccordion";
             acrDynamic.SelectedIndex = -1;//No default selection  
             acrDynamic.RequireOpenedPane = false;//no open pane  
@@ -173,7 +175,7 @@ namespace WebApuestasCliente.Juego
                         RadioButtonList rbl = new RadioButtonList();
                         rbl.RepeatDirection = System.Web.UI.WebControls.RepeatDirection.Horizontal;
                         rbl.CssClass = "radio-inline";
-                        rbl.ID = "rbl_" + datos[3] + "_" + datos[4];                  
+                        rbl.ID = "rbl_" + datos[3] + "_" + datos[4];
 
                         ListItem li = new ListItem();
                         li.Text = "L";
@@ -233,29 +235,66 @@ namespace WebApuestasCliente.Juego
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
+            enCodAleatorio.NroCodigoAleatorio = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio); ;
+            DataTable dt = new DataTable();
+            BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
+            dt = blpartidosProgramados.BL_ListarPartidos(enCodAleatorio, EN_Constante.cartillaDeLaSuerte);
+
             String textError = "";
-            if ( this.acrDynamic != null ) {
-                textError = "entroo accordion";
+            Boolean valido = true;
+            //Control c = this.MyContent.FindControl("rbl_2_1");
+            //textError = c.Controls("masterPage_rbl_2_1_0");
+            if (this.acrDynamic != null)
+            {
+                //  textError = "entroo accordion";
 
-                int i = this.acrDynamic.Panes.Count();
+                //   AccordionPane p1 = this.acrDynamic.Panes.ElementAt(0); // Panes.First();
+                // validando que todos estén seleccionados
 
-                AccordionPane p1 = this.acrDynamic.Panes.First();
-                Control x = p1.ContentContainer.FindControl("rbl_2_1");
-
-                if (x != null)
+                int accPaneidx = 0;
+                int bk_id_prog = -1;
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    textError = "Encontró rb";
-                    RadioButtonList rbxx = (RadioButtonList)x;
-                    textError = rbxx.SelectedValue;
+                    int id_Prog = int.Parse(dt.Rows[i]["IdProgramaApuesta"].ToString());
+                    int id_detProg = int.Parse(dt.Rows[i]["IdDetallePrograma"].ToString());
+
+                    if (bk_id_prog == -1)
+                    {
+                        bk_id_prog = id_Prog;
+                    }
+
+                    if (bk_id_prog != id_Prog)
+                    {
+                        accPaneidx++;
+                    }
+
+                    bk_id_prog = id_Prog;
+
+                    textError = textError + "-" + accPaneidx;
+                    AccordionPane p1 = this.acrDynamic.Panes.ElementAt(accPaneidx);
+                    Control x = p1.ContentContainer.FindControl("rbl_" + id_Prog + "_" + id_detProg);
+
+                    if (x != null)
+                    {
+                        textError = textError + "entro a " + "rbl_" + id_Prog + "_" + id_detProg;
+                        RadioButtonList rbxx = (RadioButtonList)x;
+                        String sv = rbxx.SelectedValue;
+                        textError = textError + "-" + sv;
+                        if (sv == null || sv.Equals("")) valido = false;
+                    }
+
+
                 }
 
-                
-                Response.Write("<script> alert('" + textError + i + "') </script>");
-
-                
             }
-            Response.Write("<script> alert('" + textError + "') </script>");
+
+            if (!valido)
+            {
+                textError = "Debe completar todos los partidos.";
+                Response.Write("<script> alert('" + textError + "') </script>");
+            }
         }
-}
+    }
 
 }
