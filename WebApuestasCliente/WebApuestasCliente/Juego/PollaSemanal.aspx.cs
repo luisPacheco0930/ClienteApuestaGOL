@@ -137,7 +137,7 @@ namespace WebApuestasCliente.Juego
                     pane = new AccordionPane();
                     lbTitle = new Label();
                     lbContent = new Label();
-                    pane.ID = "Pane_" + dt.Rows[i]["IdProgramaApuesta"].ToString()+"_"+BranchName.ToString();
+                    pane.ID = "Pane_" + dt.Rows[i]["IdProgramaApuesta"].ToString()+"_" + dt.Rows[i]["NumeroTorneo"].ToString()+"_"+BranchName.ToString();
                     pane.CssClass = "panel-title";
                     pane.HeaderCssClass = "panel-heading";
 
@@ -255,12 +255,36 @@ namespace WebApuestasCliente.Juego
                         AccordionPane pane = this.acrDynamic.Panes.ElementAt(i);
                         String idPanel = pane.ID;
                         String idPrograma = idPanel.Split('_')[1];
+                        String nroTorneo = idPanel.Split('_')[2];
 
                         BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
                         EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
                         enCodAleatorio.NroCodigoAleatorio = codeFrom;
-                        //DataTable dt = blpartidosProgramados.BL_ListarPartidos(enCodAleatorio, EN_Constante.laPollaSemanal,idPrograma);
+                        DataTable dt = blpartidosProgramados.BL_ListarPartidosxTorneo(enCodAleatorio, EN_Constante.laPollaSemanal,nroTorneo);
 
+                        for(int j=0; j<dt.Rows.Count; j++)
+                        {
+                            String idDetallePrograma = dt.Rows[j]["idDetallePrograma"].ToString();
+                            String resultadoLocal = "";
+                            String resultadoVisita = "";
+
+
+                            String idBuscarLocal = idPrograma + "_" + idDetallePrograma + "_L";
+                            Control controlLocal = pane.ContentContainer.FindControl(idBuscarLocal);
+                            if (controlLocal != null)
+                            {
+                                TextBox txtLocal = (TextBox)controlLocal;
+                                resultadoLocal = txtLocal.Text;
+                            }
+
+                            String idBuscarVisita = idPrograma + "_" + idDetallePrograma + "_V";
+                            Control controlVisita = pane.ContentContainer.FindControl(idBuscarVisita);
+                            if (controlVisita != null)
+                            {
+                                TextBox txtVisita = (TextBox)controlVisita;
+                                resultadoVisita = txtVisita.Text;
+                            }
+                        }
 
                     }
                 }

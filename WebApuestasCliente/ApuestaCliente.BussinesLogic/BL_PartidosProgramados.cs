@@ -24,5 +24,15 @@ namespace ApuestaCliente.BussinesLogic
             return dtLista;
         }
 
+        public DataTable BL_ListarPartidosxTorneo(EN_CodigoAleatorio enCodAleatorio, String codigoTipoApuesta, String nroTorneo)
+        {
+            DataTable dtLista = new DataTable();
+            DA_PartidosProgramados daPartidosProgramados = new DA_PartidosProgramados();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                dtLista = daPartidosProgramados.DA_GetPartidosxTorneo(dbContexto, enCodAleatorio, codigoTipoApuesta, nroTorneo);
+            }
+            return dtLista;
+        }
     }
 }

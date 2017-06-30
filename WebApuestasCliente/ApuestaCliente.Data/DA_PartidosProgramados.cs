@@ -20,5 +20,16 @@ namespace ApuestaCliente.Data
             dtLista = contexto.RetornarDataTable("SP_LISTAR_PARTIDOS", dicParametros);
             return dtLista;
         }
+
+        public DataTable DA_GetPartidosxTorneo(ContextoDB contexto, EN_CodigoAleatorio enCodigo, String codigoTipoApuesta, String nroTorneo)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@NroCodAleatorio", Convert.ToString(enCodigo.NroCodigoAleatorio));
+            dicParametros.Add("@CodigoTipoApuesta", Convert.ToString(codigoTipoApuesta));
+            dicParametros.Add("@NroTorneo", Convert.ToInt32(nroTorneo));
+            dtLista = contexto.RetornarDataTable("SP_LISTAR_PARTIDOS_TORNEO", dicParametros);
+            return dtLista;
+        }
     }
 }
