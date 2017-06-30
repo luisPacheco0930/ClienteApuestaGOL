@@ -4,42 +4,47 @@
 </asp:Content>
 <asp:Content ID="contenidPagina" ContentPlaceHolderID="masterPage" runat="server">
     <div class="page-content">
-							<div class="row">
-								<div class="col-md-9">
-									<h1 class="page-header">Cartilla de la Suerte</h1>
-									<p><strong>Ingrese su código promocional antes de empezar a jugar, recuede que es un único código por juego.</strong></p>
-									<p>Ingrese su pronostico de marcado para los siguientes partidos, recuerde que solo puede ingresar una sola vez el resultado</p>
-									<div class="panel-body">
-                                    <%-- %><form id="juego01" class="form-horizontal">---%>
-										<div class="validation-code">
-											<div class="form-group">
-											    <div class="col-sm-6">
-											    	<label>Ingrese su código</label>
-											   	    <asp:TextBox type="text" CssClass="form-control" id="txtCode" placeholder="Ejemplo : DC0003532-552332" runat="server"></asp:TextBox>
-											    </div>
-											    <div class="col-sm-6">
-											    	<asp:Panel ID="pnlValidator" runat="server" rol="alert">
-											    		<i class="fa fa-check" aria-hidden="true"></i>
-											    		<asp:Label ID="lblStatusCode" runat="server"></asp:Label>
-											    	</asp:Panel>
-											    </div>
-											</div>
-										</div>
-										<div class="description">
-											<div class="row">
-												<div class="col-md-6">
-													<div class="programation">N° de programación: 5545</div>
-												</div>
-												<div class="col-md-6">
-													<div class="date">Juegalo hasta: <asp:Label ID="lblCodFecTope" Text="....." runat="server"></asp:Label></div>s
-												</div>
-											</div>
-										</div>
-                            <div class="table-game cartilla">							
-                                <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">  </asp:ToolkitScriptManager>  
-                                <asp:Panel ID="MyContent" runat="server">  </asp:Panel> 
-                            </div>
-                                <div class="table-game cartilla">
+        <div class="row">
+		    <div class="col-md-9">
+			<h1 class="page-header">Cartilla de la Suerte</h1>
+			<p><strong>Ingrese su código promocional antes de empezar a jugar, recuede que es un único código por juego.</strong></p>
+			<p>Ingrese su pronostico de marcado para los siguientes partidos, recuerde que solo puede ingresar una sola vez el resultado</p>
+				<div class="panel-body">
+					<%-- %><form id="juego01" class="form-horizontal">---%>
+					<div class="validation-code">
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label>Ingrese su código</label>
+								<asp:TextBox type="text" CssClass="form-control" id="txtCode" placeholder="Ejemplo : DC0003532-552332" runat="server"></asp:TextBox>
+							</div>
+							<div class="col-sm-6">
+								<asp:Panel ID="pnlValidator" runat="server" rol="alert">
+									<i class="fa fa-check" aria-hidden="true"></i>
+									<asp:Label ID="lblStatusCode" runat="server"></asp:Label>
+								</asp:Panel>
+							</div>
+						</div>
+					</div>
+					<div class="description">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="programation">N° de programación: 5545</div>
+							</div>
+							<div class="col-md-6">
+								<div class="date">Juegalo hasta: <asp:Label ID="lblCodFecTope" Text="....." runat="server"></asp:Label></div>
+							</div>
+						</div>
+					</div>
+					<div class="table-game cartilla">
+						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+							<div class="panel panel-default">
+							    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">  </asp:ToolkitScriptManager>  
+								<asp:Panel ID="MyContent" runat="server">  </asp:Panel>
+                            </div> 
+						</div>
+					</div>
+<%-- usar de plantilla --%>
+						<div class="table-game cartilla">
 							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 							  <div class="panel panel-default">
 							    <div class="panel-heading" role="tab" id="headingOne">
@@ -345,17 +350,22 @@
 							    </div>
 							  </div>
 							</div>
-							</div>
-
-							<div class="form-group">
-								<input class="btn btn-default btn-primary btn-lg btn-block" type="submit" value="Guardar partida">
-							</div>
-									</form>
-								</div>
-								<div class="col-md-3">
-								
-								</div>
-							</div>
 						</div>
+<%-- usar de plantilla --%>
+
+
+
+
+
+
+
+					<div class="form-group">
+						<input class="btn btn-default btn-primary btn-lg btn-block" type="submit" value="Guardar partida">
+					</div>
+				</div>
+				<div class="col-md-3">
+				</div>
+            </div>
         </div>
+    </div>
 </asp:Content>

@@ -20,5 +20,7 @@ namespace ApuestaCliente.Entity
         public const String textCodigoNoIngresado = "Código no ingresado";
         public const String textUsuarioNoValido = "Usuario o contraseña errados";
         public const String textUsuarioYaExiste = "Nro Documento y correo electrónico ya registrados";
+
+        public const String rutaIconosEquipos = "../recursos/images/equipos/";
     }
 }
