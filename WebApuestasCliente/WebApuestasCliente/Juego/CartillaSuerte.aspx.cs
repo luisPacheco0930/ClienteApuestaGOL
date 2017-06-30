@@ -110,6 +110,9 @@ namespace WebApuestasCliente.Juego
                     pane.HeaderCssClass = "panel-heading";
 
                     lbTitle.Text = BranchName;
+                    lbTitle.ForeColor = System.Drawing.Color.Black;
+                    lbTitle.Font.Bold = true;
+                    lbTitle.Font.Size = 12;
 
                     //<img src="../recursos/images/balon.png" />
                     img = new Image();

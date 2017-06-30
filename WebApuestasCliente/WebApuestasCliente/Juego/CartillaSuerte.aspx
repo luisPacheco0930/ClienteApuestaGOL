@@ -352,13 +352,6 @@
 							</div>
 						</div>
 <%-- usar de plantilla --%>
-
-
-
-
-
-
-
 					<div class="form-group">
 						<input class="btn btn-default btn-primary btn-lg btn-block" type="submit" value="Guardar partida">
 					</div>
