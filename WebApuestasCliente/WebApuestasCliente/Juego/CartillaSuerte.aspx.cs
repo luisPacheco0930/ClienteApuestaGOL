@@ -245,6 +245,7 @@ namespace WebApuestasCliente.Juego
             Boolean valido = true;
             //Control c = this.MyContent.FindControl("rbl_2_1");
             //textError = c.Controls("masterPage_rbl_2_1_0");
+            int idProgApuesta = 0;
             if (this.acrDynamic != null)
             {
                 //  textError = "entroo accordion";
@@ -253,34 +254,36 @@ namespace WebApuestasCliente.Juego
                 // validando que todos estén seleccionados
 
                 int accPaneidx = 0;
-                int bk_id_prog = -1;
+                int bk_id_torneo = -1;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     int id_Prog = int.Parse(dt.Rows[i]["IdProgramaApuesta"].ToString());
+                    idProgApuesta = id_Prog;
                     int id_detProg = int.Parse(dt.Rows[i]["IdDetallePrograma"].ToString());
+                    int nroT = int.Parse(dt.Rows[i]["NumeroTorneo"].ToString());
 
-                    if (bk_id_prog == -1)
+                    if (bk_id_torneo == -1)
                     {
-                        bk_id_prog = id_Prog;
+                        bk_id_torneo = nroT;
                     }
 
-                    if (bk_id_prog != id_Prog)
+                    if (bk_id_torneo != nroT)
                     {
                         accPaneidx++;
                     }
 
-                    bk_id_prog = id_Prog;
+                    bk_id_torneo = nroT;
 
-                    textError = textError + "-" + accPaneidx;
+                    textError = textError + "-" + accPaneidx + "("+ id_Prog + ")";
                     AccordionPane p1 = this.acrDynamic.Panes.ElementAt(accPaneidx);
                     Control x = p1.ContentContainer.FindControl("rbl_" + id_Prog + "_" + id_detProg);
 
                     if (x != null)
                     {
-                        textError = textError + "entro a " + "rbl_" + id_Prog + "_" + id_detProg;
+                        //textError = textError + "entro a " + "rbl_" + id_Prog + "_" + id_detProg;
                         RadioButtonList rbxx = (RadioButtonList)x;
                         String sv = rbxx.SelectedValue;
-                        textError = textError + "-" + sv;
+                       // textError = textError + "-" + sv;
                         if (sv == null || sv.Equals("")) valido = false;
                     }
 
@@ -293,6 +296,18 @@ namespace WebApuestasCliente.Juego
             {
                 textError = "Debe completar todos los partidos.";
                 Response.Write("<script> alert('" + textError + "') </script>");
+            }
+            else {
+                //Registrar datos en DB
+                EN_ApuestaUsuario au = new EN_ApuestaUsuario();
+                au.IdProgApuesta = idProgApuesta;
+                au.IdDetGenCod = 1;
+                BL_ApuestaUsuario bau = new BL_ApuestaUsuario();
+
+                int i2 = bau.BL_registrarApuestaUsuario(au);
+                textError = "Registro con id: "+ i2;
+                Response.Write("<script> alert('" + textError + "') </script>");
+
             }
         }
     }

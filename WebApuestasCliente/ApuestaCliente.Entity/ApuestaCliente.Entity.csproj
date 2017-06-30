@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EN_ApuestaUsuario.cs" />
+    <Compile Include="EN_ApuestaUsuarioDet.cs" />
     <Compile Include="EN_ProgramacionApuesta.cs" />
     <Compile Include="EN_Cliente.cs" />
     <Compile Include="EN_CodigoAleatorio.cs" />
