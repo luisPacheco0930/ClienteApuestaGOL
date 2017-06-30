@@ -274,7 +274,9 @@
 
 
                 <div class="form-group">
-                    <input class="btn btn-default btn-primary btn-lg btn-block" type="submit" value="Guardar partida">
+                    <%--<input class="btn btn-default btn-primary btn-lg btn-block" type="submit" value="Guardar partida">--%>
+                    <asp:Button ID="btnGuardarPollaSemanal" class="btn btn-default btn-primary btn-lg btn-block" 
+                        runat="server" Text="Guardar partida" OnClick="btnGuardarPollaSemanal_Click"/>
                 </div>
 				<%--</form>--%>
 			</div>
