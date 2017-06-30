@@ -14,6 +14,8 @@ namespace WebApuestasCliente.Juego
 {
     public partial class CartillaSuerte : System.Web.UI.Page
     {
+        Accordion acrDynamic;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
@@ -65,7 +67,8 @@ namespace WebApuestasCliente.Juego
         {
 
             // pintando partidos
-            Accordion acrDynamic = new Accordion();
+            //Accordion
+                acrDynamic = new Accordion();
             acrDynamic.ID = "MyAccordion";
             acrDynamic.SelectedIndex = -1;//No default selection  
             acrDynamic.RequireOpenedPane = false;//no open pane  
@@ -96,7 +99,9 @@ namespace WebApuestasCliente.Juego
                 //if (i != dt.Rows.Count - 1)
                 //    Next_Branch = dt.Rows[i + 1]["descTorneo"].ToString();
 
-                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString());
+                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString()
+                    + "/" + dt.Rows[i]["IdProgramaApuesta"].ToString() + "/" + dt.Rows[i]["IdDetallePrograma"].ToString()
+                    );
 
                 Content += dt.Rows[i]["equiDescLoc"].ToString() + "<br/>";
 
@@ -168,6 +173,7 @@ namespace WebApuestasCliente.Juego
                         RadioButtonList rbl = new RadioButtonList();
                         rbl.RepeatDirection = System.Web.UI.WebControls.RepeatDirection.Horizontal;
                         rbl.CssClass = "radio-inline";
+                        rbl.ID = "rbl_" + datos[3] + "_" + datos[4];                  
 
                         ListItem li = new ListItem();
                         li.Text = "L";
@@ -224,5 +230,36 @@ namespace WebApuestasCliente.Juego
 
             this.MyContent.Controls.Add(acrDynamic);
         }
-    }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            String s1 = Request.Form.Get("masterPage_rbl_2_1_0");
+            String textError = "Holi " + s1;
+
+            Control c = this.MyContent.FindControl("rbl_2_1");
+            //textError = c.Controls("masterPage_rbl_2_1_0");
+            if ( this.acrDynamic != null ) {
+                textError = "entroo accordion";
+
+                int i = this.acrDynamic.Panes.Count();
+
+                AccordionPane p1 = this.acrDynamic.Panes.First();
+                Control x = p1.ContentContainer.FindControl("rbl_2_1");
+
+                if (x != null)
+                {
+                    textError = "Encontró rb";
+                    RadioButtonList rbxx = (RadioButtonList)x;
+                    textError = rbxx.SelectedValue;
+                }
+
+                
+                Response.Write("<script> alert('" + textError + i + "') </script>");
+
+                
+            }
+            Response.Write("<script> alert('" + textError + "') </script>");
+        }
+}
+
 }

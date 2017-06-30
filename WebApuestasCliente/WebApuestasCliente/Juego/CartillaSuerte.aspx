@@ -355,8 +355,9 @@
 --%>
 <%-- usar de plantilla --%>
 					<div class="form-group">
-						<input class="btn btn-default btn-primary btn-lg btn-block" type="submit" value="Guardar partida">
-					</div>
+						<%--input class="btn btn-default btn-primary btn-lg btn-block" type="submit" value="Guardar partida"--%>
+					    <asp:Button ID="btnGuardarPartida" CssClass="btn btn-default btn-primary btn-lg btn-block" runat="server" Text="Guardar partida" OnClick="btnGuardar_Click"/>
+                    </div>
 				</div>
 				<div class="col-md-3">
 				</div>
