@@ -13,13 +13,13 @@ namespace ApuestaCliente.BussinesLogic
     public class BL_PartidosProgramados
     {
 
-        public DataTable BL_ListarPartidos(EN_CodigoAleatorio enCodAleatorio)
+        public DataTable BL_ListarPartidos(EN_CodigoAleatorio enCodAleatorio, String codigoTipoApuesta)
         {
             DataTable dtLista = new DataTable();
             DA_PartidosProgramados daPartidosProgramados = new DA_PartidosProgramados();
             using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
             {
-                dtLista = daPartidosProgramados.DA_GetPartidos(dbContexto, enCodAleatorio);
+                dtLista = daPartidosProgramados.DA_GetPartidos(dbContexto, enCodAleatorio,codigoTipoApuesta);
             }
             return dtLista;
         }

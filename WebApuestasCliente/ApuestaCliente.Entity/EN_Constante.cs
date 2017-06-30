@@ -21,6 +21,9 @@ namespace ApuestaCliente.Entity
         public const String textUsuarioNoValido = "Usuario o contraseña errados";
         public const String textUsuarioYaExiste = "Nro Documento y correo electrónico ya registrados";
 
+        public const String cartillaDeLaSuerte = "AW001";
+        public const String laPollaSemanal = "AW002";
+        public const String apuestaGoles = "AW003";
         public const String rutaIconosEquipos = "../recursos/images/equipos/";
     }
 }
