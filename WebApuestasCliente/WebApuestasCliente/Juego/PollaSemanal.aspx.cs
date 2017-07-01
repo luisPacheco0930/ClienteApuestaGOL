@@ -54,6 +54,7 @@ namespace WebApuestasCliente.Juego
                 this.txtCode.Enabled = true;
             }
         }
+
         protected void txtCodigoAleatorio_TextChanged(object sender, System.EventArgs e)
         {
             if (this.txtCode != null && !String.IsNullOrEmpty(this.txtCode.Text))
@@ -77,7 +78,6 @@ namespace WebApuestasCliente.Juego
                     this.pnlValidator.CssClass = "alert alert-success";
                     this.txtCode.Enabled = false;
                     BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, this.txtCode.Text);
-
 
                     EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio);
                     this.lblCodFecTope.Text = d.FechaFinal.ToShortTimeString() + " del " + d.FechaFinal.ToShortDateString(); // d.ToLongDateString();

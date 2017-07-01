@@ -15,7 +15,8 @@
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label>Ingrese su código</label>
-								<asp:TextBox type="text" CssClass="form-control" id="txtCode" placeholder="Ejemplo : DC0003532-552332" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtCode" CssClass="form-control" AutoPostBack="true"
+                                placeholder="Ejemplo : DC0003532-552332" runat="server" OnTextChanged="txtCodigoAleatorio_TextChanged"></asp:TextBox>
 							</div>
 							<div class="col-sm-6">
 								<asp:Panel ID="pnlValidator" runat="server" rol="alert">
@@ -356,7 +357,7 @@
 <%-- usar de plantilla --%>
 					<div class="form-group">
 						<%--input class="btn btn-default btn-primary btn-lg btn-block" type="submit" value="Guardar partida"--%>
-					    <asp:Button ID="btnGuardarPartida" CssClass="btn btn-default btn-primary btn-lg btn-block" runat="server" Text="Guardar partida" OnClick="btnGuardar_Click"/>
+					    <asp:Button ID="btnGuardarPartida" CssClass="btn btn-default btn-primary btn-lg btn-block" runat="server" Text="Guardar partida" OnClick="btnGuardarCartillaSuerte_Click"/>
                     </div>
 				</div>
 				<div class="col-md-3">
