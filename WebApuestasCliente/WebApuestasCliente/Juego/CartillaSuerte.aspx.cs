@@ -551,7 +551,7 @@ namespace WebApuestasCliente.Juego
                                 apuestaDet.Resultado = resultado.ElementAt(0);
                                 apuestaDet.Vigencia = '1';
                                 apuestaDet.ValidaResultado = 1;
-
+                                apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);
                                 apuestaCab.listaitem.Add(apuestaDet);
                             }
 

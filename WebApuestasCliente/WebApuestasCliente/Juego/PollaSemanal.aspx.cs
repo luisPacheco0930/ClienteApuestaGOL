@@ -305,7 +305,7 @@ namespace WebApuestasCliente.Juego
                                 apuestaDet.MarcadorVisitante = Convert.ToInt32(resultadoVisita);
                                 apuestaDet.Vigencia = '1';
                                 apuestaDet.ValidaResultado = 1;
-
+                                apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);
                                 apuestaCab.listaitem.Add(apuestaDet);
                             }
 

@@ -21,5 +21,7 @@ namespace ApuestaCliente.Entity
         public int ValidaResultado { get; set; }
 
         public int idApuestaUsuario { get; set; }
+
+        public int IdDetalleProgApuesta { get; set; }
     }
 }

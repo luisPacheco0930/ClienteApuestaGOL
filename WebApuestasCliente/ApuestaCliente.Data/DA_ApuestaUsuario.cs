@@ -38,6 +38,7 @@ namespace ApuestaCliente.Data
             dicParametros.Add("@Vigencia", Convert.ToString(enApuestaDetalleUsuario.Vigencia));
             dicParametros.Add("@IdApuestaCab", Convert.ToInt32(enApuestaDetalleUsuario.idApuestaUsuario));
             dicParametros.Add("@ValidaResultado", Convert.ToInt32(enApuestaDetalleUsuario.ValidaResultado));
+            dicParametros.Add("@IdDetProgApuesta", Convert.ToInt32(enApuestaDetalleUsuario.IdDetalleProgApuesta));
             contexto.EjecutarTransaccion("SP_RegistrarApuestaUsuarioDet", dicParametros);
         }
 
