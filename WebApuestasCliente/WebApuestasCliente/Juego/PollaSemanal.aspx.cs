@@ -244,12 +244,15 @@ namespace WebApuestasCliente.Juego
         protected void btnGuardarPollaSemanal_Click(object sender, EventArgs e)
         {
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
+            BL_ApuestaUsuario bl_apuestaUsuario = new BL_ApuestaUsuario();
             if (!String.IsNullOrEmpty(codeFrom) && !codeFrom.Equals(""))
             {
                 this.txtCode.Text = codeFrom;
 
                 if (this.acrDynamic != null)
                 {
+                    EN_ApuestaUsuario apuestaCab = new EN_ApuestaUsuario();
+
                     for(int i=0; i< this.acrDynamic.Panes.Count; i++)
                     {
                         AccordionPane pane = this.acrDynamic.Panes.ElementAt(i);
@@ -262,33 +265,57 @@ namespace WebApuestasCliente.Juego
                         enCodAleatorio.NroCodigoAleatorio = codeFrom;
                         DataTable dt = blpartidosProgramados.BL_ListarPartidosxTorneo(enCodAleatorio, EN_Constante.laPollaSemanal,nroTorneo);
 
-                        for(int j=0; j<dt.Rows.Count; j++)
-                        {
-                            String idDetallePrograma = dt.Rows[j]["idDetallePrograma"].ToString();
-                            String resultadoLocal = "";
-                            String resultadoVisita = "";
 
+                        apuestaCab.IdProgApuesta = Convert.ToInt32(idPrograma);
+                        apuestaCab.CodAleatorio = enCodAleatorio.NroCodigoAleatorio;
+                        apuestaCab.Estado = '1';
+                        apuestaCab.Usuario= BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc);
+                        apuestaCab.fecha = new DateTime();
 
-                            String idBuscarLocal = idPrograma + "_" + idDetallePrograma + "_L";
-                            Control controlLocal = pane.ContentContainer.FindControl(idBuscarLocal);
-                            if (controlLocal != null)
+                        if (dt!=null && dt.Rows.Count>0) {
+                            apuestaCab.listaitem = new List<EN_ApuestaUsuarioDet>();
+
+                            EN_ApuestaUsuarioDet apuestaDet;
+                            for (int j=0; j<dt.Rows.Count; j++)
                             {
-                                TextBox txtLocal = (TextBox)controlLocal;
-                                resultadoLocal = txtLocal.Text;
+                                apuestaDet = new EN_ApuestaUsuarioDet();
+
+                                String idDetallePrograma = dt.Rows[j]["idDetallePrograma"].ToString();
+                                String resultadoLocal = "";
+                                String resultadoVisita = "";
+
+
+                                String idBuscarLocal = idPrograma + "_" + idDetallePrograma + "_L";
+                                Control controlLocal = pane.ContentContainer.FindControl(idBuscarLocal);
+                                if (controlLocal != null)
+                                {
+                                    TextBox txtLocal = (TextBox)controlLocal;
+                                    resultadoLocal = txtLocal.Text;
+                                }
+
+                                String idBuscarVisita = idPrograma + "_" + idDetallePrograma + "_V";
+                                Control controlVisita = pane.ContentContainer.FindControl(idBuscarVisita);
+                                if (controlVisita != null)
+                                {
+                                    TextBox txtVisita = (TextBox)controlVisita;
+                                    resultadoVisita = txtVisita.Text;
+                                }
+
+                                apuestaDet.MarcadorLocal = Convert.ToInt32(resultadoLocal);
+                                apuestaDet.MarcadorVisitante = Convert.ToInt32(resultadoVisita);
+                                apuestaDet.Vigencia = '1';
+                                apuestaDet.ValidaResultado = 1;
+
+                                apuestaCab.listaitem.Add(apuestaDet);
                             }
 
-                            String idBuscarVisita = idPrograma + "_" + idDetallePrograma + "_V";
-                            Control controlVisita = pane.ContentContainer.FindControl(idBuscarVisita);
-                            if (controlVisita != null)
-                            {
-                                TextBox txtVisita = (TextBox)controlVisita;
-                                resultadoVisita = txtVisita.Text;
-                            }
+                            bl_apuestaUsuario.BL_registrarApuestaUsuario(ref apuestaCab);
                         }
-
                     }
                 }
             }
+            Response.Redirect("~/InicioAG.aspx");
+            Response.Write("<script> alert('Se registró la jugada.') </script>");
         }
 
         /*

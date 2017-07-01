@@ -301,11 +301,10 @@ namespace WebApuestasCliente.Juego
                 //Registrar datos en DB
                 EN_ApuestaUsuario au = new EN_ApuestaUsuario();
                 au.IdProgApuesta = idProgApuesta;
-                au.IdDetGenCod = 1;
                 BL_ApuestaUsuario bau = new BL_ApuestaUsuario();
 
-                int i2 = bau.BL_registrarApuestaUsuario(au);
-                textError = "Registro con id: "+ i2;
+                bau.BL_registrarApuestaUsuario( ref au);
+                textError = "Registro con id: ";
                 Response.Write("<script> alert('" + textError + "') </script>");
 
             }

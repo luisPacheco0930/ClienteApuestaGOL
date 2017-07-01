@@ -15,18 +15,30 @@ namespace ApuestaCliente.Data
 
         public int DA_registrarApuestaUsuario(ContextoDB contexto, EN_ApuestaUsuario enApuestaUsuario)
         {
-            int idd = 10;
+            String idd = "";
             DataTable dtLista = new DataTable();
             Dictionary<string, object> dicParametros = new Dictionary<string, object>();
-            dicParametros.Add("@IdDetGenCod", Convert.ToString(enApuestaUsuario.IdDetGenCod));
             dicParametros.Add("@IdProgApuesta", Convert.ToString(enApuestaUsuario.IdProgApuesta));
-            dicParametros.Add("@Estado", Convert.ToString(enApuestaUsuario.Estado));
+            dicParametros.Add("@Estado", Convert.ToChar(enApuestaUsuario.Estado));
             dicParametros.Add("@CodAleatorio", Convert.ToString(enApuestaUsuario.CodAleatorio));
             dicParametros.Add("@Usuario", Convert.ToString(enApuestaUsuario.Usuario));
             dicParametros.Add("@INT_SALIDA", idd);
-            contexto.EjecutarTransaccion("SP_RegistrarApuestaUsuario", dicParametros);
-            return idd;
+            idd=contexto.RetornarUnValor("SP_RegistrarApuestaUsuario", dicParametros);
+            return Convert.ToInt32(idd);
 
+        }
+
+        public void DA_registrarApuestaDetalleUsuario(ContextoDB contexto, EN_ApuestaUsuarioDet enApuestaDetalleUsuario)
+        {
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@MarcLocal", Convert.ToString(enApuestaDetalleUsuario.MarcadorLocal));
+            dicParametros.Add("@MarVisitante", Convert.ToString(enApuestaDetalleUsuario.MarcadorVisitante));
+            dicParametros.Add("@Resultado", Convert.ToString(enApuestaDetalleUsuario.Resultado));
+            dicParametros.Add("@Secuencia", Convert.ToString(enApuestaDetalleUsuario.Secuencia));
+            dicParametros.Add("@Vigencia", Convert.ToString(enApuestaDetalleUsuario.Vigencia));
+            dicParametros.Add("@IdApuestaCab", Convert.ToInt32(enApuestaDetalleUsuario.idApuestaUsuario));
+            dicParametros.Add("@ValidaResultado", Convert.ToInt32(enApuestaDetalleUsuario.ValidaResultado));
+            contexto.EjecutarTransaccion("SP_RegistrarApuestaUsuarioDet", dicParametros);
         }
 
     }

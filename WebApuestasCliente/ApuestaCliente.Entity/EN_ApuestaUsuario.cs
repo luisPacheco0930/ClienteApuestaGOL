@@ -9,15 +9,19 @@ namespace ApuestaCliente.Entity
    
     public class EN_ApuestaUsuario
     {
-        public int IdDetGenCod { get; set; }
+
+        public int idApuestaUsuario { get; set; }
 
         public int IdProgApuesta { get; set; }
 
-        public String Estado { get; set; }
+        public Char Estado { get; set; }
 
         public String CodAleatorio { get; set; }
 
         public String Usuario { get; set; }
 
+        public DateTime fecha { get; set; }
+        
+        public List<EN_ApuestaUsuarioDet> listaitem { get; set; }
     }
 }

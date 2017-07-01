@@ -16,6 +16,10 @@ namespace ApuestaCliente.Entity
 
         public int Secuencia { get; set; }
 
-        public Char Vigencia{ get; set; }
+        public Char Vigencia { get; set; }
+
+        public int ValidaResultado { get; set; }
+
+        public int idApuestaUsuario { get; set; }
     }
 }
