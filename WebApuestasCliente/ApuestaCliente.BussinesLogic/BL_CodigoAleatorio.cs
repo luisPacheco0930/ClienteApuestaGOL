@@ -80,7 +80,7 @@ namespace ApuestaCliente.BussinesLogic
             return textError;
         }
 
-        public EN_ProgramacionApuesta BL_codAleatorio_fechaTope(EN_CodigoAleatorio enCodAleatorio)
+        public EN_ProgramacionApuesta BL_codAleatorio_fechaTope(EN_CodigoAleatorio enCodAleatorio, string CodApuesta)
         {
             EN_ProgramacionApuesta apuesta=null;
 
@@ -88,7 +88,7 @@ namespace ApuestaCliente.BussinesLogic
             DA_CodigoAleatorio daCodAleatorio = new DA_CodigoAleatorio();
             using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
             {
-                dtLista = daCodAleatorio.DA_CodAleatorio_FechaTope(dbContexto, enCodAleatorio);
+                dtLista = daCodAleatorio.DA_CodAleatorio_FechaTope(dbContexto, enCodAleatorio, CodApuesta);
             }
 
             if(dtLista != null && dtLista.Rows.Count > 0)

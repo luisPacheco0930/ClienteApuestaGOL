@@ -41,7 +41,7 @@ namespace WebApuestasCliente.Juego
                     this.pnlValidator.CssClass = "alert alert-success";
                     this.txtCode.Enabled = false;
 
-                    EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio);
+                    EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio, EN_Constante.laPollaSemanal);
                     this.lblCodFecTope.Text = d.FechaFinal.ToShortTimeString() + " del " + d.FechaFinal.ToShortDateString(); // d.ToLongDateString();
                     this.txtNroProgramacion.Text = d.IdProgramaApuesta.ToString();
                     pintarPartidos(enCodAleatorio);
@@ -79,7 +79,7 @@ namespace WebApuestasCliente.Juego
                     this.txtCode.Enabled = false;
                     BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, this.txtCode.Text);
 
-                    EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio);
+                    EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio,EN_Constante.laPollaSemanal);
                     this.lblCodFecTope.Text = d.FechaFinal.ToShortTimeString() + " del " + d.FechaFinal.ToShortDateString(); // d.ToLongDateString();
                     this.txtNroProgramacion.Text = d.IdProgramaApuesta.ToString();
                     pintarPartidos(enCodAleatorio);
@@ -310,12 +310,12 @@ namespace WebApuestasCliente.Juego
                             }
 
                             bl_apuestaUsuario.BL_registrarApuestaUsuario(ref apuestaCab);
+                            Response.Write("<script> alert('Se registró la jugada.') </script>");
                         }
                     }
                 }
             }
             Response.Redirect("~/InicioAG.aspx");
-            Response.Write("<script> alert('Se registró la jugada.') </script>");
         }
 
         /*

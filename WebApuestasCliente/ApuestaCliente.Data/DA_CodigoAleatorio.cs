@@ -50,11 +50,12 @@ namespace ApuestaCliente.Data
             return dtLista;
         }
 
-        public DataTable DA_CodAleatorio_FechaTope(ContextoDB contexto, EN_CodigoAleatorio enCodigo)
+        public DataTable DA_CodAleatorio_FechaTope(ContextoDB contexto, EN_CodigoAleatorio enCodigo, string codApuesta)
         {
             DataTable dtLista = new DataTable();
             Dictionary<string, object> dicParametros = new Dictionary<string, object>();
             dicParametros.Add("@NroCodAleatorio", Convert.ToString(enCodigo.NroCodigoAleatorio));
+            dicParametros.Add("@CodApuesta", codApuesta);
             dtLista = contexto.RetornarDataTable("SP_ObtenerPrograma", dicParametros);
             return dtLista;
         }
