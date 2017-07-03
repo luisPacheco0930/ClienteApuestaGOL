@@ -13,40 +13,121 @@
     </script>
 
     <script type="text/javascript" >  
-        function validarNumeros(evt) {  
-            var charCode = (evt.which) ? evt.which : event.keyCode  
-            if (((charCode == 8) || (charCode == 46)   
-            || (charCode >= 35 && charCode <= 40)  
-                || (charCode >= 48 && charCode <= 57)  
-                || (charCode >= 96 && charCode <= 105))) {  
+        function validarNumeros(e) {  
+          //  var charCode = (evt.which) ? evt.which : event.keyCode
+           // alert("charCode: " + e.keyCode);
+           // if (/^\d+$/.test(this.value + String.fromCharCode(event.keyCode))) {  
+            //$.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            if (e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 46 || e.keyCode == 27 || e.keyCode == 13 || e.keyCode == 110
+                || e.keyCode == 190) {
                 return true;
-            }  
-            else {
-                return false;  
-            }  
+            }
+                if (
+                    // Allow: Ctrl/cmd+A
+                    (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: Ctrl/cmd+C
+                    (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: Ctrl/cmd+X
+                    (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: home, end, left, right
+                    (e.keyCode >= 35 && e.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                   // alert("charCode 1: " + e.keyCode);
+                    return true;
+                } 
+                // Ensure that it is a number and stop the keypress
+                if  ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                   // alert("charCode 2: " + e.keyCode);
+                    e.preventDefault();
+                }
+                //alert("charCode 3: " + e.keyCode);
+                return true;  
         }
 
-        function validarLetras(evt) {
-            evt = (evt) ? evt : event;
-            var charCode = (evt.which) ? evt.which : event.keyCode
+        function validarLetras(e) {
+            e = (e) ? e : event;
+            var charCode = (e.which) ? e.which : event.keyCode
 
             console.log("charCode: " + charCode);
+
+            if (e.keyCode == 32 || e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 46 || e.keyCode == 27 || e.keyCode == 13 || e.keyCode == 110
+                || e.keyCode == 190) {
+                return true;
+            }
+            if (
+                // Allow: Ctrl/cmd+A
+                (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl/cmd+C
+                (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl/cmd+X
+                (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                // let it happen, don't do anything
+                // alert("charCode 1: " + e.keyCode);
+                return true;
+            }
+
             if (charCode > 31 && (charCode < 65 || charCode > 90) &&
           (charCode < 97 || charCode > 122)) {
                 return false;
             }
             return true;
         }
+
+        function validarNoEspeciales(evt) {
+            evt = (evt) ? evt : event;
+            var charCode = (evt.which) ? evt.which : event.keyCode
+
+            //console.log("charCode: " + charCode);
+          /*  if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+                (charCode < 97 || charCode > 122)) {
+                return false;
+            }*/
+            return true;
+        }
+
+        function validarCampos() {
+            var txtdni = document.getElementById("contentModal_txtdni").value;
+            var txtNombres = document.getElementById("contentModal_txtNombres").value;
+            var txtApellidos = document.getElementById("contentModal_txtApellidos").value;
+            var txtEmail = document.getElementById("contentModal_txtEmail").value;
+            var txtPassword = document.getElementById("contentModal_txtPassword").value;
+
+            console.log("txtdni: " + txtdni);
+            console.log("txtNombres: " + txtNombres);
+            console.log("txtApellidos: " + txtApellidos);
+            console.log("txtEmail: " + txtEmail);
+            console.log("txtPassword: " + txtPassword);
+
+            if (!txtdni) {
+                alert("Ingresar Nro Documento Identidad");
+                return false;
+            } else if (!txtNombres) {
+                alert("Ingresar Nombres");
+                return false;
+            } else if (!txtApellidos) {
+                alert("Ingresar Apellidos");
+                return false;
+            } else if (!txtEmail) {
+                alert("Ingresar Email");
+                return false;
+            } else if (!txtPassword) {
+                alert("Ingresar Contraseña");
+                return false;
+            } else {
+
+                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (re.test(txtEmail))
+                    return true;
+                else {
+                    alert("Ingresar un Email correcto.");
+                    return false;
+                }
+            }
+        }    
     </script>  
 
-    <script type="text/javascript" >  
-        function validarCampos() {  
-            var txtdni = document.getElementById("contentModal_lbldni").value;
-            if (txtdni != null) {
-                console.log('ENTRO A TXTNI!=NULL ' + txtdni);
-            }
-        }  
-    </script>
 </asp:Content>
 <asp:Content ID="cabeceraLogin" ContentPlaceHolderID="masterHeader" runat="server">
     <header id="header-top">
@@ -126,7 +207,7 @@
 								</div>
 							</div>
 							    <div class="form-group">
-                                    <asp:Button ID="btnLoguear" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
+                                    <asp:Button ID="btnLoguear" CssClass="btn btn-success btn-lg btn-block" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
                                 </div>
 						<%--</form>--%>
 					</div>
@@ -153,7 +234,7 @@
       		<%--<form id="register" class="form-horizontal">--%>
         	<div class="form-group">
                 <asp:TextBox ID="txtdni" CssClass="form-control" placeholder="N° de documento de identidad"
-                    onkeydown="return validarNumeros(event)" runat="server"></asp:TextBox>
+                    onkeydown="return validarNumeros(event)" runat="server" MaxLength="8"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtdni" runat="server"
                                         ControlToValidate="txtdni"
@@ -180,7 +261,7 @@
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
 			    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Ingrese Correo Electrónico" 
-                    onkeydown="return validarLetras(event)" runat="server"></asp:TextBox>
+                    onkeydown="return validarNoEspeciales(event)" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtEmail" runat="server"
                                         ControlToValidate="txtEmail"
@@ -198,7 +279,7 @@
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group btn-register">
 				<%--<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>--%>
-                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario" OnClick="btnRegistrar_Click"/>
+                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario"  OnClientClick="return validarCampos();" OnClick="btnRegistrar_Click"/>
 			</div>
             <%--</form>--%>
       	</div>
