@@ -72,6 +72,8 @@
           (charCode < 97 || charCode > 122)) {
                 return false;
             }
+
+            
             return true;
         }
 
@@ -93,6 +95,7 @@
             var txtApellidos = document.getElementById("contentModal_txtApellidos").value;
             var txtEmail = document.getElementById("contentModal_txtEmail").value;
             var txtPassword = document.getElementById("contentModal_txtPassword").value;
+            var txtPassword2 = document.getElementById("contentModal_txtPassword2").value;
 
             console.log("txtdni: " + txtdni);
             console.log("txtNombres: " + txtNombres);
@@ -115,11 +118,22 @@
             } else if (!txtPassword) {
                 alert("Ingresar Contraseña");
                 return false;
+            }
+            else if (!txtPassword2) {
+                alert("Debe reingresar la contraseña");
+                return false;
             } else {
 
                 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                if (re.test(txtEmail))
-                    return true;
+                if (re.test(txtEmail)) {
+                    if (txtPassword != txtPassword2)
+                    {
+                        alert("Las contraseñas no coinciden");
+                        document.getElementById("contentModal_txtPassword").focus;
+                        return false;
+                    }
+                        else return true;
+                }
                 else {
                     alert("Ingresar un Email correcto.");
                     return false;
@@ -184,7 +198,7 @@
 										<div class="input-group-addon">
 										<i class="fa fa-user fa-lg" aria-hidden="true"></i>
 										</div>
-                                        <asp:TextBox ID="textNroDocumento" CssClass="form-control" placeholder="N° de documento de identidad" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="textNroDocumento" CssClass="form-control" placeholder="N° de documento de identidad" runat="server" onkeydown="return validarNumeros(event)"></asp:TextBox>
 									</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTextNroDocumento" runat="server"
                                         ControlToValidate="textNroDocumento"
@@ -242,7 +256,7 @@
                                         ForeColor="Red" >
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
-                <asp:TextBox ID="txtNombres" CssClass="form-control" placeholder="Ingrese Nombres" 
+                <asp:TextBox ID="txtNombres" CssClass="form-control" placeholder="Ingrese Nombres" style="text-transform: uppercase"
                     onkeydown="return validarLetras(event)" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtNombres" runat="server"
@@ -251,7 +265,7 @@
                                         ForeColor="Red" >
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
-			    <asp:TextBox ID="txtApellidos" CssClass="form-control" placeholder="Ingrese Apellidos"
+			    <asp:TextBox ID="txtApellidos" CssClass="form-control" placeholder="Ingrese Apellidos" style="text-transform: uppercase"
                     onkeydown="return validarLetras(event)" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtApellidos" runat="server"
@@ -271,6 +285,11 @@
 			<div class="form-group">
 
                 <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Contraseña" runat="server"></asp:TextBox>
+			</div>
+
+             <div class="form-group">
+
+                <asp:TextBox ID="txtPassword2" TextMode="Password" CssClass="form-control" placeholder="Reingresar Contraseña" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtPassword" runat="server"
                                         ControlToValidate="txtPassword"
