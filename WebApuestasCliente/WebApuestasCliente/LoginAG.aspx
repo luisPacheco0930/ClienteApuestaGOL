@@ -293,20 +293,6 @@
                 <asp:TextBox ID="txtPassword2" TextMode="Password" CssClass="form-control" placeholder="Reingresar Contraseña" runat="server"></asp:TextBox>
 			</div>
 
-             <div class="form-group">
-                <asp:TextBox ID="txtCaptcha" runat="server"></asp:TextBox>
-
-                <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
-                CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
-                FontColor="#D20B0C" NoiseColor="#B1B1B1" />
-
-
-                <asp:ImageButton ImageUrl="~/refresh.png" runat="server" CausesValidation="false" />
-
-                <asp:CustomValidator ErrorMessage="Invalid. Please try again." OnServerValidate="ValidateCaptcha"
-                runat="server" />
-            </div>
-
 
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtPassword" runat="server"
                                         ControlToValidate="txtPassword"
