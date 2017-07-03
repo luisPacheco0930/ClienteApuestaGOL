@@ -11,6 +11,41 @@
             }
         });
     </script>
+
+    <script type="text/javascript" >  
+        function validarNumeros(evt) {  
+            var charCode = (evt.which) ? evt.which : event.keyCode  
+            if (((charCode == 8) || (charCode == 46)   
+            || (charCode >= 35 && charCode <= 40)  
+                || (charCode >= 48 && charCode <= 57)  
+                || (charCode >= 96 && charCode <= 105))) {  
+                return true;  
+            }  
+            else {  
+                return false;  
+            }  
+        }
+
+        function validarLetras(evt) {
+            evt = (evt) ? evt : event;
+            var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
+          ((evt.which) ? evt.which : 0));
+            if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+          (charCode < 97 || charCode > 122)) {
+                return false;
+            }
+            return true;
+        }
+    </script>  
+
+    <script type="text/javascript" >  
+        function validarCampos() {  
+            var txtdni = document.getElementById("contentModal_txtdni").value;
+            if (txtdni != null) {
+                console.log('ENTRO A TXTNI!=NULL ' + txtdni);
+            }
+        }  
+    </script>
 </asp:Content>
 <asp:Content ID="cabeceraLogin" ContentPlaceHolderID="masterHeader" runat="server">
     <header id="header-top">
@@ -116,7 +151,8 @@
       	<div class="form-body">
       		<%--<form id="register" class="form-horizontal">--%>
         	<div class="form-group">
-                <asp:TextBox ID="txtdni" CssClass="form-control" placeholder="N° de documento de identidad" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtdni" CssClass="form-control" placeholder="N° de documento de identidad"
+                    onkeydown="return validarNumeros(event)" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtdni" runat="server"
                                         ControlToValidate="txtdni"
@@ -124,7 +160,8 @@
                                         ForeColor="Red" >
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
-                <asp:TextBox ID="txtNombres" CssClass="form-control" placeholder="Ingrese Nombres" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtNombres" CssClass="form-control" placeholder="Ingrese Nombres" 
+                    onkeydown="return validarLetras(event)" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtNombres" runat="server"
                                         ControlToValidate="txtNombres"
@@ -132,7 +169,8 @@
                                         ForeColor="Red" >
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
-			    <asp:TextBox ID="txtApellidos" CssClass="form-control" placeholder="Ingrese Apellidos" runat="server"></asp:TextBox>
+			    <asp:TextBox ID="txtApellidos" CssClass="form-control" placeholder="Ingrese Apellidos"
+                    onkeydown="return validarLetras(event)" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtApellidos" runat="server"
                                         ControlToValidate="txtApellidos"
@@ -140,7 +178,8 @@
                                         ForeColor="Red" >
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
-			    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Ingrese Correo Electrónico" runat="server"></asp:TextBox>
+			    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Ingrese Correo Electrónico" 
+                    onkeydown="return validarLetras(event)" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtEmail" runat="server"
                                         ControlToValidate="txtEmail"
@@ -158,7 +197,7 @@
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group btn-register">
 				<%--<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>--%>
-                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario" OnClick="btnRegistrar_Click"/>
+                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario" OnClientClick="validarCampos()"/>
 			</div>
             <%--</form>--%>
       	</div>
