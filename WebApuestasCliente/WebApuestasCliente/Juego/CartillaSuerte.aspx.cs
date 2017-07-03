@@ -565,7 +565,9 @@ namespace WebApuestasCliente.Juego
             }
             if (rj == true)
             {
-                Response.Redirect("~/InicioAG.aspx");
+                BL_Util.borrarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
+                Response.Write("<script> alert('Jugada Registrada.'); window.location.href='../InicioAG.aspx'; </script>");
+                //Response.Redirect("~/InicioAG.aspx");
             }
             else
             {

@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SWApuestaCliente.Master" CodeBehind="LoginAG.aspx.cs" Inherits="WebApuestasCliente.LoginAG" %>
+<%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="cc1" %>
 
 <asp:Content ID="contentHeadLogin" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
@@ -198,7 +199,7 @@
 										<div class="input-group-addon">
 										<i class="fa fa-user fa-lg" aria-hidden="true"></i>
 										</div>
-                                        <asp:TextBox ID="textNroDocumento" CssClass="form-control" placeholder="N° de documento de identidad" runat="server" onkeydown="return validarNumeros(event)"></asp:TextBox>
+                                        <asp:TextBox ID="textNroDocumento" CssClass="form-control" placeholder="N° de documento de identidad" runat="server" onkeydown="return validarNumeros(event)" MaxLength="8"></asp:TextBox>
 									</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTextNroDocumento" runat="server"
                                         ControlToValidate="textNroDocumento"
@@ -221,7 +222,7 @@
 								</div>
 							</div>
 							    <div class="form-group">
-                                    <asp:Button ID="btnLoguear" CssClass="btn btn-success btn-lg btn-block" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
+                                    <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
                                 </div>
 						<%--</form>--%>
 					</div>
@@ -291,6 +292,22 @@
 
                 <asp:TextBox ID="txtPassword2" TextMode="Password" CssClass="form-control" placeholder="Reingresar Contraseña" runat="server"></asp:TextBox>
 			</div>
+
+             <div class="form-group">
+                <asp:TextBox ID="txtCaptcha" runat="server"></asp:TextBox>
+
+                <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
+                CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
+                FontColor="#D20B0C" NoiseColor="#B1B1B1" />
+
+
+                <asp:ImageButton ImageUrl="~/refresh.png" runat="server" CausesValidation="false" />
+
+                <asp:CustomValidator ErrorMessage="Invalid. Please try again." OnServerValidate="ValidateCaptcha"
+                runat="server" />
+            </div>
+
+
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtPassword" runat="server"
                                         ControlToValidate="txtPassword"
                                         ErrorMessage="Ingrese este campo."
