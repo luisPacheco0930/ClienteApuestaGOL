@@ -482,6 +482,8 @@ namespace WebApuestasCliente.Juego
         {
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
             BL_ApuestaUsuario bl_apuestaUsuario = new BL_ApuestaUsuario();
+            bool rj = true;
+
             if (!String.IsNullOrEmpty(codeFrom) && !codeFrom.Equals(""))
             {
                 this.txtCode.Text = codeFrom;
@@ -520,48 +522,55 @@ namespace WebApuestasCliente.Juego
 
                                 String idDetallePrograma = dt.Rows[j]["idDetallePrograma"].ToString();
                                 String resultado = "";
-                                /*
-                                String resultadoLocal = "";
-                                String resultadoVisita = "";
+                                bool r = false;
 
-                                String idBuscarLocal = idPrograma + "_" + idDetallePrograma + "_R";
-                                Control controlLocal = pane.ContentContainer.FindControl(idBuscarLocal);
-                                if (controlLocal != null)
-                                {
-                                    TextBox txtLocal = (TextBox)controlLocal;
-                                    resultadoLocal = txtLocal.Text;
-                                }
-
-                                String idBuscarVisita = idPrograma + "_" + idDetallePrograma + "_V";
-                                Control controlVisita = pane.ContentContainer.FindControl(idBuscarVisita);
-                                if (controlVisita != null)
-                                {
-                                    TextBox txtVisita = (TextBox)controlVisita;
-                                    resultadoVisita = txtVisita.Text;
-                                }
-                                */
                                 String idBuscar = idPrograma + "_" + idDetallePrograma + "_R";
                                 Control control = pane.ContentContainer.FindControl(idBuscar);
                                 if (control != null)
                                 {
                                     RadioButtonList rbtnList = (RadioButtonList)control;
                                     resultado = rbtnList.SelectedValue;
+
+                                    if (!String.IsNullOrEmpty(resultado.Trim()))
+                                        r = true;
                                 }
 
-                                apuestaDet.Resultado = resultado.ElementAt(0);
-                                apuestaDet.Vigencia = '1';
-                                apuestaDet.ValidaResultado = 1;
-                                apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);
-                                apuestaCab.listaitem.Add(apuestaDet);
+                                if (r == true) { 
+                                    apuestaDet.Resultado = resultado.ElementAt(0);
+                                    apuestaDet.Vigencia = '1';
+                                    apuestaDet.ValidaResultado = 1;
+                                    apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);
+                                    apuestaCab.listaitem.Add(apuestaDet);
+                                }
+                                else
+                                {
+                                    break;
+
+                                }
                             }
 
-                            bl_apuestaUsuario.BL_registrarApuestaUsuario(ref apuestaCab);
-                            Response.Write("<script> alert('Se registró la jugada.') </script>");
+                            if (apuestaCab.listaitem != null && apuestaCab.listaitem.Count == dt.Rows.Count)
+                            {
+                                bl_apuestaUsuario.BL_registrarApuestaUsuario(ref apuestaCab);
+                                //Response.Write("<script> alert('Se registró la jugada.') </script>");
+                            }
+                            else
+                            {
+                                rj = false;
+                                break;
+                            }
                         }
                     }
                 }
             }
-            Response.Redirect("~/InicioAG.aspx");
+            if (rj == true)
+            {
+                Response.Redirect("~/InicioAG.aspx");
+            }
+            else
+            {
+                Response.Write("<script> alert('Debe ingresar resultado para todos los partidos.') </script>");
+            }
         }
 
 

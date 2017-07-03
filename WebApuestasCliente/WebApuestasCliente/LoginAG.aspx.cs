@@ -42,7 +42,6 @@ namespace WebApuestasCliente
             else
             {
                 blCliente.BL_registrarUsuario(enCliente);
-                Response.Write("<script> alert('Se registro correctamente.') </script>");
             }
 
         }
