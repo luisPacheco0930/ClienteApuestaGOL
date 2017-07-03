@@ -19,17 +19,18 @@
             || (charCode >= 35 && charCode <= 40)  
                 || (charCode >= 48 && charCode <= 57)  
                 || (charCode >= 96 && charCode <= 105))) {  
-                return true;  
+                return true;
             }  
-            else {  
+            else {
                 return false;  
             }  
         }
 
         function validarLetras(evt) {
             evt = (evt) ? evt : event;
-            var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
-          ((evt.which) ? evt.which : 0));
+            var charCode = (evt.which) ? evt.which : event.keyCode
+
+            console.log("charCode: " + charCode);
             if (charCode > 31 && (charCode < 65 || charCode > 90) &&
           (charCode < 97 || charCode > 122)) {
                 return false;
@@ -40,7 +41,7 @@
 
     <script type="text/javascript" >  
         function validarCampos() {  
-            var txtdni = document.getElementById("contentModal_txtdni").value;
+            var txtdni = document.getElementById("contentModal_lbldni").value;
             if (txtdni != null) {
                 console.log('ENTRO A TXTNI!=NULL ' + txtdni);
             }
@@ -197,7 +198,7 @@
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group btn-register">
 				<%--<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>--%>
-                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario" OnClientClick="validarCampos()"/>
+                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario" OnClick="btnRegistrar_Click"/>
 			</div>
             <%--</form>--%>
       	</div>
