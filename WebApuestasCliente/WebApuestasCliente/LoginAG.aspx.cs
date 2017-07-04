@@ -7,7 +7,8 @@ using System.Web.UI.WebControls;
 using ApuestaCliente.BussinesLogic;
 using ApuestaCliente.Entity;
 using System.Data;
-
+using MSCaptcha;
+//using BotDetect.Web.;
 
 namespace WebApuestasCliente
 {
@@ -53,11 +54,20 @@ namespace WebApuestasCliente
                 }
                 else
                 {
-                    blCliente.BL_registrarUsuario(enCliente);
-                    textError = "Usuario registrado satisfactoriamente";
+                    //Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
 
-                    Response.Write("<script> alert('" + textError + "') </script>");
-                    LimpiarCampos();
+                    //if (Captcha1.UserValidated)
+                    //{
+                        blCliente.BL_registrarUsuario(enCliente);
+                        textError = "Usuario registrado satisfactoriamente";
+
+                        Response.Write("<script> alert('" + textError + "') </script>");
+                        LimpiarCampos();
+                    //}
+                    //else {
+                    //    textError = "Texto Aleatorio Incorrecto.";
+                    //    Response.Write("<script> alert('" + textError + "') </script>");
+                    //}
 
                 }
             }
@@ -70,7 +80,7 @@ namespace WebApuestasCliente
             this.txtApellidos.Text = null;
             this.txtEmail.Text = null;
             this.txtPassword.Text = null;
-           
+            this.txtCaptcha.Text = null;
         }
 
         protected void btnLoguear_Click(object sender, EventArgs e)
@@ -156,8 +166,11 @@ namespace WebApuestasCliente
             e.IsValid = Captcha1.UserValidated;
             if (e.IsValid)
             {
+                Response.Write("<script> alert('validateCaptchaTrue ...') </script>");
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Valid Captcha!');", true);
             }
+            else Response.Write("<script> alert('validateCaptchaFalse ...') </script>");
+
         }
     }
 }

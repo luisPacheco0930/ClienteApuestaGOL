@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SWApuestaCliente.Master" CodeBehind="LoginAG.aspx.cs" Inherits="WebApuestasCliente.LoginAG" %>
 <%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="cc1" %>
-
 <asp:Content ID="contentHeadLogin" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
@@ -91,19 +90,21 @@
         }
 
         function validarCampos() {
+           
             var txtdni = document.getElementById("contentModal_txtdni").value;
             var txtNombres = document.getElementById("contentModal_txtNombres").value;
             var txtApellidos = document.getElementById("contentModal_txtApellidos").value;
             var txtEmail = document.getElementById("contentModal_txtEmail").value;
             var txtPassword = document.getElementById("contentModal_txtPassword").value;
             var txtPassword2 = document.getElementById("contentModal_txtPassword2").value;
+            var txtCaptcha = document.getElementById("contentModal_txtCaptcha").value;
 
             console.log("txtdni: " + txtdni);
             console.log("txtNombres: " + txtNombres);
             console.log("txtApellidos: " + txtApellidos);
             console.log("txtEmail: " + txtEmail);
             console.log("txtPassword: " + txtPassword);
-
+           // alert("txtCaptcha: " + txtCaptcha);
             if (!txtdni) {
                 alert("Ingresar Nro Documento Identidad");
                 return false;
@@ -119,21 +120,23 @@
             } else if (!txtPassword) {
                 alert("Ingresar Contraseña");
                 return false;
-            }
-            else if (!txtPassword2) {
+            } else if (!txtPassword2) {
                 alert("Debe reingresar la contraseña");
                 return false;
-            } else {
+            } else if (!txtCaptcha) {
+                alert("Debe ingresar el texto aleatorio");
+                return false;
+            }
+            else {
 
                 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 if (re.test(txtEmail)) {
-                    if (txtPassword != txtPassword2)
-                    {
+                    if (txtPassword != txtPassword2) {
                         alert("Las contraseñas no coinciden");
                         document.getElementById("contentModal_txtPassword").focus;
                         return false;
                     }
-                        else return true;
+                    else return true;
                 }
                 else {
                     alert("Ingresar un Email correcto.");
@@ -294,17 +297,28 @@
 			</div>
 
              <div class="form-group">
-                <asp:TextBox ID="txtCaptcha" runat="server"></asp:TextBox>
+                 <asp:ScriptManager ID="sm" runat="server">
+                </asp:ScriptManager>
+                <div>
+                    Ingrese el texto:
+                    <asp:TextBox ID="txtCaptcha" runat="server"></asp:TextBox>
+                </div>
+                 <asp:UpdatePanel ID="up1" runat="server">
+                     <ContentTemplate>
+            <div>
+                <div style="display: inline-block">
+                    
+                    <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
+                        CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
+                        FontColor="#D20B0C" NoiseColor="#B1B1B1" />
+                </div>
+                <div style="display: inline-block">                   
+                    <asp:ImageButton ImageUrl="recursos/images/blue-refresh.png" runat="server" CausesValidation="false" />
+                </div>
+            </div>
+        </ContentTemplate>
 
-                <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
-                CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
-                FontColor="#D20B0C" NoiseColor="#B1B1B1" />
-
-
-                <asp:ImageButton ImageUrl="~/refresh.png" runat="server" CausesValidation="false" />
-
-                <asp:CustomValidator ErrorMessage="Invalid. Please try again." OnServerValidate="ValidateCaptcha"
-                runat="server" />
+                </asp:UpdatePanel>
             </div>
 
 
@@ -314,6 +328,9 @@
                                         ForeColor="Red" >
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group btn-register">
+                <div>
+                <asp:CustomValidator ErrorMessage="Invalid." OnServerValidate="ValidateCaptcha" runat="server" />
+               </div>
 				<%--<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>--%>
                 <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario"  OnClientClick="return validarCampos();" OnClick="btnRegistrar_Click"/>
 			</div>
