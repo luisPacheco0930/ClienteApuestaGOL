@@ -149,15 +149,5 @@ namespace WebApuestasCliente
 
             
         }
-
-        protected void ValidateCaptcha(object sender, ServerValidateEventArgs e)
-        {
-            Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
-            e.IsValid = Captcha1.UserValidated;
-            if (e.IsValid)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Valid Captcha!');", true);
-            }
-        }
     }
 }
