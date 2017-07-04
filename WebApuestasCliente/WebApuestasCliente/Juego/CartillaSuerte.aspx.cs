@@ -42,12 +42,14 @@ namespace WebApuestasCliente.Juego
                     this.lblStatusCode.Text = EN_Constante.textCodigoNoValido;
                     this.pnlValidator.CssClass = "alert alert-danger";
                     this.txtCode.Enabled = false;
+                    this.btnGuardarPartida.Enabled = false;
                 }
                 else
                 {
                     this.lblStatusCode.Text = EN_Constante.textCodigoValido;
                     this.pnlValidator.CssClass = "alert alert-success";
                     this.txtCode.Enabled = false;
+                    this.btnGuardarPartida.Enabled = true;
 
                     EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio,EN_Constante.cartillaDeLaSuerte);
                     this.lblCodFecTope.Text = d.FechaFinal.ToShortTimeString() + " del " + d.FechaFinal.ToShortDateString(); // d.ToLongDateString();
@@ -60,6 +62,7 @@ namespace WebApuestasCliente.Juego
                 this.lblStatusCode.Text = EN_Constante.textCodigoNoIngresado;
                 this.pnlValidator.CssClass = "alert alert-info";
                 this.txtCode.Enabled = true;
+                this.btnGuardarPartida.Enabled = false;
             }
 
         }
@@ -80,12 +83,14 @@ namespace WebApuestasCliente.Juego
                     this.lblStatusCode.Text = EN_Constante.textCodigoNoValido;
                     this.pnlValidator.CssClass = "alert alert-danger";
                     this.txtCode.Enabled = false;
+                    this.btnGuardarPartida.Enabled = false;
                 }
                 else
                 {
                     this.lblStatusCode.Text = EN_Constante.textCodigoValido;
                     this.pnlValidator.CssClass = "alert alert-success";
                     this.txtCode.Enabled = false;
+                    this.btnGuardarPartida.Enabled = true;
                     BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, this.txtCode.Text);
 
                     EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio, EN_Constante.cartillaDeLaSuerte);
@@ -99,6 +104,7 @@ namespace WebApuestasCliente.Juego
                 this.lblStatusCode.Text = EN_Constante.textCodigoNoIngresado;
                 this.pnlValidator.CssClass = "alert alert-info";
                 this.txtCode.Enabled = true;
+                this.btnGuardarPartida.Enabled = false;
             }
         }
         /*
