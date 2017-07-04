@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SWApuestaCliente.Master" CodeBehind="LoginAG.aspx.cs" Inherits="WebApuestasCliente.LoginAG" %>
-<%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="cc1" %>
-
 <asp:Content ID="contentHeadLogin" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
