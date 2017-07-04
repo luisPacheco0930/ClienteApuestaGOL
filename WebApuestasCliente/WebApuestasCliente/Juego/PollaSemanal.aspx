@@ -275,7 +275,7 @@
 
                 <div class="form-group">
                     <asp:Button ID="btnGuardarPollaSemanal" class="btn btn-default btn-primary btn-lg btn-block" 
-                        runat="server" Text="Guardar partida" OnClick="btnGuardarPollaSemanal_Click"/>
+                        runat="server" Text="Guardar partida" OnClick="btnGuardarPollaSemanal_Click" on/>
                 </div>
 				<%--</form>--%>
 			</div>

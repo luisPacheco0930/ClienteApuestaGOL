@@ -21,7 +21,6 @@ namespace ApuestaCliente.Data
             dtLista = contexto.RetornarDataTable("SP_Login", dicParametros);
             return dtLista;
         }
-
         
         public DataTable DA_validaExistenciaUsuario(ContextoDB contexto, EN_Cliente enCliente)
         {
@@ -30,6 +29,15 @@ namespace ApuestaCliente.Data
             dicParametros.Add("@NroDocumento", Convert.ToString(enCliente.NroDocumento));
             dicParametros.Add("@CorreoElectronico", Convert.ToString(enCliente.Email));
             dtLista = contexto.RetornarDataTable("SP_ValidaExistencia_Usuario", dicParametros);
+            return dtLista;
+        }
+
+        public DataTable DA_ObtenerNombreUsuario(ContextoDB contexto, EN_Cliente enCliente)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@NroDocumento", Convert.ToString(enCliente.NroDocumento));
+            dtLista = contexto.RetornarDataTable("SP_ObtenerNombreUsuario", dicParametros);
             return dtLista;
         }
 

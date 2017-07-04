@@ -27,5 +27,10 @@ namespace ApuestaCliente.BussinesLogic
 
             //HttpContext.Current.Session[nombreCookie] = valorCookie;
         }
+
+        public static void borrarCookie(HttpContext Context, String nombreCookie)
+        {
+            Context.Session.Remove(nombreCookie);
+        }
     }
 }

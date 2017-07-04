@@ -9,7 +9,7 @@ using ApuestaCliente.Entity;
 using System.Web.UI.HtmlControls;
 using AjaxControlToolkit;
 using System.Data;
-
+using System.Text.RegularExpressions;
 
 namespace WebApuestasCliente.Juego
 {
@@ -199,25 +199,37 @@ namespace WebApuestasCliente.Juego
                         imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoLoc;
                         panO.Controls.Add(imagLV);
 
-                        TextBox cbx;
-                        cbx = new TextBox();
+                        TextBox txtbx;
+                        //RegularExpressionValidator rev;
+
+                        txtbx = new TextBox();
                         //cbx.Text = "L";
-                        cbx.ID = idPrograma+"_"+idDetallePrograma + "_L";
-                        cbx.CssClass = "form-option";
-                        cbx.Attributes.Add("style", "margin: 0px 5px 0px 5px");
-                        //cbx.AutoPostBack = true;
-                        //cbx.TextChanged += new EventHandler(this.txtResultado_TextChanged);
-                        panO.Controls.Add(cbx);
-
-                        cbx = new TextBox();
+                        txtbx.ID = idPrograma+"_"+idDetallePrograma + "_L";
+                        txtbx.CssClass = "form-option";
+                        txtbx.Attributes.Add("style", "margin: 0px 5px 0px 5px");
+                        panO.Controls.Add(txtbx);
+                        /*
+                        rev = new RegularExpressionValidator();
+                        rev.ID = "rev" + txtbx.ID;
+                        rev.ControlToValidate = txtbx.ID;
+                        rev.ValidationExpression = "^[0-9]*$";
+                        rev.ErrorMessage = "Solo números";
+                        panO.Controls.Add(rev);
+                        */
+                        txtbx = new TextBox();
                         //cbx.Text = "E";
-                        cbx.ID = idPrograma + "_" + idDetallePrograma + "_V";
-                        cbx.CssClass = "form-option";
-                        cbx.Attributes.Add("style", "margin: 0px 5px 0px 5px");
-                        //cbx.AutoPostBack = true;
-                        //cbx.TextChanged+= new EventHandler(this.txtResultado_TextChanged);
-                        panO.Controls.Add(cbx);
-
+                        txtbx.ID = idPrograma + "_" + idDetallePrograma + "_V";
+                        txtbx.CssClass = "form-option";
+                        txtbx.Attributes.Add("style", "margin: 0px 5px 0px 5px");
+                        panO.Controls.Add(txtbx);
+                        /*
+                        rev = new RegularExpressionValidator();
+                        rev.ID = "rev" + txtbx.ID;
+                        rev.ControlToValidate = txtbx.ID;
+                        rev.ValidationExpression = "^[0-9]*$";
+                        rev.ErrorMessage = "Solo números";
+                        panO.Controls.Add(rev);
+                        */
                         imagLV = new Image();
                         imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoVis;
                         panO.Controls.Add(imagLV);
@@ -245,6 +257,9 @@ namespace WebApuestasCliente.Juego
         {
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
             BL_ApuestaUsuario bl_apuestaUsuario = new BL_ApuestaUsuario();
+            bool rj = true;
+            bool rjn = true;
+
             if (!String.IsNullOrEmpty(codeFrom) && !codeFrom.Equals(""))
             {
                 this.txtCode.Text = codeFrom;
@@ -272,7 +287,10 @@ namespace WebApuestasCliente.Juego
                         apuestaCab.Usuario= BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc);
                         apuestaCab.fecha = new DateTime();
 
-                        if (dt!=null && dt.Rows.Count>0) {
+                        if (dt!=null && dt.Rows.Count>0)
+                        {
+                            Regex rgx = new Regex(@"[0-99]");
+
                             apuestaCab.listaitem = new List<EN_ApuestaUsuarioDet>();
 
                             EN_ApuestaUsuarioDet apuestaDet;
@@ -283,7 +301,11 @@ namespace WebApuestasCliente.Juego
                                 String idDetallePrograma = dt.Rows[j]["idDetallePrograma"].ToString();
                                 String resultadoLocal = "";
                                 String resultadoVisita = "";
+                                bool rl = false;
+                                bool rv = false;
 
+                                bool rln = false;
+                                bool rvn = false;
 
                                 String idBuscarLocal = idPrograma + "_" + idDetallePrograma + "_L";
                                 Control controlLocal = pane.ContentContainer.FindControl(idBuscarLocal);
@@ -291,6 +313,15 @@ namespace WebApuestasCliente.Juego
                                 {
                                     TextBox txtLocal = (TextBox)controlLocal;
                                     resultadoLocal = txtLocal.Text;
+
+                                    if (!String.IsNullOrEmpty(resultadoLocal.Trim()))
+                                    {
+                                        rl = true;
+                                        if (rgx.IsMatch(resultadoLocal.Trim()))
+                                        {
+                                            rln = true;
+                                        }
+                                    }                                        
                                 }
 
                                 String idBuscarVisita = idPrograma + "_" + idDetallePrograma + "_V";
@@ -299,23 +330,69 @@ namespace WebApuestasCliente.Juego
                                 {
                                     TextBox txtVisita = (TextBox)controlVisita;
                                     resultadoVisita = txtVisita.Text;
+
+                                    if (!String.IsNullOrEmpty(resultadoVisita.Trim()))
+                                    {
+                                        rv = true;
+                                        if (rgx.IsMatch(resultadoVisita.Trim()))
+                                        {
+                                            rvn = true;
+                                        }
+                                    }
                                 }
 
-                                apuestaDet.MarcadorLocal = Convert.ToInt32(resultadoLocal);
-                                apuestaDet.MarcadorVisitante = Convert.ToInt32(resultadoVisita);
-                                apuestaDet.Vigencia = '1';
-                                apuestaDet.ValidaResultado = 1;
-                                apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);
-                                apuestaCab.listaitem.Add(apuestaDet);
+                                if (rl==true && rv==true) {
+                                    if (rln == true && rvn == true) {
+                                        apuestaDet.MarcadorLocal = Convert.ToInt32(resultadoLocal);
+                                        apuestaDet.MarcadorVisitante = Convert.ToInt32(resultadoVisita);
+                                        apuestaDet.Vigencia = '1';
+                                        apuestaDet.ValidaResultado = 1;
+                                        apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);
+                                        apuestaCab.listaitem.Add(apuestaDet);
+                                    }
+                                    else
+                                    {
+                                        rjn = false;
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    break;
+
+                                }
                             }
 
-                            bl_apuestaUsuario.BL_registrarApuestaUsuario(ref apuestaCab);
-                            Response.Write("<script> alert('Se registró la jugada.') </script>");
+                            if(apuestaCab.listaitem!=null && apuestaCab.listaitem.Count== dt.Rows.Count) { 
+                                bl_apuestaUsuario.BL_registrarApuestaUsuario(ref apuestaCab);
+                                //Response.Write("<script> alert('Se registró la jugada.') </script>");
+                            }
+                            else
+                            {
+                                rj = false;
+                                break;
+                            }
                         }
                     }
                 }
             }
-            Response.Redirect("~/InicioAG.aspx");
+            if (rjn == true)
+            {
+                if (rj == true)
+                {
+                    BL_Util.borrarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
+                    Response.Write("<script> alert('Jugada Registrada.'); window.location.href='../InicioAG.aspx'; </script>");
+                    //Response.Redirect("~/InicioAG.aspx");
+                }
+                else
+                {
+                    Response.Write("<script> alert('Debe ingresar resultado para todos los partidos.') </script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script> alert('Valide que todos sean numeros.') </script>");
+            }
         }
 
         /*

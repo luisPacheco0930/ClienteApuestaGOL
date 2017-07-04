@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SWApuestaCliente.Master" CodeBehind="LoginAG.aspx.cs" Inherits="WebApuestasCliente.LoginAG" %>
+<%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="cc1" %>
 
 <asp:Content ID="contentHeadLogin" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
@@ -11,6 +12,137 @@
             }
         });
     </script>
+
+    <script type="text/javascript" >  
+        function validarNumeros(e) {  
+          //  var charCode = (evt.which) ? evt.which : event.keyCode
+           // alert("charCode: " + e.keyCode);
+           // if (/^\d+$/.test(this.value + String.fromCharCode(event.keyCode))) {  
+            //$.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            if (e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 46 || e.keyCode == 27 || e.keyCode == 13 || e.keyCode == 110
+                || e.keyCode == 190) {
+                return true;
+            }
+                if (
+                    // Allow: Ctrl/cmd+A
+                    (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: Ctrl/cmd+C
+                    (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: Ctrl/cmd+X
+                    (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: home, end, left, right
+                    (e.keyCode >= 35 && e.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                   // alert("charCode 1: " + e.keyCode);
+                    return true;
+                } 
+                // Ensure that it is a number and stop the keypress
+                if  ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                   // alert("charCode 2: " + e.keyCode);
+                    e.preventDefault();
+                }
+                //alert("charCode 3: " + e.keyCode);
+                return true;  
+        }
+
+        function validarLetras(e) {
+            e = (e) ? e : event;
+            var charCode = (e.which) ? e.which : event.keyCode
+
+            console.log("charCode: " + charCode);
+
+            if (e.keyCode == 32 || e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 46 || e.keyCode == 27 || e.keyCode == 13 || e.keyCode == 110
+                || e.keyCode == 190) {
+                return true;
+            }
+            if (
+                // Allow: Ctrl/cmd+A
+                (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl/cmd+C
+                (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl/cmd+X
+                (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                // let it happen, don't do anything
+                // alert("charCode 1: " + e.keyCode);
+                return true;
+            }
+
+            if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+          (charCode < 97 || charCode > 122)) {
+                return false;
+            }
+
+            
+            return true;
+        }
+
+        function validarNoEspeciales(evt) {
+            evt = (evt) ? evt : event;
+            var charCode = (evt.which) ? evt.which : event.keyCode
+
+            //console.log("charCode: " + charCode);
+          /*  if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+                (charCode < 97 || charCode > 122)) {
+                return false;
+            }*/
+            return true;
+        }
+
+        function validarCampos() {
+            var txtdni = document.getElementById("contentModal_txtdni").value;
+            var txtNombres = document.getElementById("contentModal_txtNombres").value;
+            var txtApellidos = document.getElementById("contentModal_txtApellidos").value;
+            var txtEmail = document.getElementById("contentModal_txtEmail").value;
+            var txtPassword = document.getElementById("contentModal_txtPassword").value;
+            var txtPassword2 = document.getElementById("contentModal_txtPassword2").value;
+
+            console.log("txtdni: " + txtdni);
+            console.log("txtNombres: " + txtNombres);
+            console.log("txtApellidos: " + txtApellidos);
+            console.log("txtEmail: " + txtEmail);
+            console.log("txtPassword: " + txtPassword);
+
+            if (!txtdni) {
+                alert("Ingresar Nro Documento Identidad");
+                return false;
+            } else if (!txtNombres) {
+                alert("Ingresar Nombres");
+                return false;
+            } else if (!txtApellidos) {
+                alert("Ingresar Apellidos");
+                return false;
+            } else if (!txtEmail) {
+                alert("Ingresar Email");
+                return false;
+            } else if (!txtPassword) {
+                alert("Ingresar Contraseña");
+                return false;
+            }
+            else if (!txtPassword2) {
+                alert("Debe reingresar la contraseña");
+                return false;
+            } else {
+
+                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (re.test(txtEmail)) {
+                    if (txtPassword != txtPassword2)
+                    {
+                        alert("Las contraseñas no coinciden");
+                        document.getElementById("contentModal_txtPassword").focus;
+                        return false;
+                    }
+                        else return true;
+                }
+                else {
+                    alert("Ingresar un Email correcto.");
+                    return false;
+                }
+            }
+        }    
+    </script>  
+
 </asp:Content>
 <asp:Content ID="cabeceraLogin" ContentPlaceHolderID="masterHeader" runat="server">
     <header id="header-top">
@@ -67,7 +199,7 @@
 										<div class="input-group-addon">
 										<i class="fa fa-user fa-lg" aria-hidden="true"></i>
 										</div>
-                                        <asp:TextBox ID="textNroDocumento" CssClass="form-control" placeholder="N° de documento de identidad" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="textNroDocumento" CssClass="form-control" placeholder="N° de documento de identidad" runat="server" onkeydown="return validarNumeros(event)" MaxLength="8"></asp:TextBox>
 									</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTextNroDocumento" runat="server"
                                         ControlToValidate="textNroDocumento"
@@ -90,7 +222,7 @@
 								</div>
 							</div>
 							    <div class="form-group">
-                                    <asp:Button ID="btnLoguear" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
+                                    <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
                                 </div>
 						<%--</form>--%>
 					</div>
@@ -116,7 +248,8 @@
       	<div class="form-body">
       		<%--<form id="register" class="form-horizontal">--%>
         	<div class="form-group">
-                <asp:TextBox ID="txtdni" CssClass="form-control" placeholder="N° de documento de identidad" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtdni" CssClass="form-control" placeholder="N° de documento de identidad"
+                    onkeydown="return validarNumeros(event)" runat="server" MaxLength="8"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtdni" runat="server"
                                         ControlToValidate="txtdni"
@@ -124,7 +257,8 @@
                                         ForeColor="Red" >
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
-                <asp:TextBox ID="txtNombres" CssClass="form-control" placeholder="Ingrese Nombres" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtNombres" CssClass="form-control" placeholder="Ingrese Nombres" style="text-transform: uppercase"
+                    onkeydown="return validarLetras(event)" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtNombres" runat="server"
                                         ControlToValidate="txtNombres"
@@ -132,7 +266,8 @@
                                         ForeColor="Red" >
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
-			    <asp:TextBox ID="txtApellidos" CssClass="form-control" placeholder="Ingrese Apellidos" runat="server"></asp:TextBox>
+			    <asp:TextBox ID="txtApellidos" CssClass="form-control" placeholder="Ingrese Apellidos" style="text-transform: uppercase"
+                    onkeydown="return validarLetras(event)" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtApellidos" runat="server"
                                         ControlToValidate="txtApellidos"
@@ -140,7 +275,8 @@
                                         ForeColor="Red" >
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group">
-			    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Ingrese Correo Electrónico" runat="server"></asp:TextBox>
+			    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Ingrese Correo Electrónico" 
+                    onkeydown="return validarNoEspeciales(event)" runat="server"></asp:TextBox>
 			</div>
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtEmail" runat="server"
                                         ControlToValidate="txtEmail"
@@ -151,6 +287,13 @@
 
                 <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Contraseña" runat="server"></asp:TextBox>
 			</div>
+
+             <div class="form-group">
+
+                <asp:TextBox ID="txtPassword2" TextMode="Password" CssClass="form-control" placeholder="Reingresar Contraseña" runat="server"></asp:TextBox>
+			</div>
+
+
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtPassword" runat="server"
                                         ControlToValidate="txtPassword"
                                         ErrorMessage="Ingrese este campo."
@@ -158,7 +301,7 @@
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group btn-register">
 				<%--<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>--%>
-                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario" OnClick="btnRegistrar_Click"/>
+                <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario"  OnClientClick="return validarCampos();" OnClick="btnRegistrar_Click"/>
 			</div>
             <%--</form>--%>
       	</div>

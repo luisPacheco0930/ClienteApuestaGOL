@@ -21,10 +21,15 @@ namespace WebApuestasCliente
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
+          
             BL_Cliente blCliente = new BL_Cliente();
             EN_Cliente enCliente = new EN_Cliente();
-            if(this.txtdni!=null && !String.IsNullOrEmpty(this.txtdni.Text))
+
+            Boolean valido = true;
+            if (this.txtdni != null && !String.IsNullOrEmpty(this.txtdni.Text))
                 enCliente.NroDocumento = this.txtdni.Text.Trim();
+            else
+                valido = false;
             if (this.txtNombres != null && !String.IsNullOrEmpty(this.txtNombres.Text))
                 enCliente.Nombres = this.txtNombres.Text.Trim();
             if (this.txtApellidos != null && !String.IsNullOrEmpty(this.txtApellidos.Text))
@@ -34,17 +39,38 @@ namespace WebApuestasCliente
             if (this.txtPassword != null && !String.IsNullOrEmpty(this.txtPassword.Text))
                 enCliente.Contrasena = this.txtPassword.Text.Trim();
 
-            String textError = blCliente.BL_validaExistenciaUsuario(enCliente);
-            if (!String.IsNullOrEmpty(textError))
+            if (!valido)
             {
+                String textError = "Datos Incompletos";
                 Response.Write("<script> alert('" + textError + "') </script>");
             }
             else
             {
-                blCliente.BL_registrarUsuario(enCliente);
-                Response.Write("<script> alert('Se registro correctamente.') </script>");
-            }
+                String textError = blCliente.BL_validaExistenciaUsuario(enCliente);
+                if (!String.IsNullOrEmpty(textError))
+                {
+                    Response.Write("<script> alert('" + textError + "') </script>");
+                }
+                else
+                {
+                    blCliente.BL_registrarUsuario(enCliente);
+                    textError = "Usuario registrado satisfactoriamente";
 
+                    Response.Write("<script> alert('" + textError + "') </script>");
+                    LimpiarCampos();
+
+                }
+            }
+            
+        }
+
+        public void LimpiarCampos() {
+            this.txtdni.Text = null;
+            this.txtNombres.Text = null;
+            this.txtApellidos.Text = null;
+            this.txtEmail.Text = null;
+            this.txtPassword.Text = null;
+           
         }
 
         protected void btnLoguear_Click(object sender, EventArgs e)
@@ -122,6 +148,16 @@ namespace WebApuestasCliente
             }
 
             
+        }
+
+        protected void ValidateCaptcha(object sender, ServerValidateEventArgs e)
+        {
+            Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
+            e.IsValid = Captcha1.UserValidated;
+            if (e.IsValid)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Valid Captcha!');", true);
+            }
         }
     }
 }
