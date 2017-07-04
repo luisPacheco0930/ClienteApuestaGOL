@@ -300,7 +300,7 @@
                  <asp:ScriptManager ID="sm" runat="server">
                 </asp:ScriptManager>
                 <div>
-                    Ingrese el texto:
+                    Ingrese código de seguridad:
                     <asp:TextBox ID="txtCaptcha" runat="server"></asp:TextBox>
                 </div>
                  <asp:UpdatePanel ID="up1" runat="server">
@@ -321,17 +321,16 @@
                 </asp:UpdatePanel>
             </div>
 
-
                                     <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTxtPassword" runat="server"
                                         ControlToValidate="txtPassword"
                                         ErrorMessage="Ingrese este campo."
                                         ForeColor="Red" >
                                     </asp:RequiredFieldValidator>--%>
 			<div class="form-group btn-register">
-                <div>
-                <asp:CustomValidator ErrorMessage="Invalid." OnServerValidate="ValidateCaptcha" runat="server" />
-               </div>
-				<%--<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>--%>
+                </div>
+				<asp:CustomValidator ErrorMessage="" OnServerValidate="ValidateCaptcha" runat="server" />
+               
+              <%--<button type="button" class="btn btn-success btn-lg btn-block">Registrarse</button>--%>
                 <asp:Button ID="btnRegistrarse" CssClass="btn btn-success btn-lg btn-block" runat="server" Text="Registrar Usuario"  OnClientClick="return validarCampos();" OnClick="btnRegistrar_Click"/>
 			</div>
             <%--</form>--%>

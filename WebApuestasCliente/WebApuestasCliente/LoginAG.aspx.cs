@@ -14,6 +14,7 @@ namespace WebApuestasCliente
 {
     public partial class LoginAG : System.Web.UI.Page
     {
+        Boolean validaCaptcha = true;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Page.IsPostBack) return;
@@ -56,14 +57,17 @@ namespace WebApuestasCliente
                 {
                     //Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
 
-                    //if (Captcha1.UserValidated)
-                    //{
+                    if (validaCaptcha)
+                    {
                         blCliente.BL_registrarUsuario(enCliente);
                         textError = "Usuario registrado satisfactoriamente";
 
                         Response.Write("<script> alert('" + textError + "') </script>");
                         LimpiarCampos();
-                    //}
+                    }
+                    else {
+                        
+                    }
                     //else {
                     //    textError = "Texto Aleatorio Incorrecto.";
                     //    Response.Write("<script> alert('" + textError + "') </script>");
@@ -162,15 +166,23 @@ namespace WebApuestasCliente
 
         protected void ValidateCaptcha(object sender, ServerValidateEventArgs e)
         {
-            Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
+            if (this.txtdni != null && !String.IsNullOrEmpty(this.txtdni.Text))
+            { 
+                Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
             e.IsValid = Captcha1.UserValidated;
             if (e.IsValid)
             {
-                Response.Write("<script> alert('validateCaptchaTrue ...') </script>");
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Valid Captcha!');", true);
-            }
-            else Response.Write("<script> alert('validateCaptchaFalse ...') </script>");
+                    //Response.Write("<script> alert('validateCaptchaTrue ...') </script>");
+                    //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Valid Captcha!');", true);
 
+                }
+                else {
+                    validaCaptcha = false;
+                    this.txtCaptcha.Text = null;
+                    Response.Write("<script> alert('Código de seguridad incorrecto! Vuelva a intentarlo...') </script>");
+                   
+                }
+            }
         }
     }
 }
