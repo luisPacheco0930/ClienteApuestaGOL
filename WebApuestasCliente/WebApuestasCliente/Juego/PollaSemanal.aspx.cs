@@ -102,7 +102,6 @@ namespace WebApuestasCliente.Juego
         private void pintarPartidos(EN_CodigoAleatorio enCodAleatorio)
         {
 
-            // pintando partidos
             acrDynamic = new Accordion();
             acrDynamic.ID = "MyAccordion";
             acrDynamic.SelectedIndex = -1;//No default selection  
@@ -121,7 +120,7 @@ namespace WebApuestasCliente.Juego
 
             DataTable dt = new DataTable();
             BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
-            dt = blpartidosProgramados.BL_ListarPartidos(enCodAleatorio, EN_Constante.laPollaSemanal);
+            dt = blpartidosProgramados.BL_ListarPartidos(enCodAleatorio, EN_Constante.cartillaDeLaSuerte);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string BranchName = dt.Rows[i]["descTorneo"].ToString();
@@ -134,7 +133,7 @@ namespace WebApuestasCliente.Juego
                 //if (i != dt.Rows.Count - 1)
                 //    Next_Branch = dt.Rows[i + 1]["descTorneo"].ToString();
 
-                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString()+"/"+ dt.Rows[i]["IdDetallePrograma"].ToString() + "/" + dt.Rows[i]["IdProgramaApuesta"].ToString());
+                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString() + "/" + dt.Rows[i]["IdDetallePrograma"].ToString() + "/" + dt.Rows[i]["IdProgramaApuesta"].ToString());
 
                 Content += dt.Rows[i]["equiDescLoc"].ToString() + "<br/>";
 
@@ -143,12 +142,13 @@ namespace WebApuestasCliente.Juego
                     pane = new AccordionPane();
                     lbTitle = new Label();
                     lbContent = new Label();
-                    pane.ID = "Pane_" + dt.Rows[i]["IdProgramaApuesta"].ToString()+"_" + dt.Rows[i]["NumeroTorneo"].ToString()+"_"+BranchName.ToString();
+                    pane.ID = "Pane_" + dt.Rows[i]["IdProgramaApuesta"].ToString() + "_" + dt.Rows[i]["NumeroTorneo"].ToString() + "_" + BranchName.ToString();
+
                     pane.CssClass = "panel-title";
                     pane.HeaderCssClass = "panel-heading";
 
                     lbTitle.Text = BranchName;
-                    lbTitle.ForeColor = System.Drawing.Color.White;
+                    lbTitle.ForeColor = System.Drawing.Color.Black;
                     lbTitle.Font.Bold = true;
                     lbTitle.Font.Size = 12;
 
@@ -192,50 +192,39 @@ namespace WebApuestasCliente.Juego
                         panJ.Controls.Add(lx);
                         panPartido.Controls.Add(panJ);
 
-
                         panJugada = new Panel();
                         panJugada.CssClass = "col-sm-5";
 
                         panO = new Panel();
                         panO.CssClass = "option-games";
 
-
                         Image imagLV;
                         imagLV = new Image();
                         imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoLoc;
                         panO.Controls.Add(imagLV);
 
-                        TextBox txtbx;
-                        //RegularExpressionValidator rev;
+                        RadioButtonList rbl = new RadioButtonList();
+                        rbl.RepeatDirection = System.Web.UI.WebControls.RepeatDirection.Horizontal;
+                        rbl.CssClass = "radio-inline";
+                        rbl.ID = idPrograma + "_" + idDetallePrograma + "_R";
 
-                        txtbx = new TextBox();
-                        //cbx.Text = "L";
-                        txtbx.ID = idPrograma+"_"+idDetallePrograma + "_L";
-                        txtbx.CssClass = "form-option";
-                        txtbx.Attributes.Add("style", "margin: 0px 5px 0px 5px");
-                        panO.Controls.Add(txtbx);
-                        /*
-                        rev = new RegularExpressionValidator();
-                        rev.ID = "rev" + txtbx.ID;
-                        rev.ControlToValidate = txtbx.ID;
-                        rev.ValidationExpression = "^[0-9]*$";
-                        rev.ErrorMessage = "Solo números";
-                        panO.Controls.Add(rev);
-                        */
-                        txtbx = new TextBox();
-                        //cbx.Text = "E";
-                        txtbx.ID = idPrograma + "_" + idDetallePrograma + "_V";
-                        txtbx.CssClass = "form-option";
-                        txtbx.Attributes.Add("style", "margin: 0px 5px 0px 5px");
-                        panO.Controls.Add(txtbx);
-                        /*
-                        rev = new RegularExpressionValidator();
-                        rev.ID = "rev" + txtbx.ID;
-                        rev.ControlToValidate = txtbx.ID;
-                        rev.ValidationExpression = "^[0-9]*$";
-                        rev.ErrorMessage = "Solo números";
-                        panO.Controls.Add(rev);
-                        */
+                        ListItem li = new ListItem();
+                        li.Text = "L";
+                        li.Attributes.Add("style", "margin: 0px 15px 0px 15px");
+                        rbl.Items.Add(li);
+
+                        li = new ListItem();
+                        li.Text = "E";
+                        li.Attributes.Add("style", "margin: 0px 15px 0px 15px");
+                        rbl.Items.Add(li);
+
+                        li = new ListItem();
+                        li.Text = "V";
+                        li.Attributes.Add("style", "margin: 0px 15px 0px 15px");
+                        rbl.Items.Add(li);
+
+                        panO.Controls.Add(rbl);
+
                         imagLV = new Image();
                         imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoVis;
                         panO.Controls.Add(imagLV);
@@ -257,6 +246,7 @@ namespace WebApuestasCliente.Juego
             }
 
             this.MyContent.Controls.Add(acrDynamic);
+            
         }
 
         protected void btnGuardarPollaSemanal_Click(object sender, EventArgs e)
@@ -264,7 +254,6 @@ namespace WebApuestasCliente.Juego
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
             BL_ApuestaUsuario bl_apuestaUsuario = new BL_ApuestaUsuario();
             bool rj = true;
-            bool rjn = true;
 
             if (!String.IsNullOrEmpty(codeFrom) && !codeFrom.Equals(""))
             {
@@ -274,7 +263,7 @@ namespace WebApuestasCliente.Juego
                 {
                     EN_ApuestaUsuario apuestaCab = new EN_ApuestaUsuario();
 
-                    for(int i=0; i< this.acrDynamic.Panes.Count; i++)
+                    for (int i = 0; i < this.acrDynamic.Panes.Count; i++)
                     {
                         AccordionPane pane = this.acrDynamic.Panes.ElementAt(i);
                         String idPanel = pane.ID;
@@ -284,83 +273,46 @@ namespace WebApuestasCliente.Juego
                         BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
                         EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
                         enCodAleatorio.NroCodigoAleatorio = codeFrom;
-                        DataTable dt = blpartidosProgramados.BL_ListarPartidosxTorneo(enCodAleatorio, EN_Constante.laPollaSemanal,nroTorneo);
+                        DataTable dt = blpartidosProgramados.BL_ListarPartidosxTorneo(enCodAleatorio, EN_Constante.cartillaDeLaSuerte, nroTorneo);
 
 
                         apuestaCab.IdProgApuesta = Convert.ToInt32(idPrograma);
                         apuestaCab.CodAleatorio = enCodAleatorio.NroCodigoAleatorio;
                         apuestaCab.Estado = '1';
-                        apuestaCab.Usuario= BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc);
+                        apuestaCab.Usuario = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc);
                         apuestaCab.fecha = new DateTime();
 
-                        if (dt!=null && dt.Rows.Count>0)
+                        if (dt != null && dt.Rows.Count > 0)
                         {
-                            Regex rgx = new Regex(@"[0-99]");
-
                             apuestaCab.listaitem = new List<EN_ApuestaUsuarioDet>();
 
                             EN_ApuestaUsuarioDet apuestaDet;
-                            for (int j=0; j<dt.Rows.Count; j++)
+                            for (int j = 0; j < dt.Rows.Count; j++)
                             {
                                 apuestaDet = new EN_ApuestaUsuarioDet();
 
                                 String idDetallePrograma = dt.Rows[j]["idDetallePrograma"].ToString();
-                                String resultadoLocal = "";
-                                String resultadoVisita = "";
-                                bool rl = false;
-                                bool rv = false;
+                                String resultado = "";
+                                bool r = false;
 
-                                bool rln = false;
-                                bool rvn = false;
-
-                                String idBuscarLocal = idPrograma + "_" + idDetallePrograma + "_L";
-                                Control controlLocal = pane.ContentContainer.FindControl(idBuscarLocal);
-                                if (controlLocal != null)
+                                String idBuscar = idPrograma + "_" + idDetallePrograma + "_R";
+                                Control control = pane.ContentContainer.FindControl(idBuscar);
+                                if (control != null)
                                 {
-                                    TextBox txtLocal = (TextBox)controlLocal;
-                                    resultadoLocal = txtLocal.Text;
+                                    RadioButtonList rbtnList = (RadioButtonList)control;
+                                    resultado = rbtnList.SelectedValue;
 
-                                    if (!String.IsNullOrEmpty(resultadoLocal.Trim()))
-                                    {
-                                        rl = true;
-                                        if (rgx.IsMatch(resultadoLocal.Trim()))
-                                        {
-                                            rln = true;
-                                        }
-                                    }                                        
+                                    if (!String.IsNullOrEmpty(resultado.Trim()))
+                                        r = true;
                                 }
 
-                                String idBuscarVisita = idPrograma + "_" + idDetallePrograma + "_V";
-                                Control controlVisita = pane.ContentContainer.FindControl(idBuscarVisita);
-                                if (controlVisita != null)
+                                if (r == true)
                                 {
-                                    TextBox txtVisita = (TextBox)controlVisita;
-                                    resultadoVisita = txtVisita.Text;
-
-                                    if (!String.IsNullOrEmpty(resultadoVisita.Trim()))
-                                    {
-                                        rv = true;
-                                        if (rgx.IsMatch(resultadoVisita.Trim()))
-                                        {
-                                            rvn = true;
-                                        }
-                                    }
-                                }
-
-                                if (rl==true && rv==true) {
-                                    if (rln == true && rvn == true) {
-                                        apuestaDet.MarcadorLocal = Convert.ToInt32(resultadoLocal);
-                                        apuestaDet.MarcadorVisitante = Convert.ToInt32(resultadoVisita);
-                                        apuestaDet.Vigencia = '1';
-                                        apuestaDet.ValidaResultado = 1;
-                                        apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);
-                                        apuestaCab.listaitem.Add(apuestaDet);
-                                    }
-                                    else
-                                    {
-                                        rjn = false;
-                                        break;
-                                    }
+                                    apuestaDet.Resultado = resultado.ElementAt(0);
+                                    apuestaDet.Vigencia = '1';
+                                    apuestaDet.ValidaResultado = 1;
+                                    apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);
+                                    apuestaCab.listaitem.Add(apuestaDet);
                                 }
                                 else
                                 {
@@ -369,7 +321,8 @@ namespace WebApuestasCliente.Juego
                                 }
                             }
 
-                            if(apuestaCab.listaitem!=null && apuestaCab.listaitem.Count== dt.Rows.Count) { 
+                            if (apuestaCab.listaitem != null && apuestaCab.listaitem.Count == dt.Rows.Count)
+                            {
                                 bl_apuestaUsuario.BL_registrarApuestaUsuario(ref apuestaCab);
                                 //Response.Write("<script> alert('Se registró la jugada.') </script>");
                             }
@@ -382,23 +335,20 @@ namespace WebApuestasCliente.Juego
                     }
                 }
             }
-            if (rjn == true)
+            if (rj == true)
             {
-                if (rj == true)
-                {
-                    BL_Util.borrarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
-                    Response.Write("<script> alert('Jugada Registrada.'); window.location.href='../InicioAG.aspx'; </script>");
-                    //Response.Redirect("~/InicioAG.aspx");
-                }
-                else
-                {
-                    Response.Write("<script> alert('Debe ingresar resultado para todos los partidos.') </script>");
-                }
+                BL_Util.borrarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
+                Response.Write("<script> alert('Jugada Registrada.'); window.location.href='../InicioAG.aspx'; </script>");
+                //Response.Redirect("~/InicioAG.aspx");
             }
             else
             {
-                Response.Write("<script> alert('Valide que todos sean numeros.') </script>");
+                Response.Write("<script> alert('Debe ingresar resultado para todos los partidos.') </script>");
             }
+
+            /* *********************************** */
+
+            
         }
 
         /*

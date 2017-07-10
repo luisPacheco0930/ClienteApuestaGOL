@@ -56,7 +56,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MSCaptcha">
-      <HintPath>..\..\..\..\mscaptcha4\MSCaptcha.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Downloads\MSCaptcha.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -215,7 +215,6 @@
     <Content Include="recursos\images\banner300.png" />
     <Content Include="recursos\images\bg-fondo.jpg" />
     <Content Include="recursos\images\bg-fondo.png" />
-    <Content Include="recursos\images\blue-refresh.jpg" />
     <Content Include="recursos\images\blue-refresh.png" />
     <Content Include="recursos\images\equipos\alianza.png" />
     <Content Include="recursos\images\equipos\aurich.png" />
@@ -304,6 +303,7 @@
     <Content Include="recursos\js\npm.js" />
     <Content Include="recursos\js\sidebar.js" />
     <Content Include="recursos\style.css" />
+    <Content Include="recursos\xml\MSCaptcha.xml" />
     <Content Include="ResultadoGanadores\ApuestaGolesRG.aspx" />
     <Content Include="ResultadoGanadores\CartillaSuerteRG.aspx" />
     <Content Include="ResultadoGanadores\PollaSemanalRG.aspx" />
