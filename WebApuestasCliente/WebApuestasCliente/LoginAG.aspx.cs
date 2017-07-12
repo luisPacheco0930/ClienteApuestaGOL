@@ -96,62 +96,92 @@ namespace WebApuestasCliente
             EN_Cliente enCliente = new EN_Cliente();
             try
             {
+                String recaptchaResponse = Request.Form.Get("g-recaptcha-response");
+                //Response.Write("<script> alert('" + recaptchaResponse + "') </script>");
+
+                
                     if (!this.checkBoxLogin.Checked)
                     {
-                        if(this.txtNroPromocional!=null && !String.IsNullOrEmpty(this.txtNroPromocional.Text))
+                if (this.txtNroPromocional != null && !String.IsNullOrEmpty(this.txtNroPromocional.Text))
+                {
+
+                        if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
                         {
-                            enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
-                            String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
-                            if (!String.IsNullOrEmpty(textError))
-                            {
-                                Response.Write("<script> alert('" + textError + "') </script>");
-                            }
-                            else
-                            {
-                                BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
-                                //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
-                                Response.Redirect("InicioAG.aspx");
-                            }
-                        }
-                        else
-                        {
-                            Response.Write("<script> alert('Ingresar Codigo Promocional') </script>");
-                        }   
+                     enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
+                    String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
+                    if (!String.IsNullOrEmpty(textError))
+                    {
+                        Response.Write("<script> alert('" + textError + "') </script>");
                     }
                     else
                     {
-                        enCliente.NroDocumento = this.textNroDocumento.Text.ToString();
-                        enCliente.Contrasena = this.textContrasenha.Text.ToString();
-                        String textError = blCliente.BL_validarUsuarioIngresado(enCliente);
+                        BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
+                        //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
+                        Response.Redirect("InicioAG.aspx");
+                    }
+
+                        }
+                        else
+                        {
+                            Response.Write("<script> alert('Seleccione Opción ReCaptcha') </script>");
+                        }
+                    }
+                else
+                {
+                    Response.Write("<script> alert('Ingresar Codigo Promocional') </script>");
+                }
+            }
+                    else
+                    {
+                enCliente.NroDocumento = this.textNroDocumento.Text.ToString();
+                enCliente.Contrasena = this.textContrasenha.Text.ToString();
+                String textError = blCliente.BL_validarUsuarioIngresado(enCliente);
+                if (!String.IsNullOrEmpty(textError))
+                {
+                    Response.Write("<script> alert('" + textError + "') </script>");
+                }
+                else
+                {
+                    if (this.txtNroPromocional != null && !String.IsNullOrEmpty(this.txtNroPromocional.Text))
+                    {
+                        enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
+                        textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
                         if (!String.IsNullOrEmpty(textError))
                         {
                             Response.Write("<script> alert('" + textError + "') </script>");
                         }
-                        else {
-                            if (this.txtNroPromocional != null && !String.IsNullOrEmpty(this.txtNroPromocional.Text))
-                            {
-                                enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
-                                textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
-                                if (!String.IsNullOrEmpty(textError))
-                                {
-                                    Response.Write("<script> alert('" + textError + "') </script>");
+                        else
+                        {
+                                if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
+                               {
+                            BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
+                            BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
+                            //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
+                            Response.Redirect("InicioAG.aspx");
                                 }
                                 else
                                 {
-                                    BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
-                                    BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
-                                    //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
-                                    Response.Redirect("InicioAG.aspx");
+                                    Response.Write("<script> alert('Seleccione Opción ReCaptcha') </script>");
                                 }
+
+                            }
+                    }
+                    else
+                    {
+                            if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
+                            {
+                                BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
+                        //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
+                        Response.Redirect("InicioAG.aspx");
                             }
                             else
                             {
-                                BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
-                                //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
-                                Response.Redirect("InicioAG.aspx");
+                                Response.Write("<script> alert('Seleccione Opción ReCaptcha') </script>");
                             }
-                        }
-                    }
+                      }
+                }
+            }
+               
             }
             catch (Exception ex)
             {
