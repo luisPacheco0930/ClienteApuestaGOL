@@ -55,7 +55,8 @@
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Captcha Inc\BotDetect 4 CAPTCHA Component\Asp.Net\.NET4.6+ASP.NET-CORE\WebApp\AspNetCoreWebApplicationExample\bin\Debug\net46\win7-x64\publish\dotnet-razor-tooling.exe</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MSCaptcha">
+    <Reference Include="MSCaptcha, Version=4.0.4250.31585, Culture=neutral, PublicKeyToken=b9ff12f28cdcf412, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Downloads\mscaptcha4\MSCaptcha.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -215,7 +216,6 @@
     <Content Include="recursos\images\banner300.png" />
     <Content Include="recursos\images\bg-fondo.jpg" />
     <Content Include="recursos\images\bg-fondo.png" />
-    <Content Include="recursos\images\blue-refresh.jpg" />
     <Content Include="recursos\images\blue-refresh.png" />
     <Content Include="recursos\images\equipos\alianza.png" />
     <Content Include="recursos\images\equipos\aurich.png" />
@@ -304,6 +304,7 @@
     <Content Include="recursos\js\npm.js" />
     <Content Include="recursos\js\sidebar.js" />
     <Content Include="recursos\style.css" />
+    <Content Include="recursos\xml\MSCaptcha.xml" />
     <Content Include="ResultadoGanadores\ApuestaGolesRG.aspx" />
     <Content Include="ResultadoGanadores\CartillaSuerteRG.aspx" />
     <Content Include="ResultadoGanadores\PollaSemanalRG.aspx" />

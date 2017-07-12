@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SWApuestaCliente.Master" CodeBehind="LoginAG.aspx.cs" Inherits="WebApuestasCliente.LoginAG" %>
 <%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="cc1" %>
+
 <asp:Content ID="contentHeadLogin" ContentPlaceHolderID="head" runat="server">
+ <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
     <script type="text/javascript">
         $(document).ready(function () {
             var loginCheck = jQuery('#masterPage_checkBoxLogin');
@@ -224,8 +227,12 @@
                                     </asp:RequiredFieldValidator>--%>
 								</div>
 							</div>
-							    <div class="form-group">
-                                    <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
+							    
+                        <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI">
+                        <%--div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"--%>
+                        </div>
+                            <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
                                 </div>
 						<%--</form>--%>
 					</div>
