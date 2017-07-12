@@ -42,7 +42,22 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\..\..\..\DynamicAccordion\Test_Website\Bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="AspNetCoreWebApplicationExample">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Captcha Inc\BotDetect 4 CAPTCHA Component\Asp.Net\.NET4.6+ASP.NET-CORE\WebApp\AspNetCoreWebApplicationExample\bin\Debug\net46\AspNetCoreWebApplicationExample.exe</HintPath>
+    </Reference>
+    <Reference Include="BotDetect">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Captcha Inc\BotDetect 4 CAPTCHA Component\Asp.Net\.NET4.6+ASP.NET-CORE\BotDetect.dll</HintPath>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Captcha Inc\BotDetect 4 CAPTCHA Component\Asp.Net\.NET4.6+ASP.NET-CORE\WebApp\AspNetCoreWebApplicationExample\bin\Debug\net46\win7-x64\publish\BotDetect.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="dotnet-razor-tooling">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Captcha Inc\BotDetect 4 CAPTCHA Component\Asp.Net\.NET4.6+ASP.NET-CORE\WebApp\AspNetCoreWebApplicationExample\bin\Debug\net46\win7-x64\publish\dotnet-razor-tooling.exe</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MSCaptcha">
+      <HintPath>..\..\..\..\..\Downloads\mscaptcha4\MSCaptcha.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -200,6 +215,8 @@
     <Content Include="recursos\images\banner300.png" />
     <Content Include="recursos\images\bg-fondo.jpg" />
     <Content Include="recursos\images\bg-fondo.png" />
+    <Content Include="recursos\images\blue-refresh.jpg" />
+    <Content Include="recursos\images\blue-refresh.png" />
     <Content Include="recursos\images\equipos\alianza.png" />
     <Content Include="recursos\images\equipos\aurich.png" />
     <Content Include="recursos\images\equipos\cesar-vallejo.png" />
@@ -322,7 +339,9 @@
     <Content Include="favicon.ico" />
     <Content Include="TerminoCondicionesAG.aspx" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ResultadoGanadores\Bundle.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
