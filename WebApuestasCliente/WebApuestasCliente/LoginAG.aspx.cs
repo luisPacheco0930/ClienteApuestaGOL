@@ -104,21 +104,20 @@ namespace WebApuestasCliente
                     {
                 if (this.txtNroPromocional != null && !String.IsNullOrEmpty(this.txtNroPromocional.Text))
                 {
-
                         if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
                         {
-                     enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
-                    String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
-                    if (!String.IsNullOrEmpty(textError))
-                    {
-                        Response.Write("<script> alert('" + textError + "') </script>");
-                    }
-                    else
-                    {
-                        BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
-                        //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
-                        Response.Redirect("InicioAG.aspx");
-                    }
+                            enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
+                            String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
+                            if (!String.IsNullOrEmpty(textError))
+                            {
+                                Response.Write("<script> alert('" + textError + "') </script>");
+                            }
+                            else
+                            {
+                                BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
+                                //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
+                                Response.Redirect("InicioAG.aspx");
+                            }
 
                         }
                         else
