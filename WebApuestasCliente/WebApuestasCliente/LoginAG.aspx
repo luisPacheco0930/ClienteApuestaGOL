@@ -314,7 +314,6 @@
                      <ContentTemplate>
             <div>
                 <div style="display: inline-block">
-                    
                     <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
                         CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
                         FontColor="#D20B0C" NoiseColor="#B1B1B1" />
@@ -345,6 +344,6 @@
       </div>
     </div>
   </div>
-</div>
+<%--</div>--%>
     
 </asp:Content>
