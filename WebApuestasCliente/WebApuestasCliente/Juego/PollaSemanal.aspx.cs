@@ -308,7 +308,7 @@ namespace WebApuestasCliente.Juego
 
                                 if (r == true)
                                 {
-                                    apuestaDet.Resultado = resultado.ElementAt(0);
+                                    apuestaDet.Resultado = resultado;
                                     apuestaDet.Vigencia = '1';
                                     apuestaDet.ValidaResultado = 1;
                                     apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);

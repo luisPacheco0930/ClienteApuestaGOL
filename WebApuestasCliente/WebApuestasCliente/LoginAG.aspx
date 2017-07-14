@@ -229,8 +229,8 @@
 						</div>
 						
                         <div style="text-align:right">
-                            <%--<div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>--%>
-                            <div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"></div>
+                            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            <%--<div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"></div>--%>
                         </div>	   
                         <br /> 
                         <div class="form-group">
