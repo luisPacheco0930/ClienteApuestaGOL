@@ -55,7 +55,8 @@
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Captcha Inc\BotDetect 4 CAPTCHA Component\Asp.Net\.NET4.6+ASP.NET-CORE\WebApp\AspNetCoreWebApplicationExample\bin\Debug\net46\win7-x64\publish\dotnet-razor-tooling.exe</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MSCaptcha">
+    <Reference Include="MSCaptcha, Version=4.0.4250.31585, Culture=neutral, PublicKeyToken=b9ff12f28cdcf412, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Downloads\MSCaptcha.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -339,7 +340,9 @@
     <Content Include="favicon.ico" />
     <Content Include="TerminoCondicionesAG.aspx" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ResultadoGanadores\Bundle.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />

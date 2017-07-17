@@ -49,7 +49,13 @@
 			    </div>
 			    <div class="col-md-4">
 				    <div class="item-game">
-					    <a href="#"><img class="img-thumbnail" src="recursos/images/juego03.png"/></a>
+                        <asp:HyperLink id="HyperLink2" 
+                            NavigateUrl="~/Juego/ApuestaGoles.aspx"
+                            Text=""
+                            runat="server" 
+                            >
+                            <img  src="recursos/images/juego03.png"  class="img-thumbnail"/>
+                        </asp:HyperLink>
 				    </div>
 			    </div>
 		    </div>

@@ -115,7 +115,6 @@ namespace WebApuestasCliente
                     {
                 if (this.txtNroPromocional != null && !String.IsNullOrEmpty(this.txtNroPromocional.Text))
                 {
-
                         if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
                         {
                             enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
@@ -219,18 +218,17 @@ namespace WebApuestasCliente
             if (this.txtdni != null && !String.IsNullOrEmpty(this.txtdni.Text))
             { 
                 Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
-            e.IsValid = Captcha1.UserValidated;
-            if (e.IsValid)
-            {
-                    //Response.Write("<script> alert('validateCaptchaTrue ...') </script>");
-                    //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Valid Captcha!');", true);
+                e.IsValid = Captcha1.UserValidated;
+                if (e.IsValid)
+                {
+                        //Response.Write("<script> alert('validateCaptchaTrue ...') </script>");
+                        //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Valid Captcha!');", true);
 
                 }
                 else {
                     validaCaptcha = false;
                     this.txtCaptcha.Text = null;
                     Response.Write("<script> alert('Código de seguridad incorrecto! Vuelva a intentarlo...') </script>");
-                   
                 }
             }
         }

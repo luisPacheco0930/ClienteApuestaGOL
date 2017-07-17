@@ -2,7 +2,7 @@
 <%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="cc1" %>
 
 <asp:Content ID="contentHeadLogin" ContentPlaceHolderID="head" runat="server">
- <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   
     <script type="text/javascript">
         $(document).ready(function () {
@@ -169,7 +169,7 @@
 <asp:Content ID="contentPageInicio" ContentPlaceHolderID="masterPage" runat="server">
     <div class="row">
         <div class="col-md-3">
-			
+			Anuncio Lateral
 		</div>
 		<div class="col-md-6">
 			<div id="login-user">
@@ -179,66 +179,67 @@
 					</div>
 					<div class="panel-body">
 						<%--<form id="login" runat="server" class="form-horizontal">--%>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+								<i class="fa fa-tag fa-lg" aria-hidden="true"></i>
+								</div>
+								<%--<input type="text" class="form-control" id="txtNroPromocional" name="txtNroPromocional" placeholder="Escribe tu codigo promocional" />--%>
+                                <asp:TextBox ID="txtNroPromocional" CssClass="form-control" placeholder="Ingrese código promocional" runat="server"></asp:TextBox>
+							</div>
+						</div>
+						<div class="checkbox">
+							<label>
+                            <asp:CheckBox id="checkBoxLogin" 
+                                    AutoPostBack="True"
+                                    Text="Si es usted cliente marque la siguiente opción"
+                                    TextAlign="Right"
+                                    Checked="False"
+                                    runat="server"/>
+							<%--<input type="checkbox" id="login-more" value="" />--%>
+							</label>
+						</div>
+						<div class="login-advanced" >
 							<div class="form-group">
 								<div class="input-group">
 									<div class="input-group-addon">
-									<i class="fa fa-tag fa-lg" aria-hidden="true"></i>
+									<i class="fa fa-user fa-lg" aria-hidden="true"></i>
 									</div>
-									<%--<input type="text" class="form-control" id="txtNroPromocional" name="txtNroPromocional" placeholder="Escribe tu codigo promocional" />--%>
-                                    <asp:TextBox ID="txtNroPromocional" CssClass="form-control" placeholder="Ingrese código promocional" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="textNroDocumento" CssClass="form-control" placeholder="N° de documento de identidad" runat="server" onkeydown="return validarNumeros(event)" MaxLength="8"></asp:TextBox>
 								</div>
+                                <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTextNroDocumento" runat="server"
+                                    ControlToValidate="textNroDocumento"
+                                    ErrorMessage="Ingrese este campo."
+                                    ForeColor="Red" >
+                                </asp:RequiredFieldValidator>--%>
 							</div>
-							<div class="checkbox">
-								<label>
-                                <asp:CheckBox id="checkBoxLogin" 
-                                     AutoPostBack="True"
-                                     Text="Si es usted cliente marque la siguiente opción"
-                                     TextAlign="Right"
-                                     Checked="False"
-                                     runat="server"/>
-								<%--<input type="checkbox" id="login-more" value="" />--%>
-								</label>
-							</div>
-							<div class="login-advanced" >
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-addon">
-										<i class="fa fa-user fa-lg" aria-hidden="true"></i>
-										</div>
-                                        <asp:TextBox ID="textNroDocumento" CssClass="form-control" placeholder="N° de documento de identidad" runat="server" onkeydown="return validarNumeros(event)" MaxLength="8"></asp:TextBox>
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-addon">
+									<i class="fa fa-lock fa-lg" aria-hidden="true"></i>
 									</div>
-                                    <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTextNroDocumento" runat="server"
-                                        ControlToValidate="textNroDocumento"
-                                        ErrorMessage="Ingrese este campo."
-                                        ForeColor="Red" >
-                                    </asp:RequiredFieldValidator>--%>
+                                    <asp:TextBox ID="textContrasenha" TextMode="Password" CssClass="form-control" placeholder="Contraseña" runat="server"></asp:TextBox>
 								</div>
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-addon">
-										<i class="fa fa-lock fa-lg" aria-hidden="true"></i>
-										</div>
-                                        <asp:TextBox ID="textContrasenha" TextMode="Password" CssClass="form-control" placeholder="Contraseña" runat="server"></asp:TextBox>
-									</div>
-                                    <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTextContrasenha" runat="server"
-                                        ControlToValidate="textContrasenha"
-                                        ErrorMessage="Ingrese este campo."
-                                        ForeColor="Red">
-                                    </asp:RequiredFieldValidator>--%>
-								</div>
+                                <%--<asp:RequiredFieldValidator id="requiredFieldValidatorTextContrasenha" runat="server"
+                                    ControlToValidate="textContrasenha"
+                                    ErrorMessage="Ingrese este campo."
+                                    ForeColor="Red">
+                                </asp:RequiredFieldValidator>--%>
 							</div>
-							    
+						</div>
+						
+                        <div style="text-align:right">
+                            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            <%--<div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"></div>--%>
+                        </div>	   
+                        <br /> 
                         <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI">
-                        <%--div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"--%>
-                        </div>
                             <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
-                                </div>
-						<%--</form>--%>
-					</div>
-				</div>
-			</div>
-		</div>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+        </div>
 		<div class="col-md-3">
 			Anuncio Lateral
 		</div>
@@ -314,7 +315,6 @@
                      <ContentTemplate>
             <div>
                 <div style="display: inline-block">
-                    
                     <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
                         CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
                         FontColor="#D20B0C" NoiseColor="#B1B1B1" />
@@ -345,6 +345,6 @@
       </div>
     </div>
   </div>
-</div>
+<%--</div>--%>
     
 </asp:Content>

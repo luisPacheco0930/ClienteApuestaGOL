@@ -12,7 +12,7 @@ namespace ApuestaCliente.Entity
 
         public int MarcadorVisitante { get; set; }
 
-        public Char Resultado { get; set; }
+        public String Resultado { get; set; }
 
         public int Secuencia { get; set; }
 
