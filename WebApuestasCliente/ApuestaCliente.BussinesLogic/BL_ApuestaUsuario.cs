@@ -47,5 +47,16 @@ namespace ApuestaCliente.BussinesLogic
                 daObject.DA_registrarApuestaDetalleUsuario(dbContexto, enApuestaDetalleUsuario);
             }
         }
+
+        public DataTable BL_ObtenerDatosApuesta(EN_CodigoAleatorio enCodAleatorio)
+        {
+            DataTable dtLista = new DataTable();
+            DA_ApuestaUsuario daApuestaUsuario = new DA_ApuestaUsuario();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                dtLista = daApuestaUsuario.DA_Obtener_DatosApuesta(dbContexto, enCodAleatorio);
+            }
+            return dtLista;
+        }
     }
 }

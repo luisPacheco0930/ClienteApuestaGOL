@@ -42,5 +42,14 @@ namespace ApuestaCliente.Data
             contexto.EjecutarTransaccion("SP_RegistrarApuestaUsuarioDet", dicParametros);
         }
 
+        public DataTable DA_Obtener_DatosApuesta(ContextoDB contexto, EN_CodigoAleatorio enCodigo)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@NroCodAleatorio", Convert.ToString(enCodigo.NroCodigoAleatorio));
+            
+            dtLista = contexto.RetornarDataTable("SP_Obtener_DatosApuesta", dicParametros);
+            return dtLista;
+        }
     }
 }

@@ -87,6 +87,17 @@ namespace WebApuestasCliente
             this.txtCaptcha.Text = null;
         }
 
+        public void irAResultados(String codTipoApuesta, EN_CodigoAleatorio enCodAleatorio)
+        {
+            Response.Write("<script> alert('Los resultados ya están listos!') </script>");
+            BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
+            //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
+            if (true) { // (codTipoApuesta.Equals(EN_Constante.cartillaDeLaSuerte)) { 
+            //Response.Redirect("InicioAG.aspx");
+                HttpContext.Current.Response.Redirect("~/ResultadoGanadores/CartillaSuerteRG.aspx");
+            }
+        }
+
         protected void btnLoguear_Click(object sender, EventArgs e)
         {
             BL_CodigoAleatorio blCodAleatorio = new BL_CodigoAleatorio();
@@ -107,18 +118,27 @@ namespace WebApuestasCliente
 
                         if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
                         {
-                     enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
-                    String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
-                    if (!String.IsNullOrEmpty(textError))
-                    {
-                        Response.Write("<script> alert('" + textError + "') </script>");
-                    }
-                    else
-                    {
-                        BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
-                        //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
-                        Response.Redirect("InicioAG.aspx");
-                    }
+                            enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
+                           // Response.Write("<script> alert('pre cdi') </script>");
+                            String codTipoApuesta = blCodAleatorio.BL_validarCodigoJugadoResultadoListo(enCodAleatorio);
+                           // Response.Write("<script> alert('" + codTipoApuesta + "') </script>");
+
+                            if (String.IsNullOrEmpty(codTipoApuesta))
+                            {
+                                String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
+                                if (!String.IsNullOrEmpty(textError))
+                                {
+                                    Response.Write("<script> alert('" + textError + "') </script>");
+                                }
+                                else
+                                {
+                                    BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
+                                    //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
+                                    Response.Redirect("InicioAG.aspx");
+                                }
+                            }
+                            else
+                                irAResultados(codTipoApuesta, enCodAleatorio);
 
                         }
                         else

@@ -45,6 +45,17 @@ namespace ApuestaCliente.BussinesLogic
             return dtLista;
         }
 
+        public DataTable BL_ValidarCodigoAlearorio_ResultadoListo(EN_CodigoAleatorio enCodAleatorio)
+        {
+            DataTable dtLista = new DataTable();
+            DA_CodigoAleatorio daCodAleatorio = new DA_CodigoAleatorio();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                dtLista = daCodAleatorio.DA_ValidarCodigoAleatorio_ResultadoListo(dbContexto, enCodAleatorio);
+            }
+            return dtLista;
+        }
+
         public String BL_validarCodigoIngresado(EN_CodigoAleatorio enCodAleatorio)
         {
             String textError = "";
@@ -75,6 +86,24 @@ namespace ApuestaCliente.BussinesLogic
             {
                 textError = EN_Constante.textCodigoNoVigente;
                 //Response.Write("<script> alert('El código no está vigente') </script>");
+            }
+
+            return textError;
+        }
+
+        public String BL_validarCodigoJugadoResultadoListo(EN_CodigoAleatorio enCodAleatorio)
+        {
+            String textError = "";
+            DataTable dtClientwDetCodigoAleatorio = new DataTable();
+            DataTable dtApuestaCodigoAleatorio = new DataTable();
+           
+            // vacio no jugado
+            // codigoTipoApuesta jugado y programación finalizada
+
+            dtApuestaCodigoAleatorio = BL_ValidarCodigoAlearorio_ResultadoListo(enCodAleatorio);
+            if (dtApuestaCodigoAleatorio != null && dtApuestaCodigoAleatorio.Rows.Count > 0)
+            {
+                textError = dtApuestaCodigoAleatorio.Rows[0].Field<String>(0); ;
             }
 
             return textError;

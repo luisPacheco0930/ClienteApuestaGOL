@@ -5,121 +5,23 @@
     <div class="page-content">
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="page-header">Resultados Cartilla de la Suerte</h1>
+				<h1 class="page-header">
+                    <label id="lblTituloResultado" runat="server"></label></h1>
 				<p>Recuerde que estos resultados son de acuerdo a fechas programadas.</p>	
-				<div class="date">Fecha: 26 de Marzo 2017 al 01 de Abril 2017</div>
-                <div class="result-goal">					
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>N°</th>
-                                <th>Fecha</th>
-                                <th>Local</th>
-                                <th>VS</th>
-                                <th>Visitante</th>
-                                <th>Torneo</th>
-                                <th>Resulato</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>26/03/2017</td>
-                                <td>Universitario</td>
-                                <td>
-                                    <div class="equipment">
-                                        <asp:image runat="server" id="Image1" ImageUrl="~/recursos/images/equipos/universitario.png" />
-                                        <asp:image runat="server" id="Image2" ImageUrl="~/recursos/images/equipos/sporting.png" />
-                                    </div>
-                                </td>
-                                <td>Sporting Cristal</td>
-                                <td>Copa Perú</td>
-                                <td>
-                                    <div class="result-v">
-                                        V
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>26/03/2017</td>
-                                <td>Cienciano</td>
-                                <td>
-                                    <div class="equipment">
-                                        <asp:image runat="server" id="Image3" ImageUrl="~/recursos/images/equipos/universitario.png" />
-                                        <asp:image runat="server" id="Image4" ImageUrl="~/recursos/images/equipos/sporting.png" />
-                                    </div>
-                                </td>
-                                <td>Alianza Lima</td>
-                                <td>Copa Perú</td>
-                                <td>
-                                    <div class="result-l">
-                                        L
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>26/03/2017</td>
-                                <td>Cienciano</td>
-                                <td>
-                                    <div class="equipment">
-                                        <asp:image runat="server" id="Image5" ImageUrl="~/recursos/images/equipos/universitario.png" />
-                                        <asp:image runat="server" id="Image6" ImageUrl="~/recursos/images/equipos/sporting.png" />
-                                    </div>
-                                </td>
-                                <td>Alianza Lima</td>
-                                <td>Copa Perú</td>
-                                <td>
-                                    <div class="result-l">
-                                        L
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>26/03/2017</td>
-                                <td>Cienciano</td>
-                                <td>
-                                    <div class="equipment">
-                                        <asp:image runat="server" id="Image7" ImageUrl="~/recursos/images/equipos/universitario.png" />
-                                        <asp:image runat="server" id="Image8" ImageUrl="~/recursos/images/equipos/sporting.png" />
-                                    </div>
-                                </td>
-                                <td>Alianza Lima</td>
-                                <td>Copa Perú</td>
-                                <td>
-                                    <div class="result-v">
-                                       V
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>26/03/2017</td>
-                                <td>Cienciano</td>
-                                <td>
-                                    <div class="equipment">
-                                        <asp:image runat="server" id="Image9" ImageUrl="~/recursos/images/equipos/universitario.png" />
-                                        <asp:image runat="server" id="Image10" ImageUrl="~/recursos/images/equipos/sporting.png" />
-                                    </div>
-                                </td>
-                                <td>Alianza Lima</td>
-                                <td>Copa Perú</td>
-                                <td>
-                                    <div class="result-v">
-                                       V
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+				<div class="date"><label id="lblFechasApuesta" runat="server"></label>
+                    </div>
+                <div class="result-goal">	
+                     <div class="table-responsive">
+                    <%--asp:Literal ID="partidosResultadoTable" runat="server" /--%>
+                      <asp:Table ID ="tablePartResul" class="table table-striped" runat="server">
+
+                      </asp:Table>
+                         </div>
+              
 			</div>
             <div class="source">
-                <p><strong>Total de participantes :</strong>200</p>
-                <p><strong>Total de ganadores :</strong>3</p>
+                <p><strong>Total de participantes :</strong><label id="lblJugadores" runat="server"></label></p>
+                <p><strong>Total de ganadores :</strong><label id="lblGanadores" runat="server"></label></p>
             </div>
             <div class="panel winners">
                 <div class="panel-body">
