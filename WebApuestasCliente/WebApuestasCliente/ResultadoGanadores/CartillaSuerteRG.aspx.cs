@@ -22,6 +22,7 @@ namespace WebApuestasCliente.ResultadoGanadores
             EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
             enCodAleatorio.NroCodigoAleatorio = codeFrom;
             pintarResultadoPartidos(enCodAleatorio);
+            pintarGanadores(enCodAleatorio);
 
             DataTable dt = new DataTable();
             BL_ApuestaUsuario blApuesta = new BL_ApuestaUsuario();
@@ -35,6 +36,7 @@ namespace WebApuestasCliente.ResultadoGanadores
 
             this.lblJugadores.InnerText = dt.Rows[0]["cantidadJugada"].ToString();
             this.lblGanadores.InnerText = dt.Rows[0]["ganadores"].ToString();
+            this.lblPozo.InnerText = dt.Rows[0]["montoPozo"].ToString();
         }
 
         public void pintarResultadoPartidos(EN_CodigoAleatorio enCodAleatorio)
@@ -134,5 +136,51 @@ namespace WebApuestasCliente.ResultadoGanadores
                 tablePartResul.Rows.Add(row2);
             }
         }
+
+        public void pintarGanadores(EN_CodigoAleatorio enCodAleatorio)
+        {
+
+            TableRow row0 = new TableHeaderRow();
+            row0.TableSection = TableRowSection.TableHeader;
+            TableHeaderCell cell1 = new TableHeaderCell();
+            cell1.Text = "CÓDIGO GANADOR";
+            row0.Cells.Add(cell1);
+
+            cell1 = new TableHeaderCell();
+            cell1.Text = "DOCUMENTO DE IDENTIDAD";
+            row0.Cells.Add(cell1);
+
+            cell1 = new TableHeaderCell();
+            cell1.Text = "APELLIDOS Y NOMBRES";
+            row0.Cells.Add(cell1);
+
+            tableGanadores.Rows.Add(row0);
+
+            DataTable dt = new DataTable();
+            BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
+            dt = blpartidosProgramados.BL_ListarGanadores(enCodAleatorio);
+
+
+            TableRow row2 = new TableRow();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                row2 = new TableRow();
+                TableCell cell2 = new TableCell();
+                cell2.Text = dt.Rows[i]["codigoAleatorio"].ToString();
+                row2.Cells.Add(cell2);             
+
+                cell2 = new TableCell();
+                cell2.Text = dt.Rows[i]["numdocid"].ToString();
+                row2.Cells.Add(cell2);
+                                
+                cell2 = new TableCell();
+                cell2.Text = dt.Rows[i]["nombresApellidos"].ToString();
+                row2.Cells.Add(cell2);
+                
+                tableGanadores.Rows.Add(row2);
+            }
+        }
+
     }
 }

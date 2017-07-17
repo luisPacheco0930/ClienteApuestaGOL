@@ -45,5 +45,17 @@ namespace ApuestaCliente.BussinesLogic
             }
             return dtLista;
         }
+
+        public DataTable BL_ListarGanadores(EN_CodigoAleatorio enCodAleatorio)
+        {
+            DataTable dtLista = new DataTable();
+            DA_PartidosProgramados daPartidosProgramados = new DA_PartidosProgramados();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                dtLista = daPartidosProgramados.DA_GetListadoGanadores(dbContexto, enCodAleatorio);
+            }
+            return dtLista;
+        }
+
     }
 }
