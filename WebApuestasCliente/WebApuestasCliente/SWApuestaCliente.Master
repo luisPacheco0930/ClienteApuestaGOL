@@ -63,7 +63,7 @@
                                                 <li class="active"><a href="#">Inicio <span class="sr-only">(current)</span></a></li>
                                                 <li><a href="<%=ResolveUrl("~/InicioAG.aspx")%>">Juegos</a></li>
                                                 <li><a href="#">Terminos y condiciones</a></li>
-                                                <li><a href="#">Resultados</a></li>
+                                                <li><a href="<%=ResolveUrl("~/InicioResultadosAG.aspx")%>">Resultados</a></li>
                                                 <li><a href="#">Analisis y pronostico</a></li>
                                             </ul>
 

@@ -16,22 +16,32 @@ namespace WebApuestasCliente.ResultadoGanadores
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
-            //codeFrom = "5SWH2A9R";
-            //Response.Write("<script> alert('"+ codeFrom+"') </script>");
-            EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
-            enCodAleatorio.NroCodigoAleatorio = codeFrom;
-            pintarResultadoPartidos(enCodAleatorio);
-            pintarGanadores(enCodAleatorio);
+            this.lblTituloResultado.InnerText = "Resultados CARTILLA DE LA SUERTE";
+            this.lblFechasApuesta.InnerText = "Fecha: ";
 
+            String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorioResultadoCartilla);
+            if(!String.IsNullOrEmpty(codeFrom))
+            {
+                EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
+                enCodAleatorio.NroCodigoAleatorio = codeFrom;
+                pintarDatosApuesta(enCodAleatorio);
+                pintarResultadoPartidos(enCodAleatorio);
+                pintarGanadores(enCodAleatorio);
+            }
+            else
+            {
+                pintarCabeceraResultadoPartidos();
+            }
+        }
+
+        public void pintarDatosApuesta(EN_CodigoAleatorio enCodAleatorio)
+        {
             DataTable dt = new DataTable();
             BL_ApuestaUsuario blApuesta = new BL_ApuestaUsuario();
             dt = blApuesta.BL_ObtenerDatosApuesta(enCodAleatorio);
 
-            this.lblTituloResultado.InnerText = "Resultados "+ dt.Rows[0]["tipoApuesta"].ToString(); 
-
             //Fecha: 26 de Marzo 2017 al 01 de Abril 2017
-            this.lblFechasApuesta.InnerText = "Fecha: " + ((DateTime)dt.Rows[0]["fechaInicial"]).ToLongDateString()
+            this.lblFechasApuesta.InnerText = this.lblFechasApuesta.InnerText + ((DateTime)dt.Rows[0]["fechaInicial"]).ToLongDateString()
                 + " al " + ((DateTime)dt.Rows[0]["fechaFinal"]).ToLongDateString();
 
             this.lblJugadores.InnerText = dt.Rows[0]["cantidadJugada"].ToString();
@@ -39,9 +49,8 @@ namespace WebApuestasCliente.ResultadoGanadores
             this.lblPozo.InnerText = dt.Rows[0]["montoPozo"].ToString();
         }
 
-        public void pintarResultadoPartidos(EN_CodigoAleatorio enCodAleatorio)
+        public void pintarCabeceraResultadoPartidos()
         {
-          
             TableRow row0 = new TableHeaderRow();
             row0.TableSection = TableRowSection.TableHeader;
             TableHeaderCell cell1 = new TableHeaderCell();
@@ -72,7 +81,10 @@ namespace WebApuestasCliente.ResultadoGanadores
             cell1.Text = "Resultado";
             row0.Cells.Add(cell1);
             tablePartResul.Rows.Add(row0);
-            
+        }
+
+        public void pintarDetalleResultadoPartidos(EN_CodigoAleatorio enCodAleatorio)
+        {
             DataTable dt = new DataTable();
             BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
             dt = blpartidosProgramados.BL_ListarResultadoPartidos(enCodAleatorio);
@@ -117,24 +129,34 @@ namespace WebApuestasCliente.ResultadoGanadores
 
                 cell2 = new TableCell();
 
-                if (dt.Rows[i]["resultado"].ToString().Equals("V"))
+                String[] marcadores = dt.Rows[i]["resultadoMarcador"].ToString().Split('-');
+                int marcadorLocal = Int32.Parse(marcadores[0].Trim());
+                int marcadorVisita = Int32.Parse(marcadores[1].Trim());
+
+                if (marcadorVisita > marcadorLocal)
                 {
                     cell2.CssClass = "result-v";
                 }
                 else
                 {
-                    if (dt.Rows[i]["resultado"].ToString().Equals("L"))
+                    if (marcadorLocal > marcadorVisita)
                     {
                         cell2.CssClass = "result-l";
                     }
                     else
                         cell2.CssClass = "result-e";
                 }
-                cell2.Text = dt.Rows[i]["resultado"].ToString();
+                cell2.Text = dt.Rows[i]["resultadoMarcador"].ToString();
                 row2.Cells.Add(cell2);
 
                 tablePartResul.Rows.Add(row2);
             }
+        }
+
+        public void pintarResultadoPartidos(EN_CodigoAleatorio enCodAleatorio)
+        {
+            pintarCabeceraResultadoPartidos();
+            pintarDetalleResultadoPartidos(enCodAleatorio);            
         }
 
         public void pintarGanadores(EN_CodigoAleatorio enCodAleatorio)

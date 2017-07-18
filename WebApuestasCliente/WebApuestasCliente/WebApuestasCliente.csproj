@@ -170,6 +170,7 @@
     <Content Include="ConfirmacionJuego\CartillaSuerteConfirmacion.aspx" />
     <Content Include="ConfirmacionJuego\PollaSemanalConfirmacion.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="InicioResultadosAG.aspx" />
     <Content Include="InicioAG.aspx" />
     <Content Include="Juego\ApuestaGoles.aspx" />
     <Content Include="Juego\CartillaSuerte.aspx" />
@@ -385,6 +386,13 @@
     </Compile>
     <Compile Include="ConfirmacionJuego\PollaSemanalConfirmacion.aspx.designer.cs">
       <DependentUpon>PollaSemanalConfirmacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InicioResultadosAG.aspx.cs">
+      <DependentUpon>InicioResultadosAG.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InicioResultadosAG.aspx.designer.cs">
+      <DependentUpon>InicioResultadosAG.aspx</DependentUpon>
     </Compile>
     <Compile Include="InicioAG.aspx.cs">
       <DependentUpon>InicioAG.aspx</DependentUpon>

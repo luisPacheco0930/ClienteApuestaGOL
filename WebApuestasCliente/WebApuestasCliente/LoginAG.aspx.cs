@@ -92,12 +92,21 @@ namespace WebApuestasCliente
         public void irAResultados(String codTipoApuesta, EN_CodigoAleatorio enCodAleatorio)
         {
             Response.Write("<script> alert('Los resultados ya están listos!') </script>");
-            BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
-            //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
-            if (true)
-            { // (codTipoApuesta.Equals(EN_Constante.cartillaDeLaSuerte)) { 
-              //Response.Redirect("InicioAG.aspx");
+
+            if (codTipoApuesta.Equals(EN_Constante.cartillaDeLaSuerte))
+            {
+                BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorioResultadoCartilla, enCodAleatorio.NroCodigoAleatorio);
                 HttpContext.Current.Response.Redirect("~/ResultadoGanadores/CartillaSuerteRG.aspx");
+            } else
+            if (codTipoApuesta.Equals(EN_Constante.laPollaSemanal))
+            {
+                BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorioResultadoPolla, enCodAleatorio.NroCodigoAleatorio);
+                HttpContext.Current.Response.Redirect("~/ResultadoGanadores/PollaSemanalRG.aspx");
+            } else
+            if (codTipoApuesta.Equals(EN_Constante.apuestaGoles))
+            {
+                BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorioResultadoApuesta, enCodAleatorio.NroCodigoAleatorio);
+                HttpContext.Current.Response.Redirect("~/ResultadoGanadores/ApuestaGolesRG.aspx");
             }
         }
 

@@ -11,6 +11,9 @@ namespace ApuestaCliente.Entity
         public const string conexion = "cnxSiApuesta";
 
         public const String nombreCookieCodAleatorio = "cookieCodAlea";
+        public const String nombreCookieCodAleatorioResultadoCartilla = "cookieCodAleaResCartilla";
+        public const String nombreCookieCodAleatorioResultadoPolla = "cookieCodAleaResPolla";
+        public const String nombreCookieCodAleatorioResultadoApuesta = "cookieCodAleaResApuesta";
         public const String nombreCookieNroDoc = "cookieNroDoc";
 
         public const String textCodigoYaUsado = "El código ya ha sido usado";
