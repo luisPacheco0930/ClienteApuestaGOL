@@ -28,7 +28,7 @@
                         <%--<asp:ImageButton ID="ImgCartillaSuerte" runat="server" CssClass="img-thumbnail" ImageUrl="recursos/images/juego01.png" OnClick="ImgCartillaSuerte_Click" />--%>
 
                         <asp:HyperLink id="ImgCartillaSuerte" 
-                            NavigateUrl="~/ResultadoGanadores/CartillaSuerteRG.aspx"
+                            NavigateUrl="~/ResultadoGanadores/CartillaSuerteRG.aspx?InicioResul=1"
                             Text=""
                             runat="server" 
                             >
@@ -39,7 +39,7 @@
 			    <div class="col-md-4">
 				    <div class="item-game">
                         <asp:HyperLink id="HyperLink1" 
-                            NavigateUrl="~/ResultadoGanadores/PollaSemanalRG.aspx"
+                            NavigateUrl="~/ResultadoGanadores/PollaSemanalRG.aspx?InicioResul=1"
                             Text=""
                             runat="server" 
                             >
@@ -50,7 +50,7 @@
 			    <div class="col-md-4">
 				    <div class="item-game">
                         <asp:HyperLink id="HyperLink2" 
-                            NavigateUrl="~/ResultadoGanadores/ApuestaGolesRG.aspx"
+                            NavigateUrl="~/ResultadoGanadores/ApuestaGolesRG.aspx?InicioResul=1"
                             Text=""
                             runat="server" 
                             >

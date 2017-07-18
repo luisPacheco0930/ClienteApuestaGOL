@@ -14,39 +14,58 @@ namespace WebApuestasCliente.ResultadoGanadores
 {
     public partial class CartillaSuerteRG : System.Web.UI.Page
     {
+        String ls_codTipoApuesta = EN_Constante.cartillaDeLaSuerte;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string p_inicioResul = Request.QueryString["InicioResul"];
+
             this.lblTituloResultado.InnerText = "Resultados CARTILLA DE LA SUERTE";
             this.lblFechasApuesta.InnerText = "Fecha: ";
 
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorioResultadoCartilla);
-            if(!String.IsNullOrEmpty(codeFrom))
+
+            if (!String.IsNullOrEmpty(p_inicioResul))
             {
                 EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
-                enCodAleatorio.NroCodigoAleatorio = codeFrom;
+                enCodAleatorio.NroCodigoAleatorio = "";
                 pintarDatosApuesta(enCodAleatorio);
                 pintarResultadoPartidos(enCodAleatorio);
                 pintarGanadores(enCodAleatorio);
             }
             else
             {
-                pintarCabeceraResultadoPartidos();
+                if (!String.IsNullOrEmpty(codeFrom))
+                {
+                    EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
+                    enCodAleatorio.NroCodigoAleatorio = codeFrom;
+                    pintarDatosApuesta(enCodAleatorio);
+                    pintarResultadoPartidos(enCodAleatorio);
+                    pintarGanadores(enCodAleatorio);
+                }
+                else
+                {
+                    pintarCabeceraResultadoPartidos();
+                }
             }
+            
         }
 
         public void pintarDatosApuesta(EN_CodigoAleatorio enCodAleatorio)
         {
             DataTable dt = new DataTable();
             BL_ApuestaUsuario blApuesta = new BL_ApuestaUsuario();
-            dt = blApuesta.BL_ObtenerDatosApuesta(enCodAleatorio);
+            dt = blApuesta.BL_ObtenerDatosApuesta(enCodAleatorio,ls_codTipoApuesta);
 
             //Fecha: 26 de Marzo 2017 al 01 de Abril 2017
-            this.lblFechasApuesta.InnerText = this.lblFechasApuesta.InnerText + ((DateTime)dt.Rows[0]["fechaInicial"]).ToLongDateString()
-                + " al " + ((DateTime)dt.Rows[0]["fechaFinal"]).ToLongDateString();
+            if (dt.Rows.Count > 0)
+            {
+                this.lblFechasApuesta.InnerText = this.lblFechasApuesta.InnerText + ((DateTime)dt.Rows[0]["fechaInicial"]).ToLongDateString()
+                    + " al " + ((DateTime)dt.Rows[0]["fechaFinal"]).ToLongDateString();
 
-            this.lblJugadores.InnerText = dt.Rows[0]["cantidadJugada"].ToString();
-            this.lblGanadores.InnerText = dt.Rows[0]["ganadores"].ToString();
-            this.lblPozo.InnerText = dt.Rows[0]["montoPozo"].ToString();
+                this.lblJugadores.InnerText = dt.Rows[0]["cantidadJugada"].ToString();
+                this.lblGanadores.InnerText = dt.Rows[0]["ganadores"].ToString();
+                this.lblPozo.InnerText = dt.Rows[0]["montoPozo"].ToString();
+            }
         }
 
         public void pintarCabeceraResultadoPartidos()
@@ -87,69 +106,72 @@ namespace WebApuestasCliente.ResultadoGanadores
         {
             DataTable dt = new DataTable();
             BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
-            dt = blpartidosProgramados.BL_ListarResultadoPartidos(enCodAleatorio);
+            dt = blpartidosProgramados.BL_ListarResultadoPartidos(enCodAleatorio,ls_codTipoApuesta);
 
-
-            TableRow row2 = new TableRow();
-
-            for (int i = 0; i < dt.Rows.Count; i++)
+            if (dt.Rows.Count > 0)
             {
-                row2 = new TableRow();
-                TableCell cell2 = new TableCell();
-                cell2.Text = dt.Rows[i]["secuencia"].ToString();
-                row2.Cells.Add(cell2);
+                TableRow row2 = new TableRow();
 
-                cell2 = new TableCell();
-                cell2.Text = ((DateTime)dt.Rows[i]["fechamodificacion"]).ToShortDateString();
-                row2.Cells.Add(cell2);
-
-                cell2 = new TableCell();
-                cell2.Text = dt.Rows[i]["equiDescLoc"].ToString();
-                row2.Cells.Add(cell2);
-
-                cell2 = new TableCell();
-                Image img1 = new Image();
-                img1.ID = "Image" + i + "11";
-                img1.ImageUrl = "~/recursos/images/equipos/" + dt.Rows[i]["icoLoc"].ToString();
-                cell2.Controls.Add(img1);
-                img1 = new Image();
-                img1.ID = "Image" + i + "12";
-                img1.ImageUrl = "~/recursos/images/equipos/" + dt.Rows[i]["icoVis"].ToString();
-                cell2.Controls.Add(img1);
-                cell2.CssClass = "equipment";
-                row2.Cells.Add(cell2);
-
-                cell2 = new TableCell();
-                cell2.Text = dt.Rows[i]["equiDescVis"].ToString();
-                row2.Cells.Add(cell2);
-
-                cell2 = new TableCell();
-                cell2.Text = dt.Rows[i]["descTorneo"].ToString();
-                row2.Cells.Add(cell2);
-
-                cell2 = new TableCell();
-
-                String[] marcadores = dt.Rows[i]["resultadoMarcador"].ToString().Split('-');
-                int marcadorLocal = Int32.Parse(marcadores[0].Trim());
-                int marcadorVisita = Int32.Parse(marcadores[1].Trim());
-
-                if (marcadorVisita > marcadorLocal)
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    cell2.CssClass = "result-v";
-                }
-                else
-                {
-                    if (marcadorLocal > marcadorVisita)
+                    row2 = new TableRow();
+                    TableCell cell2 = new TableCell();
+                    cell2.Text = dt.Rows[i]["secuencia"].ToString();
+                    row2.Cells.Add(cell2);
+
+                    cell2 = new TableCell();
+                    cell2.Text = ((DateTime)dt.Rows[i]["fechamodificacion"]).ToShortDateString();
+                    row2.Cells.Add(cell2);
+
+                    cell2 = new TableCell();
+                    cell2.Text = dt.Rows[i]["equiDescLoc"].ToString();
+                    row2.Cells.Add(cell2);
+
+                    cell2 = new TableCell();
+                    Image img1 = new Image();
+                    img1.ID = "Image" + i + "11";
+                    img1.ImageUrl = "~/recursos/images/equipos/" + dt.Rows[i]["icoLoc"].ToString();
+                    cell2.Controls.Add(img1);
+                    img1 = new Image();
+                    img1.ID = "Image" + i + "12";
+                    img1.ImageUrl = "~/recursos/images/equipos/" + dt.Rows[i]["icoVis"].ToString();
+                    cell2.Controls.Add(img1);
+                    cell2.CssClass = "equipment";
+                    row2.Cells.Add(cell2);
+
+                    cell2 = new TableCell();
+                    cell2.Text = dt.Rows[i]["equiDescVis"].ToString();
+                    row2.Cells.Add(cell2);
+
+                    cell2 = new TableCell();
+                    cell2.Text = dt.Rows[i]["descTorneo"].ToString();
+                    row2.Cells.Add(cell2);
+
+                    cell2 = new TableCell();
+
+                    String[] marcadores = dt.Rows[i]["resultadoMarcador"].ToString().Split('-');
+                    int marcadorLocal = Int32.Parse(marcadores[0].Trim());
+                    int marcadorVisita = Int32.Parse(marcadores[1].Trim());
+
+                    if (marcadorVisita > marcadorLocal)
                     {
-                        cell2.CssClass = "result-l";
+                        cell2.CssClass = "result-v";
                     }
                     else
-                        cell2.CssClass = "result-e";
-                }
-                cell2.Text = dt.Rows[i]["resultadoMarcador"].ToString();
-                row2.Cells.Add(cell2);
+                    {
+                        if (marcadorLocal > marcadorVisita)
+                        {
+                            cell2.CssClass = "result-l";
+                        }
+                        else
+                            cell2.CssClass = "result-e";
+                    }
+                    cell2.Text = dt.Rows[i]["resultadoMarcador"].ToString();
+                    row2.Cells.Add(cell2);
 
-                tablePartResul.Rows.Add(row2);
+                    tablePartResul.Rows.Add(row2);
+                }
+
             }
         }
 
@@ -180,29 +202,31 @@ namespace WebApuestasCliente.ResultadoGanadores
 
             DataTable dt = new DataTable();
             BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
-            dt = blpartidosProgramados.BL_ListarGanadores(enCodAleatorio);
+            dt = blpartidosProgramados.BL_ListarGanadores(enCodAleatorio,ls_codTipoApuesta);
 
-
-            TableRow row2 = new TableRow();
-
-            for (int i = 0; i < dt.Rows.Count; i++)
+            if (dt.Rows.Count > 0)
             {
-                row2 = new TableRow();
-                TableCell cell2 = new TableCell();
-                cell2.Text = dt.Rows[i]["codigoAleatorio"].ToString();
-                row2.Cells.Add(cell2);             
+                TableRow row2 = new TableRow();
 
-                cell2 = new TableCell();
-                cell2.Text = dt.Rows[i]["numdocid"].ToString();
-                row2.Cells.Add(cell2);
-                                
-                cell2 = new TableCell();
-                cell2.Text = dt.Rows[i]["nombresApellidos"].ToString();
-                row2.Cells.Add(cell2);
-                
-                tableGanadores.Rows.Add(row2);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    row2 = new TableRow();
+                    TableCell cell2 = new TableCell();
+                    cell2.Text = dt.Rows[i]["codigoAleatorio"].ToString();
+                    row2.Cells.Add(cell2);
+
+                    cell2 = new TableCell();
+                    cell2.Text = dt.Rows[i]["numdocid"].ToString();
+                    row2.Cells.Add(cell2);
+
+                    cell2 = new TableCell();
+                    cell2.Text = dt.Rows[i]["nombresApellidos"].ToString();
+                    row2.Cells.Add(cell2);
+
+                    tableGanadores.Rows.Add(row2);
+                }
             }
-        }
+           }
 
     }
 }

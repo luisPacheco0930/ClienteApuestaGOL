@@ -48,13 +48,13 @@ namespace ApuestaCliente.BussinesLogic
             }
         }
 
-        public DataTable BL_ObtenerDatosApuesta(EN_CodigoAleatorio enCodAleatorio)
+        public DataTable BL_ObtenerDatosApuesta(EN_CodigoAleatorio enCodAleatorio, String codTipoApuesta)
         {
             DataTable dtLista = new DataTable();
             DA_ApuestaUsuario daApuestaUsuario = new DA_ApuestaUsuario();
             using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
             {
-                dtLista = daApuestaUsuario.DA_Obtener_DatosApuesta(dbContexto, enCodAleatorio);
+                dtLista = daApuestaUsuario.DA_Obtener_DatosApuesta(dbContexto, enCodAleatorio, codTipoApuesta);
             }
             return dtLista;
         }

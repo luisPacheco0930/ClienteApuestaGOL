@@ -179,25 +179,35 @@ namespace WebApuestasCliente
                         {
                             enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
                             textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
-                            if (!String.IsNullOrEmpty(textError))
+                            String codTipoApuesta = blCodAleatorio.BL_validarCodigoJugadoResultadoListo(enCodAleatorio);
+                            //           Response.Write("<script> alert('" + codTipoApuesta + "') </script>");
+
+                            if (String.IsNullOrEmpty(codTipoApuesta))
                             {
-                                Response.Write("<script> alert('" + textError + "') </script>");
-                            }
-                            else
-                            {
-                                if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
+                                    if (!String.IsNullOrEmpty(textError))
                                 {
-                                    BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
-                                    BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
-                                    //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
-                                    Response.Redirect("InicioAG.aspx");
+                                    Response.Write("<script> alert('" + textError + "') </script>");
                                 }
                                 else
                                 {
-                                    Response.Write("<script> alert('Seleccione Opción ReCaptcha') </script>");
+                                    if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
+                                    {
+                                        BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
+                                        BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
+                                        //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
+                                        Response.Redirect("InicioAG.aspx");
+                                    }
+                                    else
+                                    {
+                                        Response.Write("<script> alert('Seleccione Opción ReCaptcha') </script>");
+                                    }
+
                                 }
 
                             }
+                            else
+                                irAResultados(codTipoApuesta, enCodAleatorio);
+
                         }
                         else
                         {

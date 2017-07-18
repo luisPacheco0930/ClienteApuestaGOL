@@ -42,12 +42,12 @@ namespace ApuestaCliente.Data
             contexto.EjecutarTransaccion("SP_RegistrarApuestaUsuarioDet", dicParametros);
         }
 
-        public DataTable DA_Obtener_DatosApuesta(ContextoDB contexto, EN_CodigoAleatorio enCodigo)
+        public DataTable DA_Obtener_DatosApuesta(ContextoDB contexto, EN_CodigoAleatorio enCodigo, String codTipoApuesta)
         {
             DataTable dtLista = new DataTable();
             Dictionary<string, object> dicParametros = new Dictionary<string, object>();
             dicParametros.Add("@NroCodAleatorio", Convert.ToString(enCodigo.NroCodigoAleatorio));
-            
+            dicParametros.Add("@CodTipoAPuesta", codTipoApuesta);
             dtLista = contexto.RetornarDataTable("SP_Obtener_DatosApuesta", dicParametros);
             return dtLista;
         }
