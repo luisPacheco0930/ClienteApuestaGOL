@@ -133,7 +133,7 @@ namespace WebApuestasCliente.Juego
                 //if (i != dt.Rows.Count - 1)
                 //    Next_Branch = dt.Rows[i + 1]["descTorneo"].ToString();
 
-                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString() + "/" + dt.Rows[i]["IdDetallePrograma"].ToString() + "/" + dt.Rows[i]["IdProgramaApuesta"].ToString());
+                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString() + "/" + dt.Rows[i]["IdDetallePrograma"].ToString() + "/" + dt.Rows[i]["IdProgramaApuesta"].ToString() + "/" + dt.Rows[i]["Secuencia"].ToString());
 
                 Content += dt.Rows[i]["equiDescLoc"].ToString() + "<br/>";
 
@@ -173,6 +173,7 @@ namespace WebApuestasCliente.Juego
                         String iconoVis = datos[2];
                         String idDetallePrograma = datos[3];
                         String idPrograma = datos[4];
+                        String secuencia = datos[5];
 
                         panPartido = new Panel();
                         panPartido.CssClass = "col-sm-7";
@@ -182,7 +183,7 @@ namespace WebApuestasCliente.Juego
 
                         Label lx;
                         lx = new Label();
-                        lx.Text = "" + j + ".";
+                        lx.Text = "" + secuencia + ".";
                         lx.CssClass = "list-item";
                         panJ.Controls.Add(lx);
 
