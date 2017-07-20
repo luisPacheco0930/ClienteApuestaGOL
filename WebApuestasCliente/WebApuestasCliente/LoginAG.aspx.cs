@@ -147,7 +147,7 @@ namespace WebApuestasCliente
                                 {
                                     BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
                                     //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
-                                    Response.Redirect("InicioAG.aspx");
+                                    Response.Redirect("InicioAG.aspx", false);
                                 }
                             }
                             else
@@ -195,7 +195,7 @@ namespace WebApuestasCliente
                                         BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
                                         BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
                                         //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
-                                        Response.Redirect("InicioAG.aspx");
+                                        Response.Redirect("InicioAG.aspx", false);
                                     }
                                     else
                                     {
@@ -215,7 +215,7 @@ namespace WebApuestasCliente
                             {
                                 BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
                                 //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
-                                Response.Redirect("InicioAG.aspx");
+                                Response.Redirect("InicioAG.aspx",false);
                             }
                             else
                             {
