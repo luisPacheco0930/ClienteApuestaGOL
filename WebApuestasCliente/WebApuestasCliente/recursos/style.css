@@ -388,9 +388,39 @@ body{
 .list-two{
 	background-color: #ececec;
 }
+.checkbox .item label{
+    padding-left:0;
+}
+.checkbox .item{
+    padding-left: 30px;
+}
+.form-captcha{
+    padding-top:10px;
+    padding-bottom:10px;
+}
+.form-btnsummit{
+    margin-top:15px;
+}
+.label-captcha{
+    width:100%;
+    display:inline-block;
+    margin-bottom: 20px;
+}
+.panel-captcha{
+    position:relative;
+}
+.panel-captcha .btn-refresh{
+    position:absolute;
+    top:0;
+    right:0;
+}
+#login-user .panel-body{
+    padding:30px;
+}
 /* Large desktop */
-@media (min-width: 1200px) { ... }
- 
+@media (min-width: 1200px) {
+
+}
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 980px) {
 	.navbar-default .navbar-nav li a {

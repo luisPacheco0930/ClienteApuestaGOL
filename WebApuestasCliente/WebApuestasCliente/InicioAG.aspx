@@ -7,7 +7,7 @@
 	    <div class="row">
 		    <div class="col-md-3">
 			    <div class="logo-inside">
-				    <img class="img-responsive" src="recursos/images/logo-apuestagol.png">
+				    <img class="img-responsive" src="recursos/images/logo-apuestagol.png"/>
 			    </div>
 		    </div>
 		    <div class="col-md-9">
