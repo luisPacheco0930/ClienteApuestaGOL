@@ -5,9 +5,10 @@
     <div class="page-content">
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="page-header">
-                    <label id="lblTituloResultado" runat="server"></label>
-				</h1>
+				<div class="page-header">
+                    <h2 id="lblTituloResultado" runat="server"></h2>
+                    <%--<label id="lblTituloResultado" runat="server"></label>--%>
+				</div>
 				<p>Recuerde que estos resultados son de acuerdo a fechas programadas.</p>	
 				<div class="date">
                     <label id="lblFechasApuesta" runat="server"></label>

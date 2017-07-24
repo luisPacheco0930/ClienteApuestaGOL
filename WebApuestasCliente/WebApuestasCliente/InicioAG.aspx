@@ -24,9 +24,6 @@
 		    <div class="row">
 			    <div class="col-md-4">
 				    <div class="item-game">
-					    <%--<a href="#"><img class="img-thumbnail" src="recursos/images/juego01.png"/></a>--%>
-                        <%--<asp:ImageButton ID="ImgCartillaSuerte" runat="server" CssClass="img-thumbnail" ImageUrl="recursos/images/juego01.png" OnClick="ImgCartillaSuerte_Click" />--%>
-
                         <asp:HyperLink id="ImgCartillaSuerte" 
                             NavigateUrl="~/Juego/CartillaSuerte.aspx"
                             Text=""

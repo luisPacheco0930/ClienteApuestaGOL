@@ -6,7 +6,7 @@
     <div class="page-content">
         <div class="row">
 		    <div class="col-md-9">
-			    <h1 class="page-header">Apuesta Goles</h1>
+			    <div class="page-header"><h2>Apuesta Goles</h2></div>
 				<p><strong>Ingrese su código promocional antes de empezar a jugar, recuede que es un único código por juego.</strong></p>
 				<p>Ingrese su pronostico de marcado para los siguientes partidos, recuerde que solo puede ingresar una sola vez el resultado</p>
 				<%--<form id="juego01" class="form-horizontal">--%>

@@ -135,7 +135,6 @@ body{
 }
 .navbar-default .navbar-nav li a{
 	color: #FFF;
-	text-transform: uppercase;
 	font-weight: bold;
 }
 .navbar-default .navbar-nav li a:hover{
@@ -150,9 +149,12 @@ body{
 	background: #FFA40C;
 	color: #FFF;
 }
+.navbar-default .navbar-nav li.username a{
+    font-weight:normal;
+}
 .result-goal{
-    margin-top:25px;
-    padding-top:25px;
+    margin-top:15px;
+    padding-top:15px;
 }
 .result-goal thead tr th{
     background: #0A64bA;
@@ -187,6 +189,9 @@ body{
     color: #000;
     padding: 15px 10px;
     font-weight:bold;
+}
+.navbar-default .navbar-nav li.dropdown .dropdown-menu li a{
+    color: #555;
 }
 .source{
     padding-bottom: 30px;
@@ -225,14 +230,18 @@ body{
 	padding: 30px;
     
 }
-.page-header{
-	text-transform: uppercase;
-	color: #FF6600;
-	font-weight: bold;
-	background:url(images/vineta.png) no-repeat 0 center;
-	padding-left: 28px;
-	font-size: 30px;
-	padding-bottom: 0;
+.page-header {
+    text-transform: uppercase;
+    color: #FF6600;
+    background: url(images/vineta.png) no-repeat 0 center;
+    padding-left: 28px;
+    padding-bottom: 0;
+    margin-top:10px;
+}
+.page-header h2{
+    font-size:25px;
+    font-weight: bold;
+    margin-bottom: 0;
 }
 .page-content p{
 	font-size: 14px;
@@ -288,6 +297,8 @@ body{
 	background-color: #f2f2f2;
 	padding: 20px;
 	border-radius: 5px;
+    display:inline-block;
+    width:100%;
 }
 .validation-code label{
 	color: #000;
