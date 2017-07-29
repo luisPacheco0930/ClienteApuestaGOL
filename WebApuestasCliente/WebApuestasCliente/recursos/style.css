@@ -338,31 +338,45 @@ body{
 	text-decoration: none;
 }
 .list-item{
-	padding: 10px;
-	font-size: 20px;
+	padding: 5px;
+	font-size: 14px;
 	font-weight: bold;
-	height: 50px;
-	width: 50px;
+	height: 30px;
+	width: 30px;
 	text-align: center;
 	display: inline-block;
 }
-.table-game.apuesta .list-item{
-	background-color: #88aa00;
-	color: #fff;
-}
-.table-game.cartilla .list-item{
-	background-color: #00aad4;
-	color: #fff;
+.table-game .panel-heading{
+    cursor:pointer;
 }
 .list-title{
 	display: inline-block;
-	padding-left: 20px;
-	font-weight: bold;
-	font-size: 16px;
+	padding-left: 14px;
+	font-weight: normal;
+	font-size: 14px;
+}
+.panel-heading .title-black{
+    font-weight: bold;
+    color: #000;
+}
+.panel-heading .title-white{
+    font-weight: bold;
+    color: #FFF;
 }
 .option-games{
 	display: block;
 	text-align: center;
+}
+.form-group.list-one{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #CDCDCD;
+    padding-bottom: 10px;
+}
+.form-group.list-one:last-child{
+    border-bottom: none;
 }
 .form-option {
 	width: 80px;
@@ -383,6 +397,7 @@ body{
 	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	margin-top: 5px;
 }
+
 .table-game.cartilla .option-games .radio-inline {
 	padding-top: 5px;
 	margin-top: 0;
@@ -394,7 +409,9 @@ body{
 	color: #003556;
 }
 .table-game.cartilla .option-games img{
-	margin-right: 15px;
+	margin-right: 10px;
+    width:24px;
+    height: 24px;
 }
 .list-two{
 	background-color: #ececec;
@@ -463,6 +480,9 @@ body{
  
 /* Landscape phones and down */
 @media (max-width: 480px) {
+    .form-option {
+        width: 50px;
+    }
 	#header-top {
 		margin-bottom: 5px;
 		padding-bottom: 5px;
@@ -510,6 +530,9 @@ body{
 		padding-bottom: 0;
 		margin: 15px 0 20px;
 	}
+    .page-header h2{
+        font-size: 18px;
+    }
 	.page-content p {
 		font-size: 12px;
 	}
@@ -527,7 +550,6 @@ body{
 		display: initial;
 		padding-left: 0;
 		font-weight: bold;
-		font-size: 16px;
 	}
 	.versus .list-title, .versus .list-item {
 		font-size: 12px;
@@ -548,4 +570,7 @@ body{
 		font-size: 16px;
 		text-align: center;
 	}
+    .table-game .panel-body{
+        padding: 5px;
+    }
 }

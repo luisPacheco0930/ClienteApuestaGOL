@@ -112,12 +112,12 @@ namespace WebApuestasCliente.Juego
         {
             // pintando partidos
             acrDynamic = new Accordion();
-            acrDynamic.ID = "MyAccordion";
+            acrDynamic.ID = "accordion-juego";
             acrDynamic.SelectedIndex = -1;//No default selection  
             acrDynamic.RequireOpenedPane = false;//no open pane  
             acrDynamic.HeaderCssClass = "panel-heading";//Header class  
             acrDynamic.HeaderSelectedCssClass = "panel-heading";//Selected herder class  
-            acrDynamic.ContentCssClass = "form-group list-one";//Content class  
+            acrDynamic.ContentCssClass = "panel-body";//Content class  
 
             Label lbTitle;
             Label lbContent;
@@ -156,9 +156,8 @@ namespace WebApuestasCliente.Juego
                     pane.HeaderCssClass = "panel-heading";
 
                     lbTitle.Text = BranchName;
-                    lbTitle.ForeColor = System.Drawing.Color.White;
-                    lbTitle.Font.Bold = true;
-                    lbTitle.Font.Size = 12;
+                    lbTitle.CssClass = "title-black";
+                    
 
                     //<img src="../recursos/images/balon.png" />
                     img = new Image();
@@ -169,6 +168,7 @@ namespace WebApuestasCliente.Juego
                     pane.HeaderContainer.Controls.Add(lbTitle);
 
                     //pane.HeaderCssClass = "panel-title";
+                    Panel fila;
                     Panel panPartido; //= new Panel();
                     Panel panJ; //= new Panel();
                     Panel panJugada; //= new Panel();
@@ -183,6 +183,8 @@ namespace WebApuestasCliente.Juego
                         String idPrograma = datos[4];
                         String secuencia = datos[5];
 
+                        fila = new Panel();
+                        fila.CssClass = "form-group list-one";
                         panPartido = new Panel();
                         panPartido.CssClass = "col-sm-7";
 
@@ -251,8 +253,11 @@ namespace WebApuestasCliente.Juego
 
                         panJugada.Controls.Add(panO);
 
-                        pane.ContentContainer.Controls.Add(panPartido);
-                        pane.ContentContainer.Controls.Add(panJugada);
+                        fila.Controls.Add(panPartido);
+                        fila.Controls.Add(panJugada);
+
+                        pane.ContentContainer.Controls.Add(fila);
+                        //pane.ContentContainer.Controls.Add(panJugada);
                     }
 
 
