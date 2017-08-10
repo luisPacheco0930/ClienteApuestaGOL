@@ -120,7 +120,7 @@ namespace WebApuestasCliente.Juego
 
             DataTable dt = new DataTable();
             BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
-            dt = blpartidosProgramados.BL_ListarPartidos(enCodAleatorio, EN_Constante.cartillaDeLaSuerte);
+            dt = blpartidosProgramados.BL_ListarPartidos(enCodAleatorio, EN_Constante.laPollaSemanal);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string BranchName = dt.Rows[i]["descTorneo"].ToString();
