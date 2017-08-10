@@ -7,16 +7,16 @@
         <div class="row">
 		    <div class="col-md-9">
 			    <div class="page-header"><h2>La Polla Semanal</h2></div>
-				<p><strong>Ingrese su código promocional antes de empezar a jugar, recuede que es un único código por juego.</strong></p>
+				<p>Ingrese su código promocional antes de empezar a jugar, recuede que es un único código por juego.</p>
 				<p>Ingrese su pronostico de marcado para los siguientes partidos, recuerde que solo puede ingresar una sola vez el resultado</p>
-				<%--<form id="juego01" class="form-horizontal">--%>
+	
 				<div class="validation-code">
 				    <div class="form-group">
 					    <div class="col-sm-6">
 						    <label>Ingrese su código</label>
                             <asp:TextBox ID="txtCode" CssClass="form-control" AutoPostBack="true"
                             placeholder="Ejemplo : DC0003532-552332" runat="server" OnTextChanged="txtCodigoAleatorio_TextChanged"></asp:TextBox>
-							<%--<input type="text" class="form-control" id="code" placeholder="Ejemplo : DC0003532-552332">--%>
+							
                         </div>
 						<div class="col-sm-6">
 						    <asp:Panel ID="pnlValidator" runat="server" rol="alert">
@@ -48,7 +48,7 @@
                     <asp:Button ID="btnGuardarPollaSemanal" CssClass="btn btn-default btn-primary btn-lg btn-block" 
                         runat="server" Text="Guardar partida" OnClick="btnGuardarPollaSemanal_Click"/>
                 </div>
-				<%--</form>--%>
+				
 			</div>
 			<div class="col-md-3">
 								
