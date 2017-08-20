@@ -31,22 +31,34 @@ namespace WebApuestasCliente.Juego
                 String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
                 if (!String.IsNullOrEmpty(textError))
                 {
-                    this.lblStatusCode.Text = EN_Constante.textCodigoNoValido;
+                    this.lblStatusCode.Text = textError; //EN_Constante.textCodigoNoValido;
                     this.pnlValidator.CssClass = "alert alert-danger";
                     this.txtCode.Enabled = false;
                     this.btnGuardarPollaSemanal.Enabled = false;
                 }
                 else
                 {
-                    this.lblStatusCode.Text = EN_Constante.textCodigoValido;
-                    this.pnlValidator.CssClass = "alert alert-success";
-                    this.txtCode.Enabled = false;
-                    this.btnGuardarPollaSemanal.Enabled = true;
+                    EN_ProgramacionApuesta enProgXCodAleatorio = blCodAleatorio.BL_validarCodigoXprograma(enCodAleatorio, EN_Constante.laPollaSemanal);
 
-                    EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio, EN_Constante.laPollaSemanal);
-                    this.lblCodFecTope.Text = d.FechaFinal.ToShortTimeString() + " del " + d.FechaFinal.ToShortDateString(); // d.ToLongDateString();
-                    this.txtNroProgramacion.Text = d.IdProgramaApuesta.ToString();
-                    pintarPartidos(enCodAleatorio);
+                    if (enProgXCodAleatorio == null)
+                    {
+                        this.lblStatusCode.Text = EN_Constante.textNohayProgramaParaCodigo; //EN_Constante.textCodigoNoValido;
+                        this.pnlValidator.CssClass = "alert alert-danger";
+                        this.txtCode.Enabled = false;
+                        this.btnGuardarPollaSemanal.Enabled = false;
+                    }
+                    else
+                    {
+                        this.lblStatusCode.Text = EN_Constante.textCodigoValido;
+                        this.pnlValidator.CssClass = "alert alert-success";
+                        this.txtCode.Enabled = false;
+                        this.btnGuardarPollaSemanal.Enabled = true;
+
+                        //EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio, EN_Constante.laPollaSemanal);
+                        this.lblCodFecTope.Text = enProgXCodAleatorio.FechaFinal.ToShortTimeString() + " del " + enProgXCodAleatorio.FechaFinal.ToShortDateString(); // d.ToLongDateString();
+                        this.txtNroProgramacion.Text = enProgXCodAleatorio.IdProgramaApuesta.ToString();
+                        pintarPartidos(enCodAleatorio);
+                    }
                 }
             }
             else
@@ -71,23 +83,35 @@ namespace WebApuestasCliente.Juego
                 String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
                 if (!String.IsNullOrEmpty(textError))
                 {
-                    this.lblStatusCode.Text = EN_Constante.textCodigoNoValido;
+                    this.lblStatusCode.Text = textError; //EN_Constante.textCodigoNoValido;
                     this.pnlValidator.CssClass = "alert alert-danger";
                     this.txtCode.Enabled = false;
                     this.btnGuardarPollaSemanal.Enabled = false;
                 }
                 else
                 {
-                    this.lblStatusCode.Text = EN_Constante.textCodigoValido;
-                    this.pnlValidator.CssClass = "alert alert-success";
-                    this.txtCode.Enabled = false;
-                    this.btnGuardarPollaSemanal.Enabled = true;
-                    BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, this.txtCode.Text);
+                    EN_ProgramacionApuesta enProgXCodAleatorio = blCodAleatorio.BL_validarCodigoXprograma(enCodAleatorio, EN_Constante.laPollaSemanal);
 
-                    EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio,EN_Constante.laPollaSemanal);
-                    this.lblCodFecTope.Text = d.FechaFinal.ToShortTimeString() + " del " + d.FechaFinal.ToShortDateString(); // d.ToLongDateString();
-                    this.txtNroProgramacion.Text = d.IdProgramaApuesta.ToString();
-                    pintarPartidos(enCodAleatorio);
+                    if (enProgXCodAleatorio == null)
+                    {
+                        this.lblStatusCode.Text = EN_Constante.textNohayProgramaParaCodigo; //EN_Constante.textCodigoNoValido;
+                        this.pnlValidator.CssClass = "alert alert-danger";
+                        this.txtCode.Enabled = false;
+                        this.btnGuardarPollaSemanal.Enabled = false;
+                    }
+                    else
+                    {
+                        this.lblStatusCode.Text = EN_Constante.textCodigoValido;
+                        this.pnlValidator.CssClass = "alert alert-success";
+                        this.txtCode.Enabled = false;
+                        this.btnGuardarPollaSemanal.Enabled = true;
+                        BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, this.txtCode.Text);
+
+                        //EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio, EN_Constante.laPollaSemanal);
+                        this.lblCodFecTope.Text = enProgXCodAleatorio.FechaFinal.ToShortTimeString() + " del " + enProgXCodAleatorio.FechaFinal.ToShortDateString(); // d.ToLongDateString();
+                        this.txtNroProgramacion.Text = enProgXCodAleatorio.IdProgramaApuesta.ToString();
+                        pintarPartidos(enCodAleatorio);
+                    }
                 }
             }
             else
@@ -202,7 +226,8 @@ namespace WebApuestasCliente.Juego
 
                         Image imagLV;
                         imagLV = new Image();
-                        imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoLoc;
+                        //imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoLoc;
+                        imagLV.ImageUrl = HttpContext.Current.Server.MapPath(String.Format("/admin/recursos/images/equipos/{0}", iconoLoc));
                         panO.Controls.Add(imagLV);
 
                         RadioButtonList rbl = new RadioButtonList();
@@ -228,7 +253,8 @@ namespace WebApuestasCliente.Juego
                         panO.Controls.Add(rbl);
 
                         imagLV = new Image();
-                        imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoVis;
+                        //imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoVis;
+                        imagLV.ImageUrl = HttpContext.Current.Server.MapPath(String.Format("/admin/recursos/images/equipos/{0}", iconoVis));
                         panO.Controls.Add(imagLV);
 
                         panJugada.Controls.Add(panO);

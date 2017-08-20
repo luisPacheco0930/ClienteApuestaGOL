@@ -78,8 +78,8 @@
                                                     <li><a href="<%=ResolveUrl("~/ResultadoGanadores/ApuestaGolesRG.aspx")%>">Apuesta Goles</a></li>
                                                   </ul>
                                                 </li>
-                                                <li><a href="#">Terminos y condiciones</a></li>
-                                                <li><a href="#">Analisis y pronostico</a></li>
+                                                <li><a href="<%=ResolveUrl("~/TerminoCondicionesAG.aspx")%>">Términos y condiciones</a></li>
+                                                <li><a href="<%=ResolveUrl("~/AnalisisPronosticoAG.aspx")%>">Análisis y pronostico</a></li>
                                             </ul>
                                             <ul class="nav navbar-nav navbar-right">
                                                 <li class="username">

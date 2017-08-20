@@ -121,23 +121,16 @@ namespace WebApuestasCliente
             {
                 String recaptchaResponse = Request.Form.Get("g-recaptcha-response");
                 //Response.Write("<script> alert('" + recaptchaResponse + "') </script>");
-
                 if (!this.checkBoxLogin.Checked)
                 {
-               
                     if (this.txtNroPromocional != null && !String.IsNullOrEmpty(this.txtNroPromocional.Text))
                     {
-               
                         if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
                         {
-               
                             enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
-               //             Response.Write("<script> alert('pre cdi') </script>");
-                            String codTipoApuesta = blCodAleatorio.BL_validarCodigoJugadoResultadoListo(enCodAleatorio);
-                 //           Response.Write("<script> alert('" + codTipoApuesta + "') </script>");
-
-                            if (String.IsNullOrEmpty(codTipoApuesta))
-                            {
+                            //String codTipoApuesta = blCodAleatorio.BL_validarCodigoJugadoResultadoListo(enCodAleatorio);
+                            //if (String.IsNullOrEmpty(codTipoApuesta))
+                            //{
                                 String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
                                 if (!String.IsNullOrEmpty(textError))
                                 {
@@ -149,10 +142,9 @@ namespace WebApuestasCliente
                                     //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
                                     Response.Redirect("InicioAG.aspx", false);
                                 }
-                            }
-                            else
-                                irAResultados(codTipoApuesta, enCodAleatorio);
-
+                            //}
+                            //else
+                            //    irAResultados(codTipoApuesta, enCodAleatorio);
                         }
                         else
                         {
@@ -179,12 +171,10 @@ namespace WebApuestasCliente
                         {
                             enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
                             textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
-                            String codTipoApuesta = blCodAleatorio.BL_validarCodigoJugadoResultadoListo(enCodAleatorio);
-                            //           Response.Write("<script> alert('" + codTipoApuesta + "') </script>");
-
-                            if (String.IsNullOrEmpty(codTipoApuesta))
-                            {
-                                    if (!String.IsNullOrEmpty(textError))
+                            //String codTipoApuesta = blCodAleatorio.BL_validarCodigoJugadoResultadoListo(enCodAleatorio);
+                            //if (String.IsNullOrEmpty(codTipoApuesta))
+                            //{
+                                if (!String.IsNullOrEmpty(textError))
                                 {
                                     Response.Write("<script> alert('" + textError + "') </script>");
                                 }
@@ -194,19 +184,16 @@ namespace WebApuestasCliente
                                     {
                                         BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
                                         BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
-                                        //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
                                         Response.Redirect("InicioAG.aspx", false);
                                     }
                                     else
                                     {
                                         Response.Write("<script> alert('Seleccione Opción ReCaptcha') </script>");
                                     }
-
                                 }
-
-                            }
-                            else
-                                irAResultados(codTipoApuesta, enCodAleatorio);
+                            //}
+                            //else
+                            //    irAResultados(codTipoApuesta, enCodAleatorio);
 
                         }
                         else
@@ -214,7 +201,6 @@ namespace WebApuestasCliente
                             if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
                             {
                                 BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
-                                //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
                                 Response.Redirect("InicioAG.aspx",false);
                             }
                             else

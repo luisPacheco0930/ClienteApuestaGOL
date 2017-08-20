@@ -8,9 +8,11 @@
         $(document).ready(function () {
             var loginCheck = jQuery('#masterPage_checkBoxLogin');
             if (loginCheck.is(':checked')) {
-                $(".login-advanced").show();
+                $(".login-advanced").show(300);
+                $("#NroPromocional").hide();
             } else {
                 $(".login-advanced").hide();
+                $("#NroPromocional").show(300);
             }
         });
     </script>
@@ -177,7 +179,7 @@
 						<h4>Ingresar</h4>
 					</div>
 					<div class="panel-body">
-						<div class="form-group">
+						<div id="NroPromocional" class="form-group">
 							<div class="input-group">
 								<div class="input-group-addon">
 								<i class="fa fa-tag fa-lg" aria-hidden="true"></i>
@@ -216,11 +218,18 @@
 							</div>
 						</div>
                         <div class="form-captcha">
-                            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            <%--<div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>--%>
+                            <div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"></div> <%-- Produccion --%>
                         </div>
                         <div class="form-group form-btnsummit">
                             <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
 					    </div>
+                        <div style="align-content:center">
+		                    ¿Deseas ver tu jugada?
+		                    <a href="#" data-toggle="modal" data-target="#myJugada">
+			                    <i class="fa fa-sign-in" aria-hidden="true"></i> Visualizalo aquí
+		                    </a>
+	                    </div>
 				    </div>
 			    </div>
 		    </div>
@@ -232,6 +241,30 @@
 
 </asp:Content>
 <asp:Content ID="ModalRegister" ContentPlaceHolderID="contentModal" runat="server">
+
+<div class="modal fade" id="myJugada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalJugada">Ver jugada por código</h4>
+      </div>
+      <div class="modal-body">
+            <div class="form-group">
+                <div class="input-group">
+                <div class="input-group-addon">
+				    <i class="fa fa-tag fa-lg" aria-hidden="true"></i>
+				</div>
+                    <asp:TextBox ID="txtNroPromocionalJugado" CssClass="form-control" placeholder="Ingrese código promocional jugado" runat="server"></asp:TextBox>
+                </div>
+		    </div>
+      </div>
+        <div class="modal-footer">
+            <asp:Button ID="btnVerJugada" runat="server" CssClass="btn btn-lg btn-block" Text="Ver Jugada"/>
+        </div>
+   </div>
+  </div>
+</div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -301,4 +334,5 @@
       </div>
     </div>
   </div>
+
 </asp:Content>

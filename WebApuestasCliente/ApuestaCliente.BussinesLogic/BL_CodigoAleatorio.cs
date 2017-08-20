@@ -56,6 +56,22 @@ namespace ApuestaCliente.BussinesLogic
             return dtLista;
         }
 
+        //public String BL_validarCodigoXprograma(EN_CodigoAleatorio enCodAleatorio, String TipoApuesta)
+        //{
+        //    String textError = "";
+        //    DA_CodigoAleatorio daCodAleatorio = new DA_CodigoAleatorio();
+        //    DataTable dtGeneraCodigo = new DataTable();
+        //    using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+        //    {
+        //        dtGeneraCodigo = daCodAleatorio.DA_validarCodigoXprograma(dbContexto, enCodAleatorio, TipoApuesta);
+        //        if (dtGeneraCodigo == null || dtGeneraCodigo.Rows.Count == 0)
+        //        {
+        //            textError = EN_Constante.textNohayProgramaParaCodigo;
+        //        }
+        //    }
+        //    return textError;
+        //}
+
         public String BL_validarCodigoIngresado(EN_CodigoAleatorio enCodAleatorio)
         {
             String textError = "";
@@ -73,19 +89,16 @@ namespace ApuestaCliente.BussinesLogic
                     if (dtClientwDetCodigoAleatorio != null && dtClientwDetCodigoAleatorio.Rows.Count > 0)
                     {
                         textError = EN_Constante.textCodigoYaUsado;
-                        //Response.Write("<script> alert('El código ya ha sido usado') </script>");
                     }
                 }
                 else
                 {
                     textError = EN_Constante.textCodigoYaUsado;
-                    //Response.Write("<script> alert('El código ya ha sido usado') </script>");
                 }
             }
             else
             {
                 textError = EN_Constante.textCodigoNoVigente;
-                //Response.Write("<script> alert('El código no está vigente') </script>");
             }
 
             return textError;
@@ -109,39 +122,25 @@ namespace ApuestaCliente.BussinesLogic
             return textError;
         }
 
-        public EN_ProgramacionApuesta BL_codAleatorio_fechaTope(EN_CodigoAleatorio enCodAleatorio, string CodApuesta)
+        public EN_ProgramacionApuesta BL_validarCodigoXprograma(EN_CodigoAleatorio enCodAleatorio, string CodApuesta)
         {
-            EN_ProgramacionApuesta apuesta=null;
+            EN_ProgramacionApuesta apuesta = null;
 
             DataTable dtLista = new DataTable();
             DA_CodigoAleatorio daCodAleatorio = new DA_CodigoAleatorio();
             using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
             {
-                dtLista = daCodAleatorio.DA_CodAleatorio_FechaTope(dbContexto, enCodAleatorio, CodApuesta);
-            }
-
-            if(dtLista != null && dtLista.Rows.Count > 0)
-            {
-                apuesta = new EN_ProgramacionApuesta();
-                apuesta.IdProgramaApuesta= dtLista.Rows[0].Field<int>(0);
-                apuesta.FechaInicial = dtLista.Rows[0].Field<DateTime>(1);
-                apuesta.FechaFinal = dtLista.Rows[0].Field<DateTime>(2);
-                //apuesta.Vigencia = dtLista.Rows[0].Field<Char>(3);
-                //apuesta.CodigoTipoApuesta = dtLista.Rows[0].Field<Char>(4);
+                //dtLista = daCodAleatorio.DA_CodAleatorio_FechaTope(dbContexto, enCodAleatorio, CodApuesta);
+                dtLista = daCodAleatorio.DA_validarCodigoXprograma(dbContexto, enCodAleatorio, CodApuesta);
+                if (dtLista != null && dtLista.Rows.Count > 0)
+                {
+                    apuesta = new EN_ProgramacionApuesta();
+                    apuesta.IdProgramaApuesta = Convert.ToInt32(dtLista.Rows[0][0].ToString());
+                    apuesta.FechaInicial = dtLista.Rows[0].Field<DateTime>(1);
+                    apuesta.FechaFinal = dtLista.Rows[0].Field<DateTime>(2);
+                }
             }
             return apuesta;
         }
-
-        //Registrar o Actualizar
-        //public void BL_Registrar(EN_Deporte enDeporte)
-        //{
-        //    DA_Deporte daDeporte = new DA_Deporte();
-        //    using (ContextoDB contexto = ContextoDB.InicializarContexto())
-        //    {
-        //        contexto.IniciarTransaccion();
-        //        daDeporte.DA_RegistrarDeporte(contexto, enDeporte);
-        //        contexto.ConfirmarTransaccion();
-        //    }
-        //}
-        }
+    }
 }
