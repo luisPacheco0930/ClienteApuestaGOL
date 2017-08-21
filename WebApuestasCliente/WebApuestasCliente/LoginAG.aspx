@@ -170,7 +170,7 @@
 <asp:Content ID="contentPageInicio" ContentPlaceHolderID="masterPage" runat="server">
     <div class="row">
         <div class="col-md-3">
-			Anuncio Lateral
+			<%--Anuncio Lateral--%>
 		</div>
 		<div class="col-md-6">
 			<div id="login-user">
@@ -222,7 +222,7 @@
                             <div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"></div> <%-- Produccion --%>
                         </div>
                         <div class="form-group form-btnsummit">
-                            <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Iniciar Sesión" OnClick="btnLoguear_Click"/>
+                            <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Ingresar" OnClick="btnLoguear_Click"/>
 					    </div>
                         <div style="align-content:center">
 		                    ¿Deseas ver tu jugada?
@@ -235,7 +235,7 @@
 		    </div>
         </div>
 		<div class="col-md-3">
-			Anuncio Lateral
+			<%--Anuncio Lateral--%>
 		</div>
     </div>
 

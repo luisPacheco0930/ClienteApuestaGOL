@@ -80,6 +80,7 @@
                                                 </li>
                                                 <li><a href="<%=ResolveUrl("~/TerminoCondicionesAG.aspx")%>">Términos y condiciones</a></li>
                                                 <li><a href="<%=ResolveUrl("~/AnalisisPronosticoAG.aspx")%>">Análisis y pronostico</a></li>
+                                                <li><a href="<%=ResolveUrl("~/VisualizarJugada.aspx")%>">Análisis y pronostico</a></li>
                                             </ul>
                                             <ul class="nav navbar-nav navbar-right">
                                                 <li class="username">

@@ -341,6 +341,7 @@
     <Content Include="favicon.ico" />
     <Content Include="TerminoCondicionesAG.aspx" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="VisualizarJugada.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -473,6 +474,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="VisualizarJugada.aspx.cs">
+      <DependentUpon>VisualizarJugada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VisualizarJugada.aspx.designer.cs">
+      <DependentUpon>VisualizarJugada.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

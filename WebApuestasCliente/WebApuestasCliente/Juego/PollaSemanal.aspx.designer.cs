@@ -58,6 +58,15 @@ namespace WebApuestasCliente.Juego {
         protected global::System.Web.UI.WebControls.Label lblCodFecTope;
         
         /// <summary>
+        /// Control lblPozoPrograma.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPozoPrograma;
+        
+        /// <summary>
         /// Control ToolkitScriptManager1.
         /// </summary>
         /// <remarks>

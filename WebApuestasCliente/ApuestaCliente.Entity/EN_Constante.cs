@@ -29,7 +29,11 @@ namespace ApuestaCliente.Entity
         public const String cartillaDeLaSuerte = "00001"; // "AW001";
         public const String laPollaSemanal = "00002";
         public const String apuestaGoles = "00003";
-        //public const String rutaIconosEquipos = "../recursos/images/equipos/";
+
+        public const String GanadorLocal = "L";
+        public const String GanadorVisitante = "V";
+        public const String Empate = "E";
+        public const String rutaIconosEquipos = "file:///h:/root/home/apuestagol-001/www/apuestagol/admin/recursos/images/equipos/"; //"../recursos/images/equipos/";
         //public const String rutaIconosEquipos = HttpContext.Current.Server.MapPath("/admin/recursos/images/equipos/");
     }
 }

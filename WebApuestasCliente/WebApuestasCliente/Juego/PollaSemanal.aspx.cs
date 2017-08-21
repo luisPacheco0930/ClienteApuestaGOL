@@ -226,8 +226,8 @@ namespace WebApuestasCliente.Juego
 
                         Image imagLV;
                         imagLV = new Image();
-                        //imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoLoc;
-                        imagLV.ImageUrl = HttpContext.Current.Server.MapPath(String.Format("/admin/recursos/images/equipos/{0}", iconoLoc));
+                        imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoLoc;
+                        //imagLV.ImageUrl = HttpContext.Current.Server.MapPath(String.Format("/admin/recursos/images/equipos/{0}", iconoLoc));
                         panO.Controls.Add(imagLV);
 
                         RadioButtonList rbl = new RadioButtonList();
@@ -253,8 +253,8 @@ namespace WebApuestasCliente.Juego
                         panO.Controls.Add(rbl);
 
                         imagLV = new Image();
-                        //imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoVis;
-                        imagLV.ImageUrl = HttpContext.Current.Server.MapPath(String.Format("/admin/recursos/images/equipos/{0}", iconoVis));
+                        imagLV.ImageUrl = EN_Constante.rutaIconosEquipos + iconoVis;
+                        //imagLV.ImageUrl = HttpContext.Current.Server.MapPath(String.Format("/admin/recursos/images/equipos/{0}", iconoVis));
                         panO.Controls.Add(imagLV);
 
                         panJugada.Controls.Add(panO);
@@ -285,98 +285,104 @@ namespace WebApuestasCliente.Juego
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
             BL_ApuestaUsuario bl_apuestaUsuario = new BL_ApuestaUsuario();
             bool rj = true;
-
-            if (!String.IsNullOrEmpty(codeFrom) && !codeFrom.Equals(""))
+            try
             {
-                this.txtCode.Text = codeFrom;
-
-                if (this.acrDynamic != null)
+                if (!String.IsNullOrEmpty(codeFrom) && !codeFrom.Equals(""))
                 {
-                    EN_ApuestaUsuario apuestaCab = new EN_ApuestaUsuario();
+                    this.txtCode.Text = codeFrom;
 
-                    for (int i = 0; i < this.acrDynamic.Panes.Count; i++)
+                    if (this.acrDynamic != null)
                     {
-                        AccordionPane pane = this.acrDynamic.Panes.ElementAt(i);
-                        String idPanel = pane.ID;
-                        String idPrograma = idPanel.Split('_')[1];
-                        String nroTorneo = idPanel.Split('_')[2];
+                        EN_ApuestaUsuario apuestaCab = new EN_ApuestaUsuario();
 
-                        BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
-                        EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
-                        enCodAleatorio.NroCodigoAleatorio = codeFrom;
-                        DataTable dt = blpartidosProgramados.BL_ListarPartidosxTorneo(enCodAleatorio, EN_Constante.cartillaDeLaSuerte, nroTorneo);
-
-
-                        apuestaCab.IdProgApuesta = Convert.ToInt32(idPrograma);
-                        apuestaCab.CodAleatorio = enCodAleatorio.NroCodigoAleatorio;
-                        apuestaCab.Estado = '1';
-                        apuestaCab.Usuario = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc);
-                        apuestaCab.fecha = new DateTime();
-
-                        if (dt != null && dt.Rows.Count > 0)
+                        for (int i = 0; i < this.acrDynamic.Panes.Count; i++)
                         {
-                            apuestaCab.listaitem = new List<EN_ApuestaUsuarioDet>();
+                            AccordionPane pane = this.acrDynamic.Panes.ElementAt(i);
+                            String idPanel = pane.ID;
+                            String idPrograma = idPanel.Split('_')[1];
+                            String nroTorneo = idPanel.Split('_')[2];
 
-                            EN_ApuestaUsuarioDet apuestaDet;
-                            for (int j = 0; j < dt.Rows.Count; j++)
+                            BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
+                            EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
+                            enCodAleatorio.NroCodigoAleatorio = codeFrom;
+                            DataTable dt = blpartidosProgramados.BL_ListarPartidosxTorneo(enCodAleatorio, EN_Constante.laPollaSemanal, nroTorneo);
+
+
+                            apuestaCab.IdProgApuesta = Convert.ToInt32(idPrograma);
+                            apuestaCab.CodAleatorio = enCodAleatorio.NroCodigoAleatorio;
+                            apuestaCab.Estado = '1';
+                            apuestaCab.Usuario = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc);
+                            apuestaCab.fecha = new DateTime();
+
+                            if (dt != null && dt.Rows.Count > 0)
                             {
-                                apuestaDet = new EN_ApuestaUsuarioDet();
+                                apuestaCab.listaitem = new List<EN_ApuestaUsuarioDet>();
 
-                                String idDetallePrograma = dt.Rows[j]["idDetallePrograma"].ToString();
-                                String resultado = "";
-                                bool r = false;
-
-                                String idBuscar = idPrograma + "_" + idDetallePrograma + "_R";
-                                Control control = pane.ContentContainer.FindControl(idBuscar);
-                                if (control != null)
+                                EN_ApuestaUsuarioDet apuestaDet;
+                                for (int j = 0; j < dt.Rows.Count; j++)
                                 {
-                                    RadioButtonList rbtnList = (RadioButtonList)control;
-                                    resultado = rbtnList.SelectedValue;
+                                    apuestaDet = new EN_ApuestaUsuarioDet();
+                                    String secuencia = dt.Rows[j]["Secuencia"].ToString();
+                                    String idDetallePrograma = dt.Rows[j]["idDetallePrograma"].ToString();
+                                    String resultado = "";
+                                    bool r = false;
 
-                                    if (!String.IsNullOrEmpty(resultado.Trim()))
-                                        r = true;
+                                    String idBuscar = idPrograma + "_" + idDetallePrograma + "_R";
+                                    Control control = pane.ContentContainer.FindControl(idBuscar);
+                                    if (control != null)
+                                    {
+                                        RadioButtonList rbtnList = (RadioButtonList)control;
+                                        resultado = rbtnList.SelectedValue;
+
+                                        if (!String.IsNullOrEmpty(resultado.Trim()))
+                                            r = true;
+                                    }
+
+                                    if (r == true)
+                                    {
+                                        apuestaDet.Resultado = resultado;
+                                        apuestaDet.Secuencia = Convert.ToInt32(secuencia);
+                                        apuestaDet.Vigencia = '1';
+                                        apuestaDet.ValidaResultado = 1;
+                                        apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);
+                                        apuestaCab.listaitem.Add(apuestaDet);
+                                    }
+                                    else
+                                    {
+                                        break;
+
+                                    }
                                 }
 
-                                if (r == true)
+                                if (apuestaCab.listaitem != null && apuestaCab.listaitem.Count == dt.Rows.Count)
                                 {
-                                    apuestaDet.Resultado = resultado;
-                                    apuestaDet.Vigencia = '1';
-                                    apuestaDet.ValidaResultado = 1;
-                                    apuestaDet.IdDetalleProgApuesta = Convert.ToInt32(idDetallePrograma);
-                                    apuestaCab.listaitem.Add(apuestaDet);
+                                    bl_apuestaUsuario.BL_registrarApuestaUsuario(ref apuestaCab);
+                                    //Response.Write("<script> alert('Se registró la jugada.') </script>");
                                 }
                                 else
                                 {
+                                    rj = false;
                                     break;
-
                                 }
-                            }
-
-                            if (apuestaCab.listaitem != null && apuestaCab.listaitem.Count == dt.Rows.Count)
-                            {
-                                bl_apuestaUsuario.BL_registrarApuestaUsuario(ref apuestaCab);
-                                //Response.Write("<script> alert('Se registró la jugada.') </script>");
-                            }
-                            else
-                            {
-                                rj = false;
-                                break;
                             }
                         }
                     }
                 }
+                if (rj == true)
+                {
+                    BL_Util.borrarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
+                    Response.Write("<script> alert('Jugada Registrada.'); window.location.href='../InicioAG.aspx'; </script>");
+                    //Response.Redirect("~/InicioAG.aspx");
+                }
+                else
+                {
+                    Response.Write("<script> alert('Debe ingresar resultado para todos los partidos.') </script>");
+                }
             }
-            if (rj == true)
+            catch (Exception ex)
             {
-                BL_Util.borrarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
-                Response.Write("<script> alert('Jugada Registrada.'); window.location.href='../InicioAG.aspx'; </script>");
-                //Response.Redirect("~/InicioAG.aspx");
+                Response.Write("<script> alert('Hubo problemas al guardar la jugada.') </script>");
             }
-            else
-            {
-                Response.Write("<script> alert('Debe ingresar resultado para todos los partidos.') </script>");
-            }
-
             /* *********************************** */
 
             
