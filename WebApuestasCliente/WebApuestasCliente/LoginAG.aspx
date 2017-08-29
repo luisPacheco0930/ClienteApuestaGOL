@@ -218,8 +218,8 @@
 							</div>
 						</div>
                         <div class="form-captcha">
-                            <%--<div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>--%>
-                            <div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"></div> <%-- Produccion --%>
+                            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            <%--<div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"></div>--%> <%-- Produccion --%>
                         </div>
                         <div class="form-group form-btnsummit">
                             <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Ingresar" OnClick="btnLoguear_Click"/>
