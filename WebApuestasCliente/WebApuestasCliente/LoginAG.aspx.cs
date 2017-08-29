@@ -120,10 +120,11 @@ namespace WebApuestasCliente
             try
             {
                 //String recaptchaResponse = Request.Form.Get("g-recaptcha-response");
+                //Response.Write("<script> alert('Iniicio') </script>");
                 Captcha2.ValidateCaptcha(txtCaptcha2.Text.Trim());
                 
                 Boolean b = Captcha2.UserValidated;
-               // b = true;
+                
                 //Response.Write("<script> alert('" + recaptchaResponse + "') </script>");
                 if (!this.checkBoxLogin.Checked)
                 {
