@@ -119,13 +119,18 @@ namespace WebApuestasCliente
             EN_Cliente enCliente = new EN_Cliente();
             try
             {
-                String recaptchaResponse = Request.Form.Get("g-recaptcha-response");
+                //String recaptchaResponse = Request.Form.Get("g-recaptcha-response");
+                //Response.Write("<script> alert('Iniicio') </script>");
+                Captcha2.ValidateCaptcha(txtCaptcha2.Text.Trim());
+                
+                Boolean b = Captcha2.UserValidated;
+                
                 //Response.Write("<script> alert('" + recaptchaResponse + "') </script>");
                 if (!this.checkBoxLogin.Checked)
                 {
                     if (this.txtNroPromocional != null && !String.IsNullOrEmpty(this.txtNroPromocional.Text))
                     {
-                        if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
+                        if (b) //recaptchaResponse != null && !recaptchaResponse.Equals(""))
                         {
                             enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
                             //String codTipoApuesta = blCodAleatorio.BL_validarCodigoJugadoResultadoListo(enCodAleatorio);
@@ -148,7 +153,7 @@ namespace WebApuestasCliente
                         }
                         else
                         {
-                            Response.Write("<script> alert('Seleccione Opción ReCaptcha') </script>");
+                            Response.Write("<script> alert('Ingrese Código de Seguridad Correcto') </script>");
                         }
                     }
                     else
@@ -180,7 +185,7 @@ namespace WebApuestasCliente
                                 }
                                 else
                                 {
-                                    if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
+                                    if (b) //recaptchaResponse != null && !recaptchaResponse.Equals(""))
                                     {
                                         BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, enCodAleatorio.NroCodigoAleatorio);
                                         BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
@@ -188,7 +193,7 @@ namespace WebApuestasCliente
                                     }
                                     else
                                     {
-                                        Response.Write("<script> alert('Seleccione Opción ReCaptcha') </script>");
+                                        Response.Write("<script> alert('Ingrese Código de Seguridad Correcto') </script>");
                                     }
                                 }
                             //}
@@ -198,14 +203,14 @@ namespace WebApuestasCliente
                         }
                         else
                         {
-                            if (recaptchaResponse != null && !recaptchaResponse.Equals(""))
+                            if (b) //recaptchaResponse != null && !recaptchaResponse.Equals(""))
                             {
                                 BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieNroDoc, enCliente.NroDocumento);
                                 Response.Redirect("InicioAG.aspx",false);
                             }
                             else
                             {
-                                Response.Write("<script> alert('Seleccione Opción ReCaptcha') </script>");
+                                Response.Write("<script> alert('Ingrese Código de Seguridad Correcto') </script>");
                             }
                         }
                     }

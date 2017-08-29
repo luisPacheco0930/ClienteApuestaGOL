@@ -18,35 +18,35 @@
     </script>
 
     <script type="text/javascript" >  
-        function validarNumeros(e) {  
-          //  var charCode = (evt.which) ? evt.which : event.keyCode
-           // alert("charCode: " + e.keyCode);
-           // if (/^\d+$/.test(this.value + String.fromCharCode(event.keyCode))) {  
+        function validarNumeros(e) {
+            //  var charCode = (evt.which) ? evt.which : event.keyCode
+            // alert("charCode: " + e.keyCode);
+            // if (/^\d+$/.test(this.value + String.fromCharCode(event.keyCode))) {  
             //$.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
             if (e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 46 || e.keyCode == 27 || e.keyCode == 13 || e.keyCode == 110
                 || e.keyCode == 190) {
                 return true;
             }
-                if (
-                    // Allow: Ctrl/cmd+A
-                    (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-                    // Allow: Ctrl/cmd+C
-                    (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
-                    // Allow: Ctrl/cmd+X
-                    (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
-                    // Allow: home, end, left, right
-                    (e.keyCode >= 35 && e.keyCode <= 39)) {
-                    // let it happen, don't do anything
-                   // alert("charCode 1: " + e.keyCode);
-                    return true;
-                } 
-                // Ensure that it is a number and stop the keypress
-                if  ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                   // alert("charCode 2: " + e.keyCode);
-                    e.preventDefault();
-                }
-                //alert("charCode 3: " + e.keyCode);
-                return true;  
+            if (
+                // Allow: Ctrl/cmd+A
+                (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl/cmd+C
+                (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl/cmd+X
+                (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                // let it happen, don't do anything
+                // alert("charCode 1: " + e.keyCode);
+                return true;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                // alert("charCode 2: " + e.keyCode);
+                e.preventDefault();
+            }
+            //alert("charCode 3: " + e.keyCode);
+            return true;
         }
 
         function validarLetras(e) {
@@ -74,11 +74,11 @@
             }
 
             if (charCode > 31 && (charCode < 65 || charCode > 90) &&
-          (charCode < 97 || charCode > 122)) {
+                (charCode < 97 || charCode > 122)) {
                 return false;
             }
 
-            
+
             return true;
         }
 
@@ -87,15 +87,15 @@
             var charCode = (evt.which) ? evt.which : event.keyCode
 
             //console.log("charCode: " + charCode);
-          /*  if (charCode > 31 && (charCode < 65 || charCode > 90) &&
-                (charCode < 97 || charCode > 122)) {
-                return false;
-            }*/
+            /*  if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+                  (charCode < 97 || charCode > 122)) {
+                  return false;
+              }*/
             return true;
         }
 
         function validarCampos() {
-           
+
             var txtdni = document.getElementById("contentModal_txtdni").value;
             var txtNombres = document.getElementById("contentModal_txtNombres").value;
             var txtApellidos = document.getElementById("contentModal_txtApellidos").value;
@@ -109,7 +109,7 @@
             console.log("txtApellidos: " + txtApellidos);
             console.log("txtEmail: " + txtEmail);
             console.log("txtPassword: " + txtPassword);
-           // alert("txtCaptcha: " + txtCaptcha);
+            // alert("txtCaptcha: " + txtCaptcha);
             if (!txtdni) {
                 alert("Ingresar Nro Documento Identidad");
                 return false;
@@ -148,7 +148,7 @@
                     return false;
                 }
             }
-        }    
+        }
     </script>  
 
 </asp:Content>
@@ -217,10 +217,34 @@
 								</div>
 							</div>
 						</div>
-                        <div class="form-captcha">
-                            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-                            <%--<div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"></div>--%> <%-- Produccion --%>
-                        </div>
+
+                        <%--<div class="form-captcha">
+                            <%--<div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>--%>
+                            <%--<div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"></div> <%-- Produccion ----%>
+                        <%--</div>---%>
+
+                  <div class="form-group">
+                   <asp:ScriptManager ID="sm" runat="server"></asp:ScriptManager>
+                 <label class="label-captcha">Ingrese código de seguridad:</label>
+                 <div class="row">
+                     <div class="col-md-5">
+                         <asp:TextBox ID="txtCaptcha2" runat="server" placeholder="Código Captcha" CssClass="form-control"></asp:TextBox>
+                     </div>
+                     <div class="col-md-7">
+                         <div class="panel-captcha">
+                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <cc1:CaptchaControl CssClass="img-captcha" ID="Captcha2" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
+                                    CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
+                                    FontColor="#D20B0C" NoiseColor="#B1B1B1" />
+                                    <asp:ImageButton CssClass="btn-refresh" ImageUrl="recursos/images/blue-refresh.png" runat="server" CausesValidation="false" />
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                         </div>
+                     </div>
+                 </div> 
+            </div>
+
                         <div class="form-group form-btnsummit">
                             <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Ingresar" OnClick="btnLoguear_Click"/>
 					    </div>
@@ -305,7 +329,7 @@
 			</div>
 
              <div class="form-group">
-                 <asp:ScriptManager ID="sm" runat="server"></asp:ScriptManager>
+                 
                  <label class="label-captcha">Ingrese código de seguridad:</label>
                  <div class="row">
                      <div class="col-md-5">
