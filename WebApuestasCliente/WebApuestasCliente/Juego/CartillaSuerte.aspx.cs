@@ -166,7 +166,7 @@ namespace WebApuestasCliente.Juego
                 //if (i != dt.Rows.Count - 1)
                 //    Next_Branch = dt.Rows[i + 1]["descTorneo"].ToString();
 
-                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString() + "/" + dt.Rows[i]["IdDetallePrograma"].ToString() + "/" + dt.Rows[i]["IdProgramaApuesta"].ToString() + "/" + dt.Rows[i]["Secuencia"].ToString());
+                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString() + "/" + dt.Rows[i]["IdDetallePrograma"].ToString() + "/" + dt.Rows[i]["IdProgramaApuesta"].ToString() + "/" + dt.Rows[i]["Secuencia"].ToString() + "/" + dt.Rows[0].Field<DateTime>("fhPartido").ToString("dd MMMM"));
 
                 Content += dt.Rows[i]["equiDescLoc"].ToString() + "<br/>";
 
@@ -206,6 +206,7 @@ namespace WebApuestasCliente.Juego
                         String idDetallePrograma = datos[3];
                         String idPrograma = datos[4];
                         String secuencia = datos[5];
+                        String fechaPartido = datos[6];
 
                         fila = new Panel();
                         fila.CssClass = "form-group list-one";
@@ -223,7 +224,7 @@ namespace WebApuestasCliente.Juego
                         panJ.Controls.Add(lx);
 
                         lx = new Label();
-                        lx.Text = encuentro;
+                        lx.Text = encuentro + " (" + fechaPartido + ")";
                         lx.CssClass = "list-title";
                         panJ.Controls.Add(lx);
                         panPartido.Controls.Add(panJ);
