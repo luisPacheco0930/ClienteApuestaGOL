@@ -217,10 +217,27 @@
 								</div>
 							</div>
 						</div>
-                        <div class="form-captcha">
-                            <%--<div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>--%>
-                            <div class="g-recaptcha" data-sitekey="6LeUuygUAAAAACOhCKFLY-fRvDX3WMD_XNrd6elw"></div> <%-- Produccion --%>
-                        </div>
+               <div class="form-group">
+                   <asp:ScriptManager ID="sm" runat="server"></asp:ScriptManager>
+                 <label class="label-captcha">Ingrese código de seguridad:</label>
+                 <div class="row">
+                     <div class="col-md-5">
+                         <asp:TextBox ID="txtCaptcha2" runat="server" placeholder="Código Captcha" CssClass="form-control"></asp:TextBox>
+                     </div>
+                     <div class="col-md-7">
+                         <div class="panel-captcha">
+                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <cc1:CaptchaControl CssClass="img-captcha" ID="Captcha2" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
+                                    CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
+                                    FontColor="#D20B0C" NoiseColor="#B1B1B1" />
+                                    <asp:ImageButton CssClass="btn-refresh" ImageUrl="recursos/images/blue-refresh.png" runat="server" CausesValidation="false" />
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                         </div>
+                     </div>
+                 </div> 
+            </div>
                         <div class="form-group form-btnsummit">
                             <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-success btn-lg btn-block" Text="Ingresar" OnClick="btnLoguear_Click"/>
 					    </div>
@@ -305,7 +322,7 @@
 			</div>
 
              <div class="form-group">
-                 <asp:ScriptManager ID="sm" runat="server"></asp:ScriptManager>
+                 
                  <label class="label-captcha">Ingrese código de seguridad:</label>
                  <div class="row">
                      <div class="col-md-5">
