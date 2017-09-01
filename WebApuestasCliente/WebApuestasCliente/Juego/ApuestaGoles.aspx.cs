@@ -24,9 +24,12 @@ namespace WebApuestasCliente.Juego
                 this.txtCode.Text = codeFrom;
 
                 BL_CodigoAleatorio blCodAleatorio = new BL_CodigoAleatorio();
+                BL_PartidosProgramados blProgApuesta = new BL_PartidosProgramados();
                 BL_Cliente blCliente = new BL_Cliente();
 
                 EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
+                DataTable dt = new DataTable();
+
                 enCodAleatorio.NroCodigoAleatorio = codeFrom;
                 String textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
                 if (!String.IsNullOrEmpty(textError))
@@ -50,6 +53,8 @@ namespace WebApuestasCliente.Juego
                     }
                     else
                     {
+                        dt = blProgApuesta.BL_ObtenerPozoMayorxApuesta(enProgXCodAleatorio);
+
                         this.lblStatusCode.Text = EN_Constante.textCodigoValido;
                         this.pnlValidator.CssClass = "alert alert-success";
                         this.txtCode.Enabled = false;
@@ -58,6 +63,8 @@ namespace WebApuestasCliente.Juego
                         //EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio, EN_Constante.apuestaGoles);
                         this.lblCodFecTope.Text = enProgXCodAleatorio.FechaFinal.ToShortTimeString() + " del " + enProgXCodAleatorio.FechaFinal.ToShortDateString(); // d.ToLongDateString();
                         this.txtNroProgramacion.Text = enProgXCodAleatorio.IdProgramaApuesta.ToString();
+                        this.lblPozoPrograma.Text ="S/. " + dt.Rows[0]["montoPozoMayor"].ToString();
+
                         pintarPartidos(enCodAleatorio);
                     }   
                 }

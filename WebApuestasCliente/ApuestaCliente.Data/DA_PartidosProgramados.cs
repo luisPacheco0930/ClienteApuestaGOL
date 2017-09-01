@@ -51,5 +51,14 @@ namespace ApuestaCliente.Data
             dtLista = contexto.RetornarDataTable("SP_LISTAR_GANADORES", dicParametros);
             return dtLista;
         }
+
+        public DataTable DA_ObtenerPozoMayorxApuesta(ContextoDB contexto, EN_ProgramacionApuesta enProgramacionApuesta)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@NroProgApuesta", Convert.ToInt32(enProgramacionApuesta.IdProgramaApuesta));
+            dtLista = contexto.RetornarDataTable("SP_ObtenerPozoMayorxApuesta", dicParametros);
+            return dtLista;
+        }
     }
 }

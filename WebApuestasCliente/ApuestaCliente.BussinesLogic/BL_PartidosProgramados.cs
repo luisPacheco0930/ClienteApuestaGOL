@@ -57,5 +57,16 @@ namespace ApuestaCliente.BussinesLogic
             return dtLista;
         }
 
+        public DataTable BL_ObtenerPozoMayorxApuesta(EN_ProgramacionApuesta enProgramacionApuesta)
+        {
+            DataTable dtLista = new DataTable();
+            DA_PartidosProgramados daProgApuesta = new DA_PartidosProgramados();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                dtLista = daProgApuesta.DA_ObtenerPozoMayorxApuesta(dbContexto, enProgramacionApuesta);
+            }
+            return dtLista;
+        }
+
     }
 }
