@@ -33,7 +33,7 @@
 							</div>
 							<div class="col-md-6">
 								<div class="date">Juegalo hasta: <asp:Label ID="lblCodFecTope" Text="....." runat="server"></asp:Label></div>
-                                <div class="date"> Pozo: <asp:Label ID="lblPozoPrograma" Text="S/ 0.00" runat="server"></asp:Label> </div>
+                                <div class="date"> Pozo: <asp:Label ID="lblPozoPrograma" Text="....." runat="server"></asp:Label> </div>
 							</div>
 						</div>
 					</div>
