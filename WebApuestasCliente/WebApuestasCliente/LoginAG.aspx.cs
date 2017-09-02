@@ -21,6 +21,44 @@ namespace WebApuestasCliente
             Session.RemoveAll();
         }
 
+        protected void btnVerJugada_Click(object sender, EventArgs e)
+        {
+            String textError = "Datos Incompletos";
+          //  Response.Write("<script> alert('" + textError + "') </script>");
+
+            BL_CodigoAleatorio blCodAleatorio = new BL_CodigoAleatorio();
+            BL_Cliente blCliente = new BL_Cliente();
+
+            EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
+            EN_Cliente enCliente = new EN_Cliente();
+
+            textError = "";
+            if (this.txtNroPromocionalJugado != null && !String.IsNullOrEmpty(this.txtNroPromocionalJugado.Text))
+            {       enCodAleatorio.NroCodigoAleatorio = this.txtNroPromocional.Text;
+                    //String codTipoApuesta = blCodAleatorio.BL_validarCodigoJugadoResultadoListo(enCodAleatorio);
+                    //if (String.IsNullOrEmpty(codTipoApuesta))
+                    //{
+                    textError = blCodAleatorio.BL_validarCodigoIngresado(enCodAleatorio);
+
+                    if (String.IsNullOrEmpty(textError))
+                    {
+                        Response.Write("<script> alert('" + textError + "') </script>");
+                    }
+                    else
+                    {
+                        BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio,this.txtNroPromocionalJugado.Text);
+                        //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
+                        Response.Redirect("VisualizarJugada.aspx", false);
+                    }
+                   
+            }
+            else
+            {
+                Response.Write("<script> alert('Ingresar Codigo Promocional') </script>");
+            }
+
+        }
+
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
 
