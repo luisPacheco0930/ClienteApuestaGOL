@@ -72,5 +72,14 @@ namespace ApuestaCliente.Data
         return dtLista;
     }*/
 
+        public DataTable DA_ObtenerDatosUsuario(ContextoDB contexto, EN_Cliente enCliente)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@nroDoc", Convert.ToString(enCliente.NroDocumento));
+            dtLista = contexto.RetornarDataTable("SP_ObtenerDatosUsuario", dicParametros);
+            return dtLista;
+        }
+
     }
 }
