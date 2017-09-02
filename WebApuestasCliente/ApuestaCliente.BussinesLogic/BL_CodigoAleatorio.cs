@@ -142,5 +142,24 @@ namespace ApuestaCliente.BussinesLogic
             }
             return apuesta;
         }
+
+        public String BL_validarCodigoJugado(EN_CodigoAleatorio enCodAleatorio)
+        {
+            String textError = "";
+            DataTable dtClientwDetCodigoAleatorio = new DataTable();
+            DataTable dtGeneraCodigo = new DataTable();
+            DataTable dtApuestaCodigoAleatorio = new DataTable();
+                dtApuestaCodigoAleatorio = BL_ValidarCodigoAlearorio_YaJugado(enCodAleatorio);
+                if (dtApuestaCodigoAleatorio == null || dtApuestaCodigoAleatorio.Rows.Count == 0)
+                {
+                textError = "El código ingresado no ha sido utilizado.";
+                }
+                else
+                {
+                    textError = "";
+                }
+            
+            return textError;
+        }
     }
 }

@@ -149,6 +149,14 @@
                 }
             }
         }
+        function validarCodigoPromocional() {
+
+            var txtdni = document.getElementById("contentModal_txtNroPromocionalJugado").value;
+            if (!txtdni) {
+                alert("Ingresar Código Promocional");
+                return false;
+            } 
+        }
     </script>  
 
 </asp:Content>
@@ -284,7 +292,7 @@
 		    </div>
       </div>
         <div class="modal-footer">
-            <asp:Button ID="btnVerJugada" runat="server" CssClass="btn btn-lg btn-block" Text="Ver Jugada"/>
+            <asp:Button ID="btnVerJugada" runat="server" CssClass="btn btn-lg btn-block" Text="Ver Jugada" OnClientClick="return validarCodigoPromocional();" OnClick="btnVerJugada_Click"/>
         </div>
    </div>
   </div>
