@@ -34,6 +34,7 @@ namespace ApuestaCliente.Entity
         public const String GanadorVisitante = "V";
         public const String Empate = "E";
         public const String rutaIconosEquipos = "http://apuestagol.pe/admin/recursos/images/equipos/"; //"../recursos/images/equipos/";
+        public const String rutaPdf = "http://apuestagol.pe/admin/recursos/pdf/";
         //public const String rutaIconosEquipos = HttpContext.Current.Server.MapPath("/admin/recursos/images/equipos/");
     }
 }

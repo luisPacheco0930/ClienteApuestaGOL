@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SWApuestaCliente.Master" AutoEventWireup="true" CodeBehind="AnalisisPronosticoAG.aspx.cs" Inherits="WebApuestasCliente.AnalisisPronosticoAG" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit"   TagPrefix="asp" %>  
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="cabeceraInicio" ContentPlaceHolderID="masterHeader" runat="server">
@@ -20,7 +21,10 @@
         <h1 class="page-header">Análisis y Pronostico</h1>
         <br />
         <div>
-
+			<div class="panel panel-default">
+				<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">  </asp:ToolkitScriptManager>  
+			    <asp:Panel ID="MyContent" runat="server">  </asp:Panel>
+            </div> 
         </div>
     </div>
 </asp:Content>
