@@ -89,7 +89,8 @@ namespace ApuestaCliente.BussinesLogic
 
         public String armarBody(String codigoAleatorio)
         {
-            String body = "<HTML><HEAD><H1>Jugada Realizada</H1></HEAD><BODY><table><tr><td><strong>Partido</strong></td><td><strong>Jugada</strong></td></tr>";
+            int idprogapuesta=0;
+            String body = "<HTML><HEAD><H1>Jugada Realizada</H1><H2>Nro Programación: #NroProg</H2><H2>Pozo: #Pozo</H2></HEAD><BODY><table><tr><td><strong>Partido</strong></td><td><strong>Jugada</strong></td></tr>";
             EN_CodigoAleatorio enCodigoAleatorio = new EN_CodigoAleatorio();
             BL_PartidosProgramados blPartidosProgramados = new BL_PartidosProgramados();
 
@@ -107,9 +108,20 @@ namespace ApuestaCliente.BussinesLogic
                 {
                     body += "<td>" + dt.Rows[i]["resultado"].ToString() + "</td></tr>";
                 }
+
+                idprogapuesta = Int32.Parse( dt.Rows[i]["idprogramaapuesta"].ToString());
             }
 
             body += "</table></BODY></HTML> ";
+
+            EN_ProgramacionApuesta progApuesta = new EN_ProgramacionApuesta();
+            progApuesta.IdProgramaApuesta = idprogapuesta;
+
+            dt = blPartidosProgramados.BL_ObtenerPozoMayorxApuesta(progApuesta);
+            String pozo=dt.Rows[0]["signoMoneda"].ToString() + " " + dt.Rows[0]["montoPozoMayor"].ToString();
+
+            body = body.Replace("#NroProg", idprogapuesta+"");
+            body = body.Replace("#Pozo", pozo );
             return body;
         }
         public void BL_RegistraClienteCodigoAleatorio(EN_ApuestaUsuario apuestaUsuario)

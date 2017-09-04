@@ -39,7 +39,7 @@
 				</div>
 				<div class="table-game apuesta">
 				    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-					    <div class="panel panel-default">
+                        <div class="panel panel-default">
 						    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">  </asp:ToolkitScriptManager>  
 							<asp:Panel ID="MyContent" runat="server">  </asp:Panel>
                         </div> 

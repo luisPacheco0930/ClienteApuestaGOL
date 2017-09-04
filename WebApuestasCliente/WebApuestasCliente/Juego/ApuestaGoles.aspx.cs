@@ -63,7 +63,7 @@ namespace WebApuestasCliente.Juego
                         //EN_ProgramacionApuesta d = blCodAleatorio.BL_codAleatorio_fechaTope(enCodAleatorio, EN_Constante.apuestaGoles);
                         this.lblCodFecTope.Text = enProgXCodAleatorio.FechaFinal.ToShortTimeString() + " del " + enProgXCodAleatorio.FechaFinal.ToShortDateString(); // d.ToLongDateString();
                         this.txtNroProgramacion.Text = enProgXCodAleatorio.IdProgramaApuesta.ToString();
-                        this.lblPozoPrograma.Text ="S/. " + dt.Rows[0]["montoPozoMayor"].ToString();
+                        this.lblPozoPrograma.Text = dt.Rows[0]["signoMoneda"].ToString() + " " + dt.Rows[0]["montoPozoMayor"].ToString();
 
                         pintarPartidos(enCodAleatorio);
                     }   
@@ -173,9 +173,11 @@ namespace WebApuestasCliente.Juego
                 //if (i != dt.Rows.Count - 1)
                 //    Next_Branch = dt.Rows[i + 1]["descTorneo"].ToString();
 
-                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "/" + dt.Rows[i]["icoLoc"].ToString() + "/" + dt.Rows[i]["icoVis"].ToString() + "/" + dt.Rows[i]["IdDetallePrograma"].ToString() + "/" + dt.Rows[i]["IdProgramaApuesta"].ToString() + "/" + dt.Rows[i]["Secuencia"].ToString() + "/" + dt.Rows[0].Field<DateTime>("fhPartido").ToString("dd MMMM")); 
+                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "|" + dt.Rows[i]["icoLoc"].ToString() + "|" + dt.Rows[i]["icoVis"].ToString() + "|" + dt.Rows[i]["IdDetallePrograma"].ToString() + "|" + dt.Rows[i]["IdProgramaApuesta"].ToString() + "|" + dt.Rows[i]["Secuencia"].ToString() + "|" + dt.Rows[i].Field<DateTime>("fhPartido").ToString("dd/MM/yyyy hh:mm"));
+                //String fecha=dt.Rows[i].Field<DateTime>("fhPartido").ToString("dd/MM/yyyy hh:mm");
 
-                 Content += dt.Rows[i]["equiDescLoc"].ToString() + "<br/>";
+
+                Content += dt.Rows[i]["equiDescLoc"].ToString() + "<br/>";
 
                 if (BranchName != Next_Branch) //if last row of branch  
                 {
@@ -206,7 +208,7 @@ namespace WebApuestasCliente.Juego
                     Panel panO;
                     for (int j = 0; j < listaEquipos.Count; j++)
                     {
-                        String[] datos = listaEquipos.ElementAt(j).Split('/');
+                        String[] datos = listaEquipos.ElementAt(j).Split('|');
                         String encuentro = datos[0];
                         String iconoLoc = datos[1];
                         String iconoVis = datos[2];
