@@ -12,12 +12,22 @@ namespace ApuestaCliente.Data
     public class DA_PartidosProgramados
     {
         public DataTable DA_GetPartidos(ContextoDB contexto, EN_CodigoAleatorio enCodigo, String codigoTipoApuesta)
-        {
+        { 
             DataTable dtLista = new DataTable();
             Dictionary<string, object> dicParametros = new Dictionary<string, object>();
             dicParametros.Add("@NroCodAleatorio", Convert.ToString(enCodigo.NroCodigoAleatorio));
             dicParametros.Add("@CodigoTipoApuesta", Convert.ToString(codigoTipoApuesta));
             dtLista = contexto.RetornarDataTable("SP_LISTAR_PARTIDOS", dicParametros);
+            return dtLista;
+        }
+
+        public DataTable DA_GetPartidosJugados(ContextoDB contexto, EN_CodigoAleatorio enCodigo, String codigoTipoApuesta)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@NroCodAleatorio", Convert.ToString(enCodigo.NroCodigoAleatorio));
+         //   dicParametros.Add("@CodigoTipoApuesta", Convert.ToString(codigoTipoApuesta));
+            dtLista = contexto.RetornarDataTable("SP_ListarDetProgramaJugado", dicParametros);
             return dtLista;
         }
 

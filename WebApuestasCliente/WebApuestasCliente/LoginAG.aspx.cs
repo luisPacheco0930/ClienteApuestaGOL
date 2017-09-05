@@ -48,6 +48,7 @@ namespace WebApuestasCliente
                     {
                         BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio,this.txtNroPromocionalJugado.Text);
                         //String valor = HttpContext.Current.Session[EN_Constante.nombreCookieCodAleatorio].ToString();
+                        this.txtNroPromocionalJugado.Text = "";
                         Response.Redirect("VisualizarJugada.aspx", false);
                     }
                    

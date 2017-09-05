@@ -143,6 +143,27 @@ namespace ApuestaCliente.BussinesLogic
             return apuesta;
         }
 
+        public EN_ProgramacionApuesta BL_obtenerCodigoXprograma(EN_CodigoAleatorio enCodAleatorio, string CodApuesta)
+        {
+            EN_ProgramacionApuesta apuesta = null;
+
+            DataTable dtLista = new DataTable();
+            DA_CodigoAleatorio daCodAleatorio = new DA_CodigoAleatorio();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                //dtLista = daCodAleatorio.DA_CodAleatorio_FechaTope(dbContexto, enCodAleatorio, CodApuesta);
+                dtLista = daCodAleatorio.DA_obtenerCodigoXprograma(dbContexto, enCodAleatorio, CodApuesta);
+                if (dtLista != null && dtLista.Rows.Count > 0)
+                {
+                    apuesta = new EN_ProgramacionApuesta();
+                    apuesta.IdProgramaApuesta = Convert.ToInt32(dtLista.Rows[0][0].ToString());
+                    apuesta.FechaInicial = dtLista.Rows[0].Field<DateTime>(1);
+                    apuesta.FechaFinal = dtLista.Rows[0].Field<DateTime>(2);
+                }
+            }
+            return apuesta;
+        }
+
         public String BL_validarCodigoJugado(EN_CodigoAleatorio enCodAleatorio)
         {
             String textError = "";

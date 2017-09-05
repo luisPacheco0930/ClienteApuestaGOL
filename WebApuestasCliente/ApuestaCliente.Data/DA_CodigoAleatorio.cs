@@ -32,6 +32,16 @@ namespace ApuestaCliente.Data
             return dtLista;
         }
 
+        public DataTable DA_obtenerCodigoXprograma(ContextoDB contexto, EN_CodigoAleatorio enCodigo, String TipoApuesta)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@NroCodAleatorio", Convert.ToString(enCodigo.NroCodigoAleatorio));
+            dicParametros.Add("@TipoApuesta", TipoApuesta);
+            dtLista = contexto.RetornarDataTable("SP_Obtener_CodAleatorioXPrograma", dicParametros);
+            return dtLista;
+        }
+
         public DataTable DA_ValidarCodigoAleatorio_EstaVigente(ContextoDB contexto, EN_CodigoAleatorio enCodigo)
         {
             DataTable dtLista = new DataTable();

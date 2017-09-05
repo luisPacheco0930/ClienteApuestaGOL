@@ -49,39 +49,57 @@ namespace WebApuestasCliente {
         protected global::System.Web.UI.WebControls.Label txtNroProgramacion;
         
         /// <summary>
-        /// lblCodFecTope control.
+        /// tablePartJugado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCodFecTope;
+        protected global::System.Web.UI.WebControls.Table tablePartJugado;
         
         /// <summary>
-        /// lblPozoPrograma control.
+        /// txtNroProgramacion2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPozoPrograma;
+        protected global::System.Web.UI.WebControls.Label txtNroProgramacion2;
         
         /// <summary>
-        /// ToolkitScriptManager1 control.
+        /// tablePartResul control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
+        protected global::System.Web.UI.WebControls.Table tablePartResul;
         
         /// <summary>
-        /// MyContent control.
+        /// lblJugadores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel MyContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblJugadores;
+        
+        /// <summary>
+        /// lblGanadores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblGanadores;
+        
+        /// <summary>
+        /// lblPozo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPozo;
     }
 }
