@@ -21,6 +21,7 @@
         <h1 class="page-header">Análisis y Pronostico</h1>
         <br />
         <div>
+
 			<div class="panel panel-default">
 				<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">  </asp:ToolkitScriptManager>  
 			    <asp:Panel ID="MyContent" runat="server">  </asp:Panel>

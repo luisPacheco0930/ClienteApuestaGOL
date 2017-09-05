@@ -13,6 +13,15 @@ namespace ApuestaCliente.Data
     public class DA_ApuestaUsuario
     {
 
+        public void DA_RegistraClienteCodigoAleatorio(ContextoDB contexto, EN_ApuestaUsuario enApuestaUsuario)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@nroDoc", Convert.ToString(enApuestaUsuario.Usuario));
+            dicParametros.Add("@codigoAleatorio", Convert.ToString(enApuestaUsuario.CodAleatorio));
+            contexto.EjecutarTransaccion("SP_RegistraClienteCodigoAleatorio", dicParametros);
+        }
+
         public int DA_registrarApuestaUsuario(ContextoDB contexto, EN_ApuestaUsuario enApuestaUsuario)
         {
             String idd = "";

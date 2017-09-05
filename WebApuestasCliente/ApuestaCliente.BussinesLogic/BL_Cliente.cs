@@ -89,6 +89,17 @@ namespace ApuestaCliente.BussinesLogic
             }
             return dtLista;
         }
+
+        public DataTable BL_ObtenerDatosUsuario(EN_Cliente enCliente)
+        {
+            DataTable dtLista = new DataTable();
+            DA_Cliente daCliente = new DA_Cliente();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                dtLista = daCliente.DA_ObtenerDatosUsuario(dbContexto, enCliente);
+            }
+            return dtLista;
+        }
         /*public DataTable BL_ValidarCodigoAlearorio_UsadoxUsuario(EN_CodigoAleatorio enCodAleatorio)
         {
             DataTable dtLista = new DataTable();

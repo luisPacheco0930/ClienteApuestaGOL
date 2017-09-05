@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace WebApuestasCliente
@@ -18,8 +19,10 @@ namespace WebApuestasCliente
 
         private void pintarDocumentos()
         {
-            HyperLink hyperLinkDocumento;
+            //HyperLink hyperLinkDocumento;
             Panel pane ;
+            HtmlIframe iframe;
+
 
             DataTable dt = new DataTable();
             BL_Documento blDocumento = new BL_Documento();
@@ -29,13 +32,24 @@ namespace WebApuestasCliente
                 pane = new Panel();
                 pane.CssClass = "source";
 
+                iframe = new HtmlIframe();
+                iframe.Attributes["height"] = "750px";
+                iframe.Attributes["width"] = "500px";
+                iframe.Style["left"] = "50%";
+                iframe.Style["margin-left"] = "25%";
+                iframe.Src = dt.Rows[i]["ruta_documento"].ToString();
+                //iframe.InnerHtml = dt.Rows[i]["ruta_documento"].ToString();
+                pane.Controls.Add(iframe);
+
+                /******************************************************************************/
+                /*
                 hyperLinkDocumento = new HyperLink();
                 hyperLinkDocumento.Target = "_blank";
                 hyperLinkDocumento.NavigateUrl = dt.Rows[i]["ruta_documento"].ToString();
                 hyperLinkDocumento.Text = dt.Rows[i]["nombre_documento"].ToString();
 
                 pane.Controls.Add(hyperLinkDocumento);
-
+                */
                 this.MyContent.Controls.Add(pane);
             }
         }
