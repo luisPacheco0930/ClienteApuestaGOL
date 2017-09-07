@@ -18,13 +18,16 @@
 </asp:Content>
 <asp:Content ID="contentPageInicio" ContentPlaceHolderID="masterPage" runat="server">
     <div class="page-content">
-        <h1 class="page-header">Análisis y Pronostico</h1>
-        <br />
+        <div class="row">
+            <div class="page-header"><h2>Análisis y Pronostico</h2></div>
+            <br />
+        </div>
         <div>
-
 			<div class="panel panel-default">
 				<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">  </asp:ToolkitScriptManager>  
-			    <asp:Panel ID="MyContent" runat="server">  </asp:Panel>
+                <div class="row">
+			        <asp:Panel ID="MyContent" runat="server">  </asp:Panel>
+                </div>
             </div> 
         </div>
     </div>

@@ -176,7 +176,7 @@ namespace WebApuestasCliente.Juego
                 //if (i != dt.Rows.Count - 1)
                 //    Next_Branch = dt.Rows[i + 1]["descTorneo"].ToString();
 
-                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "|" + dt.Rows[i]["icoLoc"].ToString() + "|" + dt.Rows[i]["icoVis"].ToString() + "|" + dt.Rows[i]["IdDetallePrograma"].ToString() + "|" + dt.Rows[i]["IdProgramaApuesta"].ToString() + "|" + dt.Rows[i]["Secuencia"].ToString() + "|" + dt.Rows[i].Field<DateTime>("fhPartido").ToString("dd/MM/yyyy hh:mm"));
+                listaEquipos.Add(dt.Rows[i]["equiDescLoc"].ToString() + " - " + dt.Rows[i]["equiDescVis"].ToString() + "|" + dt.Rows[i]["icoLoc"].ToString() + "|" + dt.Rows[i]["icoVis"].ToString() + "|" + dt.Rows[i]["IdDetallePrograma"].ToString() + "|" + dt.Rows[i]["IdProgramaApuesta"].ToString() + "|" + dt.Rows[i]["Secuencia"].ToString() + "|" + dt.Rows[i].Field<DateTime>("fhPartido").ToString("dd/MM/yyyy HH:mm"));
 
                 Content += dt.Rows[i]["equiDescLoc"].ToString() + "<br/>";
 

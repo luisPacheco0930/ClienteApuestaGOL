@@ -17,6 +17,9 @@
 </asp:Content>
 <asp:Content ID="contentPageInicio" ContentPlaceHolderID="masterPage" runat="server">
     <div class="page-content">
-        <h1 class="page-header">Términos y condiciones</h1>
+        <div class="row">
+            <div class="page-header"><h2>Términos y condiciones</h2></div>
+            <br />
+        </div>
     </div>
 </asp:Content>
