@@ -6,7 +6,8 @@
     <div class="page-content">
         <div class="row">
 		    <div class="col-md-9">
-			    <div class="page-header"><h2>La Polla Semanal</h2></div>
+			    <div class="page-header">
+                    <h2 id="lblTituloResultado" runat="server"></h2></div>
 				<p>Para visualizar su jugada, deberá colocar el código correcto, con el que participó</p>
 	
 				<div class="validation-code">
@@ -38,24 +39,33 @@
                         </asp:Table>
                     </div>          
 			    </div>
-                <div class="description">
+                <div id="divResulTitulo" class="description" runat="server">
 				    <div class="row">
 					    <div class="col-md-6">
 						    <div class="programation"><asp:Label ID="txtNroProgramacion2" Text="....." runat="server"></asp:Label></div>
 						</div>						
 					</div>
 				</div>
-                <div class="result-goal">	
+                <div id="divTableResultados" class="result-goal" runat="server">	
                     <div class="table-responsive">
                         <asp:Table ID ="tablePartResul" class="table table-striped" runat="server">
                         </asp:Table>
                     </div>          
 			    </div>
-                <div class="source">
+                <div id="divResulResumen" class="source" runat="server">
                     <p><strong>Total de participantes :</strong><label id="lblJugadores" runat="server"></label></p>
                     <p><strong>Total de ganadores :</strong><label id="lblGanadores" runat="server"></label></p>
                     <p><strong>Monto del pozo :</strong><label id="lblPozo" runat="server"></label></p>
                 </div>
+                <div id="divResulGanadores" class="panel winners" runat="server">
+                    <div class="panel-body">
+                    <h3>Ganadores</h3>
+                    <div class="table-responsive">
+                         <asp:Table ID ="tableGanadores" class="table" runat="server">
+                          </asp:Table>
+                           </div>
+                    </div>
+                </div>	
 			</div>
 			
         </div>

@@ -13,6 +13,15 @@ namespace WebApuestasCliente {
     public partial class VisualizarJugada {
         
         /// <summary>
+        /// lblTituloResultado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTituloResultado;
+        
+        /// <summary>
         /// txtCode control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace WebApuestasCliente {
         protected global::System.Web.UI.WebControls.Table tablePartJugado;
         
         /// <summary>
+        /// divResulTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divResulTitulo;
+        
+        /// <summary>
         /// txtNroProgramacion2 control.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace WebApuestasCliente {
         protected global::System.Web.UI.WebControls.Label txtNroProgramacion2;
         
         /// <summary>
+        /// divTableResultados control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTableResultados;
+        
+        /// <summary>
         /// tablePartResul control.
         /// </summary>
         /// <remarks>
@@ -74,6 +101,15 @@ namespace WebApuestasCliente {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table tablePartResul;
+        
+        /// <summary>
+        /// divResulResumen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divResulResumen;
         
         /// <summary>
         /// lblJugadores control.
@@ -101,5 +137,23 @@ namespace WebApuestasCliente {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPozo;
+        
+        /// <summary>
+        /// divResulGanadores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divResulGanadores;
+        
+        /// <summary>
+        /// tableGanadores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tableGanadores;
     }
 }

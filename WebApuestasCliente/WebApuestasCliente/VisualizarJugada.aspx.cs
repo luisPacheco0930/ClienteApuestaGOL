@@ -16,15 +16,47 @@ namespace WebApuestasCliente
     public partial class VisualizarJugada : System.Web.UI.Page
     {
         String ls_codTipoApuesta = EN_Constante.laPollaSemanal;
+        String flagResListos = "NO";
         protected void Page_Load(object sender, EventArgs e)
         {
             //if (Page.IsPostBack) return;
 
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
             this.txtCode.Text = codeFrom;
-            txtCodigoAleatorio_TextChanged(sender,e);
+            EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
+            enCodAleatorio.NroCodigoAleatorio = this.txtCode.Text;
 
-           
+
+            BL_ApuestaUsuario blApuestaUsuario = new BL_ApuestaUsuario();
+            DataTable dt =  blApuestaUsuario.BL_ObtenerDatosApuesta(enCodAleatorio, "");
+
+            this.lblTituloResultado.InnerText = dt.Rows[0]["tipoApuesta"].ToString();
+            this.ls_codTipoApuesta = dt.Rows[0]["codTipoApuesta"].ToString();
+
+            BL_CodigoAleatorio blCodAleatorio = new BL_CodigoAleatorio();
+            DataTable dt2 = blCodAleatorio.BL_ValidarCodigoAlearorio_ResultadoListo(enCodAleatorio);
+
+            
+            if (dt2.Rows.Count > 0) {
+                flagResListos = "SI";
+                pintarResultadoPartidos(enCodAleatorio);
+                pintarGanadores(enCodAleatorio);
+            }
+            else
+            {
+               // divResulTitulo.Visible = false;
+                divTableResultados.Visible = false;
+                divResulResumen.Visible = false;
+                divResulGanadores.Visible = false;
+                this.txtNroProgramacion2.Text = "No existe resultado aún de la programación.";
+                this.txtNroProgramacion2.ForeColor = System.Drawing.Color.Red;
+
+            }
+
+            txtCodigoAleatorio_TextChanged(sender, e);
+            pintarDatosApuesta(enCodAleatorio);
+            pintarPartidoJugado(enCodAleatorio);
+
         }
 
         protected void txtCodigoAleatorio_TextChanged(object sender, System.EventArgs e)
@@ -77,10 +109,7 @@ namespace WebApuestasCliente
                     }
                 }
 
-                pintarDatosApuesta(enCodAleatorio);
-                pintarResultadoPartidos(enCodAleatorio);
-                //  pintarGanadores(enCodAleatorio);
-                pintarPartidoJugado(enCodAleatorio);
+
             }
             else
             {
@@ -147,10 +176,10 @@ namespace WebApuestasCliente
             this.lblGanadores.InnerText = dt.Rows[0]["ganadores"].ToString();
             this.lblPozo.InnerText = dt.Rows[0]["montoPozo"].ToString();
 
-            //FALTAA en caso haya resultados:
+            if (flagResListos.Equals("SI")) { 
             this.txtNroProgramacion2.Text = "Resultado de la programación N°: " + dt.Rows[0]["IdProgramaApuesta"].ToString();
+            }
         }
-
 
         public void pintarResultadoPartidos(EN_CodigoAleatorio enCodAleatorio)
         {
@@ -164,52 +193,52 @@ namespace WebApuestasCliente
             pintarDetallePartidoJugado(enCodAleatorio);
         }
 
-        //public void pintarGanadores(EN_CodigoAleatorio enCodAleatorio)
-        //{
+        public void pintarGanadores(EN_CodigoAleatorio enCodAleatorio)
+        {
 
-        //    TableRow row0 = new TableHeaderRow();
-        //    row0.TableSection = TableRowSection.TableHeader;
-        //    TableHeaderCell cell1 = new TableHeaderCell();
-        //    cell1.Text = "CÓDIGO GANADOR";
-        //    row0.Cells.Add(cell1);
+            TableRow row0 = new TableHeaderRow();
+            row0.TableSection = TableRowSection.TableHeader;
+            TableHeaderCell cell1 = new TableHeaderCell();
+            cell1.Text = "CÓDIGO GANADOR";
+            row0.Cells.Add(cell1);
 
-        //    cell1 = new TableHeaderCell();
-        //    cell1.Text = "DOCUMENTO DE IDENTIDAD";
-        //    row0.Cells.Add(cell1);
+            cell1 = new TableHeaderCell();
+            cell1.Text = "DOCUMENTO DE IDENTIDAD";
+            row0.Cells.Add(cell1);
 
-        //    cell1 = new TableHeaderCell();
-        //    cell1.Text = "APELLIDOS Y NOMBRES";
-        //    row0.Cells.Add(cell1);
+            cell1 = new TableHeaderCell();
+            cell1.Text = "APELLIDOS Y NOMBRES";
+            row0.Cells.Add(cell1);
 
-        //    tableGanadores.Rows.Add(row0);
+            tableGanadores.Rows.Add(row0);
 
-        //    DataTable dt = new DataTable();
-        //    BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
-        //    dt = blpartidosProgramados.BL_ListarGanadores(enCodAleatorio, ls_codTipoApuesta);
+            DataTable dt = new DataTable();
+            BL_PartidosProgramados blpartidosProgramados = new BL_PartidosProgramados();
+            dt = blpartidosProgramados.BL_ListarGanadores(enCodAleatorio, ls_codTipoApuesta);
 
-        //    if (dt.Rows.Count > 0)
-        //    {
-        //        TableRow row2 = new TableRow();
+            if (dt.Rows.Count > 0)
+            {
+                TableRow row2 = new TableRow();
 
-        //        for (int i = 0; i < dt.Rows.Count; i++)
-        //        {
-        //            row2 = new TableRow();
-        //            TableCell cell2 = new TableCell();
-        //            cell2.Text = dt.Rows[i]["codigoAleatorio"].ToString();
-        //            row2.Cells.Add(cell2);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    row2 = new TableRow();
+                    TableCell cell2 = new TableCell();
+                    cell2.Text = dt.Rows[i]["codigoAleatorio"].ToString();
+                    row2.Cells.Add(cell2);
 
-        //            cell2 = new TableCell();
-        //            cell2.Text = dt.Rows[i]["numdocid"].ToString();
-        //            row2.Cells.Add(cell2);
+                    cell2 = new TableCell();
+                    cell2.Text = dt.Rows[i]["numdocid"].ToString();
+                    row2.Cells.Add(cell2);
 
-        //            cell2 = new TableCell();
-        //            cell2.Text = dt.Rows[i]["nombresApellidos"].ToString();
-        //            row2.Cells.Add(cell2);
+                    cell2 = new TableCell();
+                    cell2.Text = dt.Rows[i]["nombresApellidos"].ToString();
+                    row2.Cells.Add(cell2);
 
-        //            tableGanadores.Rows.Add(row2);
-        //        }
-        //    }
-        //}
+                    tableGanadores.Rows.Add(row2);
+                }
+            }
+        }
 
         public void pintarDetalleResultadoPartidos(EN_CodigoAleatorio enCodAleatorio)
         {
