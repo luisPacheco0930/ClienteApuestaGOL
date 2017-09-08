@@ -8,14 +8,14 @@
 		    <div class="col-md-9">
 			    <div class="page-header">
                     <h2 id="lblTituloResultado" runat="server"></h2></div>
-				<p>Para visualizar su jugada, deberá colocar el código correcto, con el que participó</p>
+				<p>Para visualizar su jugada deberá colocar el código correcto con el que participó</p>
 	
 				<div class="validation-code">
 				    <div class="form-group">
 					    <div class="col-sm-6">
 						    <label>Ingrese su código jugado</label>
-                            <asp:TextBox ID="txtCode" CssClass="form-control" AutoPostBack="true"
-                            placeholder="Ejemplo : DC0003532-552332" runat="server" OnTextChanged="txtCodigoAleatorio_TextChanged"></asp:TextBox>
+                            <asp:TextBox ID="txtCode" CssClass="form-control" AutoPostBack="true" runat="server" 
+                            placeholder="Ejemplo : DC0003532-552332" OnTextChanged="txtCodigoAleatorio_TextChanged"></asp:TextBox>
 							
                         </div>
 						<div class="col-sm-6">
@@ -26,14 +26,14 @@
                         </div>
 					</div>
 				</div>
-				<div class="description">
+				<div id="divNumProgTitulo" class="description" runat="server">
 				    <div class="row">
 					    <div class="col-md-6">
 						    <div class="programation">N° de programación: <asp:Label ID="txtNroProgramacion" Text="....." runat="server"></asp:Label></div>
 						</div>						
 					</div>
 				</div>
-                <div class="result-goal">	
+                <div id="divtablePartJugado" class="result-goal" runat="server">	
                     <div class="table-responsive">
                         <asp:Table ID ="tablePartJugado" class="table table-striped" runat="server">
                         </asp:Table>

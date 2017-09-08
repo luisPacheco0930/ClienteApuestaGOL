@@ -49,6 +49,15 @@ namespace WebApuestasCliente {
         protected global::System.Web.UI.WebControls.Label lblStatusCode;
         
         /// <summary>
+        /// divNumProgTitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNumProgTitulo;
+        
+        /// <summary>
         /// txtNroProgramacion control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace WebApuestasCliente {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtNroProgramacion;
+        
+        /// <summary>
+        /// divtablePartJugado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divtablePartJugado;
         
         /// <summary>
         /// tablePartJugado control.

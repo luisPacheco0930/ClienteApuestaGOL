@@ -22,13 +22,36 @@ namespace WebApuestasCliente
             //if (Page.IsPostBack) return;
 
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorioVerJugada);
-            this.txtCode.Text = codeFrom;
+
+            
+            if (!String.IsNullOrEmpty(codeFrom))
+            {
+                pintarDatosJugada(codeFrom, sender, e);
+            }
+            else {
+                divResulTitulo.Visible = false;
+                divTableResultados.Visible = false;
+                divResulResumen.Visible = false;
+                divResulGanadores.Visible = false;
+                divtablePartJugado.Visible = false;
+                divNumProgTitulo.Visible = false;
+            }
+
+            if (!String.IsNullOrEmpty(codeFrom))
+            {
+                this.txtCode.Text = codeFrom;
+                BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, "");
+            }
+
+        }
+
+        public void pintarDatosJugada(String p_codeFrom, object sender, EventArgs e) {
+            this.txtCode.Text = p_codeFrom;
             EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
             enCodAleatorio.NroCodigoAleatorio = this.txtCode.Text;
 
-
             BL_ApuestaUsuario blApuestaUsuario = new BL_ApuestaUsuario();
-            DataTable dt =  blApuestaUsuario.BL_ObtenerDatosApuesta(enCodAleatorio, "");
+            DataTable dt = blApuestaUsuario.BL_ObtenerDatosApuesta(enCodAleatorio, "");
 
             this.lblTituloResultado.InnerText = dt.Rows[0]["tipoApuesta"].ToString();
             this.ls_codTipoApuesta = dt.Rows[0]["codTipoApuesta"].ToString();
@@ -36,15 +59,16 @@ namespace WebApuestasCliente
             BL_CodigoAleatorio blCodAleatorio = new BL_CodigoAleatorio();
             DataTable dt2 = blCodAleatorio.BL_ValidarCodigoAlearorio_ResultadoListo(enCodAleatorio);
 
-            
-            if (dt2.Rows.Count > 0) {
+
+            if (dt2.Rows.Count > 0)
+            {
                 flagResListos = "SI";
                 pintarResultadoPartidos(enCodAleatorio);
                 pintarGanadores(enCodAleatorio);
             }
             else
             {
-               // divResulTitulo.Visible = false;
+                // divResulTitulo.Visible = false;
                 divTableResultados.Visible = false;
                 divResulResumen.Visible = false;
                 divResulGanadores.Visible = false;
@@ -58,9 +82,9 @@ namespace WebApuestasCliente
             pintarPartidoJugado(enCodAleatorio);
 
         }
-
         protected void txtCodigoAleatorio_TextChanged(object sender, System.EventArgs e)
         {
+            // Response.Write("<script> alert('changed:"+ this.txtCode.Text +"') </script>");
             if (this.txtCode != null && !String.IsNullOrEmpty(this.txtCode.Text))
             {
                 //En caso si se ingrese a esta sección con un código promocional
@@ -69,16 +93,15 @@ namespace WebApuestasCliente
                 BL_PartidosProgramados blProgApuesta = new BL_PartidosProgramados();
                 DataTable dt = new DataTable();
 
-
                 EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
                 enCodAleatorio.NroCodigoAleatorio = this.txtCode.Text;
                 String textError = blCodAleatorio.BL_validarCodigoJugado(enCodAleatorio);
-                //Response.Write("<script> alert('" + textError + "') </script>");
+              //  Response.Write("<script> alert('EE-" + textError + "') </script>");
                 if (!String.IsNullOrEmpty(textError))
                 {
                     this.lblStatusCode.Text = textError; //EN_Constante.textCodigoNoValido;
                     this.pnlValidator.CssClass = "alert alert-danger";
-                    this.txtCode.Enabled = false;
+                    //this.txtCode.Enabled = false;
                     //this.btnGuardarPollaSemanal.Enabled = false;
                 }
                 else
@@ -89,16 +112,17 @@ namespace WebApuestasCliente
                     {
                         this.lblStatusCode.Text = EN_Constante.textCodigoValido; //EN_Constante.textNohayProgramaParaCodigo; //EN_Constante.textCodigoNoValido;
                         this.pnlValidator.CssClass = "alert alert-success"; //"alert alert-danger";
-                        this.txtCode.Enabled = false;
+                      //  this.txtCode.Enabled = false;
                         //  this.btnGuardarPollaSemanal.Enabled = false;
-                       // pintarPartidos(enCodAleatorio);
+                        // pintarPartidos(enCodAleatorio);
+                        pintarDatosJugada(this.txtCode.Text, sender, e);
                     }
                     else
                     {
                         this.lblStatusCode.Text = EN_Constante.textCodigoValido;
                         this.pnlValidator.CssClass = "alert alert-success";
-                        this.txtCode.Enabled = false;
-
+                        // this.txtCode.Enabled = false;
+                        pintarDatosJugada(this.txtCode.Text, sender, e);
                         BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, this.txtCode.Text);
 
                         //this.lblCodFecTope.Text = enProgXCodAleatorio.FechaFinal.ToShortTimeString() + " del " + enProgXCodAleatorio.FechaFinal.ToShortDateString(); // d.ToLongDateString();
@@ -121,7 +145,7 @@ namespace WebApuestasCliente
 
 
         }
-        
+
         public void pintarCabeceraResultadoPartidos( String flagTable )
         {
             TableRow row0 = new TableHeaderRow();
