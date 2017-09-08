@@ -21,7 +21,7 @@ namespace WebApuestasCliente
         {
             //if (Page.IsPostBack) return;
 
-            String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio);
+            String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorioVerJugada);
             this.txtCode.Text = codeFrom;
             EN_CodigoAleatorio enCodAleatorio = new EN_CodigoAleatorio();
             enCodAleatorio.NroCodigoAleatorio = this.txtCode.Text;
@@ -368,7 +368,11 @@ namespace WebApuestasCliente
                         else
                             cell2.CssClass = "result-e";
                     }
-                    cell2.Text = dt.Rows[i]["MarcadorLocal"].ToString() + " - " + dt.Rows[i]["MarcadorVisitante"].ToString();
+
+                    if (dt.Rows[i]["codigotipoapuesta"].ToString().Equals(EN_Constante.cartillaDeLaSuerte))
+                        cell2.Text = dt.Rows[i]["MarcadorLocal"].ToString() + " - " + dt.Rows[i]["MarcadorVisitante"].ToString();
+                    else
+                        cell2.Text = dt.Rows[i]["Resultado"].ToString();
                     row2.Cells.Add(cell2);
 
                     tablePartJugado.Rows.Add(row2);
