@@ -156,5 +156,16 @@ namespace ApuestaCliente.BussinesLogic
             }
             return dtLista;
         }
+
+        public DataTable BL_ObtenerDatosApuesta_XPROG(int p_idProg)
+        {
+            DataTable dtLista = new DataTable();
+            DA_ApuestaUsuario daApuestaUsuario = new DA_ApuestaUsuario();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                dtLista = daApuestaUsuario.DA_Obtener_DatosApuesta_XPROG(dbContexto,p_idProg);
+            }
+            return dtLista;
+        }
     }
 }

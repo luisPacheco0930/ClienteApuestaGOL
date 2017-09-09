@@ -52,6 +52,16 @@ namespace ApuestaCliente.Data
             return dtLista;
         }
 
+        public DataTable DA_GetResultadoPartidos_XPROG(ContextoDB contexto, int p_idProgramacion)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@IdProgramacion", p_idProgramacion);
+            
+            dtLista = contexto.RetornarDataTable("SP_LISTAR_RESULTADOS_XPROG", dicParametros);
+            return dtLista;
+        }
+
         public DataTable DA_GetListadoGanadores(ContextoDB contexto, EN_CodigoAleatorio enCodigo, String codTipoApuesta)
         {
             DataTable dtLista = new DataTable();

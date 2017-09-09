@@ -60,5 +60,15 @@ namespace ApuestaCliente.Data
             dtLista = contexto.RetornarDataTable("SP_Obtener_DatosApuesta", dicParametros);
             return dtLista;
         }
+
+        public DataTable DA_Obtener_DatosApuesta_XPROG(ContextoDB contexto, int p_idProg)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@IdProgramacion", p_idProg);
+            
+            dtLista = contexto.RetornarDataTable("SP_Obtener_DatosApuesta_XPROG", dicParametros);
+            return dtLista;
+        }
     }
 }
