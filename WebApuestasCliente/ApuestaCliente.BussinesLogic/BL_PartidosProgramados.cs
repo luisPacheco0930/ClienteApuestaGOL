@@ -80,6 +80,18 @@ namespace ApuestaCliente.BussinesLogic
             return dtLista;
         }
 
+        public DataTable BL_ListarResumenGanadores_XPROG(int p_idProgramacion)
+        {
+            DataTable dtLista = new DataTable();
+            DA_PartidosProgramados daPartidosProgramados = new DA_PartidosProgramados();
+            using (ContextoDB dbContexto = ContextoDB.InicializarContexto())
+            {
+                dtLista = daPartidosProgramados.DA_GetResGanadores_XPROG(dbContexto, p_idProgramacion);
+            }
+            return dtLista;
+        }
+
+
         public DataTable BL_ObtenerPozoMayorxApuesta(EN_ProgramacionApuesta enProgramacionApuesta)
         {
             DataTable dtLista = new DataTable();

@@ -72,6 +72,14 @@ namespace ApuestaCliente.Data
             return dtLista;
         }
 
+        public DataTable DA_GetResGanadores_XPROG(ContextoDB contexto, int p_idProgramacion)
+        {
+            DataTable dtLista = new DataTable();
+            Dictionary<string, object> dicParametros = new Dictionary<string, object>();
+            dicParametros.Add("@IdProgramacion", p_idProgramacion);
+            dtLista = contexto.RetornarDataTable("SP_RESUMEN_GANADORES_XPROG", dicParametros);
+            return dtLista;
+        }
         public DataTable DA_ObtenerPozoMayorxApuesta(ContextoDB contexto, EN_ProgramacionApuesta enProgramacionApuesta)
         {
             DataTable dtLista = new DataTable();
