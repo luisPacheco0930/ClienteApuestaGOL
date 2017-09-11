@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -341,7 +342,7 @@
     <Content Include="favicon.ico" />
     <Content Include="TerminoCondicionesAG.aspx" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="VisualizarJugada.aspx" />
+    <Content Include="Visualizar\VisualizarJugada.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -475,11 +476,11 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="VisualizarJugada.aspx.cs">
+    <Compile Include="Visualizar\VisualizarJugada.aspx.cs">
       <DependentUpon>VisualizarJugada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VisualizarJugada.aspx.designer.cs">
+    <Compile Include="Visualizar\VisualizarJugada.aspx.designer.cs">
       <DependentUpon>VisualizarJugada.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -20,7 +20,7 @@ namespace WebApuestasCliente
         protected void Page_Load(object sender, EventArgs e)
         {
             //if (Page.IsPostBack) return;
-
+            /*
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorioVerJugada);
 
             
@@ -42,7 +42,7 @@ namespace WebApuestasCliente
                 this.txtCode.Text = codeFrom;
                 BL_Util.guardarCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorio, "");
             }
-
+            */
         }
 
         public void pintarDatosJugada(String p_codeFrom, object sender, EventArgs e) {
@@ -77,7 +77,7 @@ namespace WebApuestasCliente
 
             }
 
-            txtCodigoAleatorio_TextChanged(sender, e);
+            //txtCodigoAleatorio_TextChanged(sender, e);
             pintarDatosApuesta(enCodAleatorio);
             pintarPartidoJugado(enCodAleatorio);
 
