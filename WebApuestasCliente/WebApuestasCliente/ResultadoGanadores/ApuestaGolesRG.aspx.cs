@@ -27,7 +27,7 @@ namespace WebApuestasCliente.ResultadoGanadores
 
             p_param_idProg = Request.QueryString["px_idProg"];
 
-            this.lblTituloResultado.InnerText = "Resultados LA POLLA SEMANAL";
+            this.lblTituloResultado.InnerText = "Resultados APUESTA GOLES";
             this.lblFechasApuesta.InnerText = "Fecha: ";
 
             String codeFrom = BL_Util.obtenerCookie(HttpContext.Current, EN_Constante.nombreCookieCodAleatorioResultadoPolla);
@@ -151,7 +151,7 @@ namespace WebApuestasCliente.ResultadoGanadores
 
                     HyperLink h1 = new HyperLink();
                     h1.Text = dt_datosApuesta.Rows[i]["IdProgramaApuesta"].ToString();
-                    h1.NavigateUrl = "~/ResultadoGanadores/PollaSemanalRG.aspx?px_idProg=" + dt_datosApuesta.Rows[i]["IdProgramaApuesta"].ToString();
+                    h1.NavigateUrl = "~/ResultadoGanadores/ApuestaGolesRG.aspx?px_idProg=" + dt_datosApuesta.Rows[i]["IdProgramaApuesta"].ToString();
                     cell2.Controls.Add(h1);
                     //cell2.Text = dt_datosApuesta.Rows[i]["IdProgramaApuesta"].ToString();
                     row2.Cells.Add(cell2);
