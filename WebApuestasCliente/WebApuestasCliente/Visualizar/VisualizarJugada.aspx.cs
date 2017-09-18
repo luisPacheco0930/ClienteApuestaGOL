@@ -53,8 +53,10 @@ namespace WebApuestasCliente
             BL_ApuestaUsuario blApuestaUsuario = new BL_ApuestaUsuario();
             DataTable dt = blApuestaUsuario.BL_ObtenerDatosApuesta(enCodAleatorio, "");
 
+            if (dt.Rows.Count > 0)  { 
             this.lblTituloResultado.InnerText = dt.Rows[0]["tipoApuesta"].ToString();
             this.ls_codTipoApuesta = dt.Rows[0]["codTipoApuesta"].ToString();
+            }
 
             BL_CodigoAleatorio blCodAleatorio = new BL_CodigoAleatorio();
             DataTable dt2 = blCodAleatorio.BL_ValidarCodigoAlearorio_ResultadoListo(enCodAleatorio);
